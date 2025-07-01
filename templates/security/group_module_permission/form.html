@@ -1,0 +1,208 @@
+{% extends 'home.html' %}
+<title>{% block title %}Crear Permiso de Grupo-Módulo{% endblock %}</title>
+{% load static %}
+{% block content %}
+<section class="dark:bg-principal">
+    <div class="text-center" data-aos="fade" data-aos-delay="200">
+        <div class="sm:pt-28 lg:pt-4">
+            <h1 class="rounded-2xl bg-indigo-500 px-2 py-1 text-white uppercase text-4xl">
+                Nuevo Permiso de Grupo-Módulo
+            </h1>
+        </div>
+
+        {% if form.non_field_errors %}
+        <div class="mx-4 lg:mx-20 mb-6" data-aos="fade-up">
+            <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-lg max-w-4xl mx-auto">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-exclamation-triangle text-red-500 text-lg"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-red-800 dark:text-red-200 font-medium">
+                            Se encontraron errores en el formulario:
+                        </h3>
+                        <div class="mt-2 text-red-700 dark:text-red-300">
+                            <ul class="list-disc list-inside space-y-1">
+                                {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <form id="ajax-form" method="post" action="{% url 'security:group_module_permission_create' %}">
+
+            <div class="mx-4 lg:mx-20" data-aos="fade">
+                <div class="bg-white dark:bg-secundario rounded-3xl p-8 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    {% csrf_token %}
+
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Grupo -->
+                        <div class="field-container {% if form.group.errors %}has-error{% endif %}">
+                            <label for="{{ form.group.id_for_label }}"
+                                class="block text-sm font-bold uppercase mb-2 tracking-wide
+                                    {% if form.group.errors %}text-red-600 dark:text-red-400{% else %}text-gray-700 dark:text-blue-300{% endif %}">
+                                {{ form.group.label }}
+                                {% if form.group.field.required %}
+                                    <span class="text-red-500">*</span>
+                                {% endif %}
+                            </label>
+
+                            <div class="relative">
+                                <select name="{{ form.group.html_name }}"
+                                        id="{{ form.group.id_for_label }}"
+                                        class="pl-10 pr-4 py-2 block w-full rounded-lg bg-white dark:bg-principal text-gray-700 dark:text-gray-200 border
+                                            {% if form.group.errors %}border-red-500 dark:border-red-400{% else %}border-gray-300 dark:border-gray-600{% endif %}
+                                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition">
+                                    <option value="">Seleccione un grupo</option>
+                                    {% for option in form.group.field.queryset %}
+                                        <option value="{{ option.pk }}" {% if option.pk == form.group.value %}selected{% endif %}>
+                                            {{ option.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                {% if form.group.errors %}
+                                    <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                                        <i class="fa-solid fa-circle-exclamation text-red-500"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {% if form.group.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-400">
+                                    {% for error in form.group.errors %}
+                                        <span class="block"><i class="fa-solid fa-circle-exclamation text-xs mr-1"></i>{{ error }}</span>
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Módulo -->
+                        <div class="field-container {% if form.module.errors %}has-error{% endif %}">
+                            <label for="{{ form.module.id_for_label }}"
+                                class="block text-sm font-bold uppercase mb-2 tracking-wide
+                                    {% if form.module.errors %}text-red-600 dark:text-red-400{% else %}text-gray-700 dark:text-blue-300{% endif %}">
+                                {{ form.module.label }}
+                                {% if form.module.field.required %}
+                                    <span class="text-red-500">*</span>
+                                {% endif %}
+                            </label>
+
+                            <div class="relative">
+                                <select name="{{ form.module.html_name }}"
+                                        id="{{ form.module.id_for_label }}"
+                                        class="pl-10 pr-4 py-2 block w-full rounded-lg bg-white dark:bg-principal text-gray-700 dark:text-gray-200 border
+                                            {% if form.module.errors %}border-red-500 dark:border-red-400{% else %}border-gray-300 dark:border-gray-600{% endif %}
+                                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition">
+                                    <option value="">Seleccione un módulo</option>
+                                    {% for option in form.module.field.queryset %}
+                                        <option value="{{ option.pk }}" {% if option.pk == form.module.value %}selected{% endif %}>
+                                            {{ option.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                {% if form.module.errors %}
+                                    <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                                        <i class="fa-solid fa-circle-exclamation text-red-500"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {% if form.module.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-400">
+                                    {% for error in form.module.errors %}
+                                        <span class="block"><i class="fa-solid fa-circle-exclamation text-xs mr-1"></i>{{ error }}</span>
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Permisos agrupados -->
+                     
+                        <div class="space-y-4">
+                            {% for app_label, perms in form.grouped_permissions.items %}
+                                <details class="border rounded-lg dark:border-gray-600 overflow-hidden">
+                                <summary class="cursor-pointer px-4 py-3 bg-gray-100 dark:bg-[#1e293b] hover:bg-gray-200 dark:hover:bg-[#334155] rounded-t-lg flex justify-between items-center">
+                                    <span class="text-left font-semibold text-gray-700 dark:text-gray-200">{{ app_label }}</span>
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </summary>
+                                <div class="px-4 py-2 bg-white dark:bg-[#0f172a] space-y-2">
+                                    {% for perm in perms %}
+                                    <label class="flex items-center space-x-2 text-sm text-gray-800 dark:text-gray-300">
+                                        <input type="checkbox" name="permissions" value="{{ perm.pk }}"
+                                            {% if perm.pk|stringformat:"s" in form.permissions.value|default:'' %} checked {% endif %}
+                                            class="form-checkbox" />
+                                        {{ perm.name }}
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                                </details>
+                            {% endfor %}
+                        </div>
+
+
+                    <!-- Botones -->
+                    <div class="mt-6 flex flex-col md:flex-row justify-center gap-4">
+                        <button type="submit"
+                            class="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase shadow-lg transition-all">
+                            {{ grabar|default:"Guardar" }}
+                        </button>
+                        <a href="{{ back_url|default:'#' }}"
+                            class="px-6 py-3 rounded-full bg-gray-400 hover:bg-gray-500 text-black font-bold uppercase shadow-lg transition-all flex items-center justify-center">
+                            Cancelar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="registro-creado" class="mt-8 max-w-4xl mx-auto"></div>
+    </div>
+</section>
+{% endblock %}{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('ajax-form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando...';
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert('Registro creado: ' + data.group + ' - ' + data.module);
+                form.reset();  // limpia el formulario
+            } else {
+                alert('Ocurrió un error');
+            }
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            alert('Hubo un error inesperado');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Crear';
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,543 @@
+{% extends 'home.html' %}
+<title>{% block title %}{{ title }}{% endblock %}</title>
+
+{% block content %}
+    {% load static %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
+
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .glass-card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.search-container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+}
+
+.table-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.table-header {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(147, 51, 234, 0.8) 100%);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table-row {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.table-row:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.2);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.status-active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.status-inactive {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.group-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin: 0.125rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.action-edit {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.action-edit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -3px rgba(59, 130, 246, 0.4);
+}
+
+.action-delete {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.action-delete:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -3px rgba(239, 68, 68, 0.4);
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 0.5rem;
+}
+
+.pagination-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pagination-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.pagination-button.active {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border-color: #3b82f6;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px -3px rgba(16, 185, 129, 0.3);
+    margin: 0.5rem;
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 35px -3px rgba(16, 185, 129, 0.4);
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px -3px rgba(99, 102, 241, 0.3);
+    margin: 0.5rem;
+}
+
+.secondary-button:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 20px 35px -3px rgba(99, 102, 241, 0.4);
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.no-users {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.no-users i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .table-row td {
+        white-space: nowrap;
+        padding: 1rem 0.5rem;
+    }
+    
+    .pagination-container {
+        flex-wrap: wrap;
+    }
+    
+    .action-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+</style>
+
+{% include 'fragments/messages.html' %}
+
+<section class="min-h-screen gradient-bg dark:bg-gradient-to-br dark:from-gray-900 dark:via-purple-900 dark:to-violet-900 py-12 px-4 font-inter">
+    <!-- Header -->
+    <div class="text-center mb-12 slide-in">
+        <div class="inline-block">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 font-poppins">
+                <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                    {{ title1 }}
+                </span>
+            </h1>
+            <div class="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Barra de búsqueda -->
+        <div class="mb-8 slide-in" style="animation-delay: 0.2s">
+            <form method="GET" class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" 
+                       name="q" 
+                       id="table-search"
+                       class="search-input"
+                       placeholder="Buscar usuario por nombre, email o ID..." 
+                       value="{{ request.GET.q }}">
+            </form>
+        </div>
+
+        <!-- Contenedor de la tabla -->
+        <div class="table-container slide-in" style="animation-delay: 0.4s">
+            {% if users %}
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="table-header">
+                        <tr>
+                            <th class="px-6 py-4 text-left">Usuario</th>
+                            <th class="px-6 py-4 text-center">Email</th>
+                            <th class="px-6 py-4 text-center">Grupos/Roles</th>
+                            <th class="px-6 py-4 text-center">Estado</th>
+                            <th class="px-6 py-4 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr class="table-row">
+                            <td class="px-6 py-4">
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user text-gray-600"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-lg">{{ user.get_full_name|default:user.username }}</div>
+                                        <div class="text-sm opacity-75">ID: {{ user.id }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="font-medium">{{ user.email|default:"Sin email" }}</div>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {% if user.groups.all %}
+                                    {% for group in user.groups.all %}
+                                        <span class="group-badge">{{ group.name }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span class="text-gray-400 italic">Sin grupo asignado</span>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {% if user.is_active %}
+                                    <span class="status-badge status-active">
+                                        <i class="fas fa-check mr-2"></i>Activo
+                                    </span>
+                                {% else %}
+                                    <span class="status-badge status-inactive">
+                                        <i class="fas fa-times mr-2"></i>Inactivo
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex justify-center items-center">
+                                    {% if permissions.change_user %}
+                                        <a href="{% url 'security:user_update' user.id %}" 
+                                           class="action-button action-edit"
+                                           title="Editar usuario">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if permissions.delete_user %}
+                                        <a href="#"
+                                           class="action-button action-delete"
+                                           title="Eliminar usuario"
+                                           onclick="openDeleteModal('{{ user.id }}', '{{ user.get_full_name|default:user.username }}', '{% url 'security:user_delete' user.id %}')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="no-users fade-in">
+                <i class="fas fa-users"></i>
+                <h3 class="text-2xl font-bold mb-2">No se encontraron usuarios</h3>
+                <p class="text-lg">{% if request.GET.q %}No hay resultados para "{{ request.GET.q }}"{% else %}Aún no hay usuarios registrados{% endif %}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Paginación -->
+        {% if page_obj.paginator.num_pages > 1 %}
+        <div class="pagination-container slide-in" style="animation-delay: 0.6s">
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                   class="pagination-button">
+                    <i class="fas fa-angle-double-left mr-2"></i>Primera
+                </a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                   class="pagination-button">
+                    <i class="fas fa-angle-left mr-2"></i>Anterior
+                </a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if num == page_obj.number %}
+                    <span class="pagination-button active">{{ num }}</span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                       class="pagination-button">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                   class="pagination-button">
+                    Siguiente<i class="fas fa-angle-right ml-2"></i>
+                </a>
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                   class="pagination-button">
+                    Última<i class="fas fa-angle-double-right ml-2"></i>
+                </a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Botones de acción -->
+        <div class="flex flex-col md:flex-row justify-center items-center mt-12 slide-in" style="animation-delay: 0.8s">
+            {% if permissions.add_user %}
+                <a href="{{ create_url }}" class="primary-button">
+                    <i class="fas fa-plus mr-3"></i>
+                    Nuevo Usuario
+                </a>
+            {% endif %}
+            <a href="{% url 'home' %}" class="secondary-button" title="Ir al início">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% include 'fragments/delete.html' %}
+
+<script>
+function openDeleteModal(id, name, deleteUrl) {
+    const deleteForm = document.getElementById('deleteForm');
+    deleteForm.action = deleteUrl;
+    document.getElementById('Description').textContent = `ID: ${id} - ${name}`;
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('deleteModal').classList.add('hidden');
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Animaciones de entrada escalonadas
+    const elements = document.querySelectorAll('.slide-in');
+    elements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    // Efecto de búsqueda en tiempo real (opcional)
+    const searchInput = document.getElementById('table-search');
+    let searchTimeout;
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            // Aquí podrías implementar búsqueda AJAX si lo deseas
+            // Por ahora mantiene el comportamiento original
+        }, 300);
+    });
+
+    // Manejo del formulario de eliminación
+    const deleteForm = document.getElementById('deleteForm');
+    if (deleteForm) {
+        deleteForm.addEventListener('submit', function (e) {
+            const submitBtn = deleteForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Eliminando...';
+                submitBtn.disabled = true;
+            }
+        });
+    }
+
+    // Efecto hover mejorado en filas de tabla
+    const tableRows = document.querySelectorAll('.table-row');
+    tableRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.005)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Añadir efectos de carga
+    const tableContainer = document.querySelector('.table-container');
+    if (tableContainer) {
+        tableContainer.style.opacity = '0';
+        setTimeout(() => {
+            tableContainer.style.transition = 'opacity 0.5s ease';
+            tableContainer.style.opacity = '1';
+        }, 300);
+    }
+});
+</script>
+
+{% endblock %}
