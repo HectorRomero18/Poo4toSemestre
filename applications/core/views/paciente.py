@@ -3,6 +3,12 @@ from django.db.models import Q
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from applications.core.models import Paciente
+from django.contrib import messages
+from applications.core.forms.pacienteForm import PacienteForm
+from django.urls import reverse_lazy
+from applications.security.components.mixin_crud import CreateViewMixin, DeleteViewMixin, ListViewMixin, PermissionMixin, UpdateViewMixin
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 """  Vista para buscar pacientes mediante AJAX. Por nombres, apellidos, cédula o teléfono. """
 
@@ -149,4 +155,10 @@ def paciente_find(request):
             'pacientes': []
         }, status=500)
 
-
+class PacienteCreateView(PermissionMixin, CreateView, CreateViewMixin):
+    model = Paciente
+    form_class = PacienteForm
+    permission_required = 'add_paciente'
+    template_name = 'doctor/atenciones/form.html'
+    success_url = reverse_lazy('pacientes:list')
+    
