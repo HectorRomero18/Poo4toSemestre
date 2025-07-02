@@ -1,11 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modal Agregar Paciente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Usamos @apply de Tailwind para clases personalizadas */
+        .form-input {
+            @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white text-gray-900 placeholder-gray-500;
+        }
+        .form-textarea {
+            @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white text-gray-900 placeholder-gray-500 resize-vertical min-h-[100px];
+        }
+        .form-select {
+            @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white text-gray-900 appearance-none cursor-pointer;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        .form-file {
+            @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100;
+        }
+        .form-date {
+            @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white text-gray-900;
+        }
+        .error-text {
+            @apply text-red-600 text-xs mt-1 block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- Botón para abrir modal (demo) -->
+<div class="p-8">
+    <button onclick="abrirModalPaciente()" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+        Agregar Nuevo Paciente
+    </button>
+</div>
+
 <!-- Modal Agregar Paciente -->
 <div id="modal-agregar-paciente" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black bg-opacity-50">
     <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
-
-        <!-- Contenido del Modal -->
         <div class="inline-block w-full max-w-4xl px-6 py-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-            <!-- Header del Modal -->
             <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
                 <h2 class="text-2xl font-bold text-gray-800 flex items-center">
                     <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mr-4">
@@ -15,138 +55,169 @@
                     </div>
                     Agregar Nuevo Paciente
                 </h2>
-                <button onclick="cerrarModalPaciente()" class="text-gray-400 hover:text-gray-600 transition-colors duration-200">
+                <button onclick="cerrarModalPaciente()" class="text-gray-400 hover:text-gray-600 transition-colors duration-200" aria-label="Cerrar modal">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
+            
+            <form id="form-nuevo-paciente" method="post" enctype="multipart/form-data" class="space-y-6" novalidate>
+                <!-- CSRF Token simulado -->
+                <input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_here">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="nombres" class="block text-sm font-semibold text-gray-700 mb-2">Nombres *</label>
+                        <input type="text" id="nombres" name="nombres" class="form-input" placeholder="Ingrese los nombres" required>
+                        <span class="error-text" id="error-nombres"></span>
+                    </div>
+                    <div>
+                        <label for="apellidos" class="block text-sm font-semibold text-gray-700 mb-2">Apellidos *</label>
+                        <input type="text" id="apellidos" name="apellidos" class="form-input" placeholder="Ingrese los apellidos" required>
+                        <span class="error-text" id="error-apellidos"></span>
+                    </div>
+                    <div>
+                        <label for="cedula_ecuatoriana" class="block text-sm font-semibold text-gray-700 mb-2">Cédula Ecuatoriana *</label>
+                        <input type="text" id="cedula_ecuatoriana" name="cedula_ecuatoriana" class="form-input" placeholder="1234567890" maxlength="10" required>
+                        <p class="text-xs text-gray-500 mt-1">Ingrese el número de cédula sin espacios ni guiones.</p>
+                        <span class="error-text" id="error-cedula_ecuatoriana"></span>
+                    </div>
+                    <div>
+                        <label for="dni" class="block text-sm font-semibold text-gray-700 mb-2">DNI Internacional</label>
+                        <input type="text" id="dni" name="dni" class="form-input" placeholder="Pasaporte, DNI, CURP, etc.">
+                        <p class="text-xs text-gray-500 mt-1">Pasaporte, DNI, CURP u otro documento válido internacionalmente.</p>
+                        <span class="error-text" id="error-dni"></span>
+                    </div>
+                    <div>
+                        <label for="fecha_nacimiento" class="block text-sm font-semibold text-gray-700 mb-2">Fecha de Nacimiento *</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-date" required>
+                        <span class="error-text" id="error-fecha_nacimiento"></span>
+                    </div>
+                    <div>
+                        <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">Teléfono(s) *</label>
+                        <input type="text" id="telefono" name="telefono" class="form-input" placeholder="0987654321, 022345678" required>
+                        <p class="text-xs text-gray-500 mt-1">Puede ingresar uno o más números separados por coma.</p>
+                        <span class="error-text" id="error-telefono"></span>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="correo@ejemplo.com">
+                        <p class="text-xs text-gray-500 mt-1">Correo electrónico del paciente (opcional).</p>
+                        <span class="error-text" id="error-email"></span>
+                    </div>
+                    <div>
+                        <label for="sexo" class="block text-sm font-semibold text-gray-700 mb-2">Sexo *</label>
+                        <select id="sexo" name="sexo" class="form-select" required>
+                            <option value="">Seleccione el sexo</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                        <span class="error-text" id="error-sexo"></span>
+                    </div>
+                    <div>
+                        <label for="estado_civil" class="block text-sm font-semibold text-gray-700 mb-2">Estado Civil *</label>
+                        <select id="estado_civil" name="estado_civil" class="form-select" required>
+                            <option value="">Seleccione el estado civil</option>
+                            <option value="soltero">Soltero(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="divorciado">Divorciado(a)</option>
+                            <option value="viudo">Viudo(a)</option>
+                            <option value="union_libre">Unión Libre</option>
+                        </select>
+                        <span class="error-text" id="error-estado_civil"></span>
+                    </div>
+                    <div>
+                        <label for="tipo_sangre" class="block text-sm font-semibold text-gray-700 mb-2">Tipo de Sangre</label>
+                        <select id="tipo_sangre" name="tipo_sangre" class="form-select">
+                            <option value="">Seleccione el tipo de sangre</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                        <span class="error-text" id="error-tipo_sangre"></span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label for="direccion" class="block text-sm font-semibold text-gray-700 mb-2">Dirección Domiciliaria *</label>
+                    <textarea id="direccion" name="direccion" class="form-textarea" rows="3" placeholder="Ingrese la dirección completa del domicilio" required></textarea>
+                    <span class="error-text" id="error-direccion"></span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <label for="latitud" class="block text-sm font-semibold text-gray-700 mb-2">Latitud</label>
+                        <input type="number" id="latitud" name="latitud" class="form-input" step="any" placeholder="-0.123456">
+                        <p class="text-xs text-gray-500 mt-1">Coordenada geográfica (opcional).</p>
+                        <span class="error-text" id="error-latitud"></span>
+                    </div>
+                    <div>
+                        <label for="longitud" class="block text-sm font-semibold text-gray-700 mb-2">Longitud</label>
+                        <input type="number" id="longitud" name="longitud" class="form-input" step="any" placeholder="-78.123456">
+                        <p class="text-xs text-gray-500 mt-1">Coordenada geográfica (opcional).</p>
+                        <span class="error-text" id="error-longitud"></span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label for="foto" class="block text-sm font-semibold text-gray-700 mb-2">Foto del Paciente</label>
+                    <input type="file" id="foto" name="foto" class="form-file" accept="image/*">
+                    <p class="text-xs text-gray-500 mt-1">Imagen de perfil del paciente (opcional).</p>
+                    <span class="error-text" id="error-foto"></span>
+                </div>
 
-            <!-- Formulario con Acordeón -->
-            <form id="form-nuevo-paciente" method="post" enctype="multipart/form-data" class="space-y-6">
-                {% csrf_token %}
-
-                <!-- Acordeón Datos Personales -->
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button type="button" onclick="toggleAccordion('datos-personales')" class="w-full px-6 py-4 text-left bg-blue-50 hover:bg-blue-100 transition-colors duration-200 flex items-center justify-between">
-                        <!-- ...iconos y título... -->
-                    </button>
-                    <div id="content-datos-personales" class="px-6 py-6 bg-white">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Nombres *</label>
-                                {{ form.nombres|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'Ingrese los nombres'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Apellidos *</label>
-                                {{ form.apellidos|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'Ingrese los apellidos'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Cédula Ecuatoriana *</label>
-                                {{ form.cedula_ecuatoriana|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': '1234567890'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Ingrese el número de cédula sin espacios ni guiones.</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">DNI Internacional</label>
-                                {{ form.dni|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'Pasaporte, DNI, CURP, etc.'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Pasaporte, DNI, CURP u otro documento válido internacionalmente.</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de Nacimiento *</label>
-                                {{ form.fecha_nacimiento|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Teléfono(s) *</label>
-                                {{ form.telefono|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': '+593 999 123 456'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Puede ingresar uno o más números separados por coma.</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico</label>
-                                {{ form.email|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'ejemplo@correo.com'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Correo electrónico del paciente (opcional).</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Sexo *</label>
-                                {{ form.sexo|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Estado Civil *</label>
-                                {{ form.estado_civil|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Tipo de Sangre</label>
-                                {{ form.tipo_sangre|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'}) }}
-                            </div>
+                <!-- Historia Clínica -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden mt-8 p-6 bg-green-50">
+                    <h3 class="text-xl font-semibold text-green-800 mb-6">Historia Clínica</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="antecedentes_personales" class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Personales Patológicos</label>
+                            <textarea id="antecedentes_personales" name="antecedentes_personales" class="form-textarea" rows="4" placeholder="Describa los antecedentes médicos personales del paciente"></textarea>
+                            <span class="error-text" id="error-antecedentes_personales"></span>
                         </div>
-                        <div class="mt-6">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Dirección Domiciliaria *</label>
-                            {{ form.direccion|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'Ingrese la dirección completa'}) }}
+                        <div>
+                            <label for="antecedentes_quirurgicos" class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Quirúrgicos</label>
+                            <textarea id="antecedentes_quirurgicos" name="antecedentes_quirurgicos" class="form-textarea" rows="4" placeholder="Describa las cirugías previas del paciente"></textarea>
+                            <span class="error-text" id="error-antecedentes_quirurgicos"></span>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Latitud</label>
-                                {{ form.latitud|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'Ej: -2.170998'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Coordenada geográfica (opcional).</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Longitud</label>
-                                {{ form.longitud|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent', 'placeholder': 'Ej: -79.922359'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Coordenada geográfica (opcional).</p>
-                            </div>
+                        <div>
+                            <label for="antecedentes_familiares" class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Familiares</label>
+                            <textarea id="antecedentes_familiares" name="antecedentes_familiares" class="form-textarea" rows="4" placeholder="Describa los antecedentes médicos familiares relevantes"></textarea>
+                            <span class="error-text" id="error-antecedentes_familiares"></span>
                         </div>
-                        <div class="mt-6">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Foto del Paciente</label>
-                            {{ form.foto|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'}) }}
-                            <p class="text-xs text-gray-500 mt-1">Imagen de perfil del paciente (opcional).</p>
+                        <div>
+                            <label for="alergias" class="block text-sm font-semibold text-gray-700 mb-2">Alergias</label>
+                            <textarea id="alergias" name="alergias" class="form-textarea" rows="3" placeholder="Liste las alergias conocidas del paciente"></textarea>
+                            <span class="error-text" id="error-alergias"></span>
+                        </div>
+                        <div>
+                            <label for="medicamentos_actuales" class="block text-sm font-semibold text-gray-700 mb-2">Medicamentos Actuales</label>
+                                <textarea id="medicamentos_actuales" name="medicamentos_actuales" class="form-textarea" rows="4" placeholder="Liste los medicamentos que toma actualmente el paciente"></textarea>
+                            <span class="error-text" id="error-medicamentos_actuales"></span>
+                        </div>
+                        <div>
+                            <label for="habitos_toxicos" class="block text-sm font-semibold text-gray-700 mb-2">Hábitos Tóxicos o Perjudiciales</label>
+                            <textarea id="habitos_toxicos" name="habitos_toxicos" class="form-textarea" rows="3" placeholder="Describa hábitos como tabaquismo, alcoholismo, drogas, etc."></textarea>
+                            <span class="error-text" id="error-habitos_toxicos"></span>
+                        </div>
+                        <div>
+                            <label for="vacunas" class="block text-sm font-semibold text-gray-700 mb-2">Vacunas</label>
+                            <textarea id="vacunas" name="vacunas" class="form-textarea" rows="4" placeholder="Liste las vacunas aplicadas al paciente"></textarea>
+                            <span class="error-text" id="error-vacunas"></span>
+                        </div>
+                        <div>
+                            <label for="antecedentes_gineco_obstetricos" class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Gineco-obstétricos</label>
+                            <textarea id="antecedentes_gineco_obstetricos" name="antecedentes_gineco_obstetricos" class="form-textarea" rows="4" placeholder="Información ginecológica y obstétrica (solo para pacientes femeninas)"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">Solo aplicable para pacientes femeninas.</p>
+                            <span class="error-text" id="error-antecedentes_gineco_obstetricos"></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Acordeón Historia Clínica -->
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button type="button" onclick="toggleAccordion('historia-clinica')" class="w-full px-6 py-4 text-left bg-green-50 hover:bg-green-100 transition-colors duration-200 flex items-center justify-between">
-                        <!-- ...iconos y título... -->
-                    </button>
-                    <div id="content-historia-clinica" class="px-6 py-6 bg-white hidden">
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Personales Patológicos</label>
-                                {{ form.antecedentes_personales|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Ej.: Diabetes tipo 2, hipertensión, asma, etc.'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Quirúrgicos</label>
-                                {{ form.antecedentes_quirurgicos|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Ej.: Cirugías previas como apendicectomía, cesárea, etc.'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Familiares</label>
-                                {{ form.antecedentes_familiares|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Enfermedades hereditarias (padres, abuelos, hermanos).'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Alergias</label>
-                                {{ form.alergias|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Ej.: Penicilina, mariscos, polvo, etc.'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Medicamentos Actuales</label>
-                                {{ form.medicamentos_actuales|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Nombre, dosis y frecuencia. Ej.: Losartán 50mg diario.'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Hábitos Tóxicos o Perjudiciales</label>
-                                {{ form.habitos_toxicos|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Ej.: Tabaco, alcohol, drogas, sedentarismo, etc.'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Vacunas</label>
-                                {{ form.vacunas|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Vacunas importantes recibidas. Ej.: COVID-19, influenza, etc.'}) }}
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Antecedentes Gineco-obstétricos</label>
-                                {{ form.antecedentes_gineco_obstetricos|as_widget(attrs={'class': 'w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent', 'placeholder': 'Solo en mujeres. Ej.: menarquia, embarazos, anticonceptivos.'}) }}
-                                <p class="text-xs text-gray-500 mt-1">Solo aplicable para pacientes femeninas.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botones del Modal -->
+                <!-- Botones de acción -->
                 <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
                     <button type="button" onclick="cerrarModalPaciente()" class="px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-200 font-medium">
                         Cancelar
@@ -162,3 +233,51 @@
         </div>
     </div>
 </div>
+
+<script>
+function toggleAccordion(section) {
+    const content = document.getElementById(`content-${section}`);
+    const icon = document.getElementById(`icon-${section}`);
+    
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+    } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+    }
+}
+
+function abrirModalPaciente() {
+    document.getElementById('modal-agregar-paciente').classList.remove('hidden');
+}
+
+function cerrarModalPaciente() {
+    document.getElementById('modal-agregar-paciente').classList.add('hidden');
+    document.getElementById('form-nuevo-paciente').reset();
+}
+
+// Simulación de validación de cédula ecuatoriana
+document.querySelector('input[name="cedula_ecuatoriana"]').addEventListener('input', function(e) {
+    const cedula = e.target.value;
+    if (cedula.length === 10) {
+        // Aquí puedes agregar la validación real de la cédula ecuatoriana
+        console.log('Validando cédula:', cedula);
+    }
+});
+
+// Manejo del envío del formulario
+document.getElementById('form-nuevo-paciente').addEventListener('submit', function(e) {
+    e.preventDefault();
+    console.log('Formulario enviado');
+    
+    // Aquí puedes agregar la lógica para enviar los datos al servidor
+    // En un entorno real, esto se enviaría a tu endpoint Django
+    
+    alert('Paciente guardado exitosamente (simulación)');
+    cerrarModalPaciente();
+});
+</script>
+
+</body>
+</html>

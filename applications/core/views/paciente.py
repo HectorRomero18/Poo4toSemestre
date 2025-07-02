@@ -161,4 +161,10 @@ class PacienteCreateView(PermissionMixin, CreateView, CreateViewMixin):
     permission_required = 'add_paciente'
     template_name = 'doctor/atenciones/form.html'
     success_url = reverse_lazy('pacientes:list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['grabar'] = 'Crear Paciente'
+        context['back_url'] = self.success_url
+        return context
     
