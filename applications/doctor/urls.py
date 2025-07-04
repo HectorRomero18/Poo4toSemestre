@@ -7,7 +7,7 @@ from applications.doctor.views.detalles_pago import DetallePagoCreateView, Detal
 from applications.doctor.views.servicios_adicionales import ServiciosAdicionalesListView, ServiciosAdicionalesCreateView, ServiciosAdicionalesUpdateView, ServiciosAdicionalesDeleteView
 from applications.doctor.views.paypal import pago_paypal, pago_cancelado, pago_exitoso
 
-from applications.doctor.views import horario
+from applications.doctor.views.horario import HorarioAtencionCreateView, HorarioAtencionDeleteView, HorarioAtencionListView, HorarioAtencionUpdateView
 from applications.doctor.views import cita
 
 
@@ -18,14 +18,6 @@ urlpatterns = [
     path('atencion_create/', AtencionCreateView.as_view(), name="atencion_create"),
     path('atencion_update/<int:pk>/', AtencionUpdateView.as_view(), name="atencion_update"),
     path('atencion_delete/<int:pk>/', AtencionDeleteView.as_view(), name="atencion_delete"),
-<<<<<<< HEAD
-    path('horarios/', horario.HorarioAtencionListView.as_view(), name='horario_list'),
-    path('horarios/nuevo/', horario.HorarioAtencionCreateView.as_view(), name='horario_create'),
-    path('horarios/<int:pk>/editar/', horario.HorarioAtencionUpdateView.as_view(), name='horario_edit'),
-    path('horarios/<int:pk>/eliminar/', horario.HorarioAtencionDeleteView.as_view(), name='horario_delete'),
-    path('citas/', cita.CitaMedicaListView.as_view(), name='cita_list'),
-    path('citas/nueva/', cita.CitaMedicaCreateView.as_view(), name='cita_create'),
-=======
 
     # rutas para vistas relacionadas con el Pago
     path('pago_list/', PagoListView.as_view(), name="pago_list"),
@@ -43,6 +35,14 @@ urlpatterns = [
     path('servicio_update/<int:pk>/', ServiciosAdicionalesUpdateView.as_view(), name="servicio_update"),
     path('servicio_delete/<int:pk>/', ServiciosAdicionalesDeleteView.as_view(), name="servicio_delete"),
 
+
+    # Rutas para el modelo Horarios
+    path('horarios_list/', HorarioAtencionListView.as_view(), name="horarios_list"),
+    path('horarios_create/', HorarioAtencionCreateView.as_view(), name="horarios_create"),
+    path('horario_update/<int:pk>/', HorarioAtencionUpdateView.as_view(), name="horario_update"),
+    path('horario_delete/<int:pk>/', HorarioAtencionDeleteView.as_view(), name="horario_delete"),
+
+
     # Rutas para pagar con paypal
     
     path('pagos/paypal/<int:monto>/<int:atencion_id>/', pago_paypal, name='pago_paypal'),
@@ -51,5 +51,4 @@ urlpatterns = [
 
     
 
->>>>>>> 580ca067abd924ae07554f93d04b39e2f51fc231
 ]

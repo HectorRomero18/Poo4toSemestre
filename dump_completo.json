@@ -1,0 +1,4458 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-05-26T23:20:16.741Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "hector@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Imagen de perfil\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-05-26T23:27:07.620Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "1",
+        "object_repr": "Asistentes",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-05-26T23:28:47.323Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "2",
+        "object_repr": "Consultor",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-05-26T23:30:09.997Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "3",
+        "object_repr": "Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-05-26T23:40:49.406Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "Pacientes",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-05-26T23:41:18.957Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "2",
+        "object_repr": "Seguridad",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-05-26T23:41:43.642Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "3",
+        "object_repr": "Consultas",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2025-05-26T23:42:06.777Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "4",
+        "object_repr": "Administraci¥n",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2025-05-26T23:43:24.760Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Registro de Pacientes [pacientes/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-05-26T23:44:25.983Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "Historial Medico [historial/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-05-26T23:45:22.139Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "Seguimiento [seguimiento/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-05-26T23:46:43.888Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "Usuarios [/seguridad/users/list]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-05-26T23:47:36.458Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "Citas [citas/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2025-05-26T23:48:47.962Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "Diagn¥sticos [diagnosticos/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2025-05-26T23:49:40.580Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "7",
+        "object_repr": "Recetas [recetas/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2025-05-26T23:50:19.592Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "8",
+        "object_repr": "Usuarios [usuarios/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2025-05-26T23:51:14.323Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "9",
+        "object_repr": "Configuraci¥n [configuracion/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2025-05-26T23:52:02.534Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "10",
+        "object_repr": "Reportes [reportes/]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2025-05-26T23:53:07.250Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "Usuarios - Consultor",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2025-05-27T00:00:33.148Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Registro de Pacientes - Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2025-05-27T00:01:08.174Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Diagn¥sticos - Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2025-05-27T00:01:37.687Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "Registro de Pacientes - Asistentes",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2025-05-27T00:02:07.396Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Registro de Pacientes [pacientes/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2025-05-27T00:02:37.216Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "Diagn¥sticos [diagnosticos/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2025-06-07T18:31:07.735Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2025-06-07T18:32:19.535Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "raulromerog002@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Email\", \"Groups\", \"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2025-06-07T18:41:01.778Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "hector1@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\", \"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2025-06-07T18:43:52.250Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "hector1@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2025-06-07T22:30:17.981Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "11",
+        "object_repr": "Modulos [security/module_list]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2025-06-07T22:31:46.866Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "Modulos - Consultor",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2025-06-07T22:33:01.404Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "12",
+        "object_repr": "Menu [security/menu_list]",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2025-06-07T22:33:11.352Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "12",
+        "object_repr": "Menu [security/menu_list]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2025-06-07T22:33:56.628Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "12",
+        "object_repr": "Menu [security/menu_list]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2025-06-07T22:34:26.208Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Menu - Consultor",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2025-06-07T23:01:55.202Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "USUARIOS [/security/users/list]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2025-06-07T23:02:57.287Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "USUARIOS [/security/user_list]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Url\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2025-06-07T23:06:50.573Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "raulromerog002@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2025-06-10T23:26:06.519Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Registro de Pacientes [pacientes/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Menu\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2025-06-21T19:37:47.654Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Registro de Pacientes [pacientes/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Menu\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2025-06-21T19:40:26.054Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "7",
+        "object_repr": "Configuraci¥n - Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2025-06-21T20:00:56.464Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "fulanito1@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2025-06-21T20:00:56.464Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "fulanito@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2025-06-21T20:00:56.464Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "fulano@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2025-06-22T19:21:18.563Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "8",
+        "object_repr": "GRUPOS - Consultor",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2025-06-22T20:45:30.373Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "9",
+        "object_repr": "Group module permission - Consultor",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2025-06-23T00:29:05.991Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Registro de Pacientes [pacientes/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2025-06-23T00:29:17.856Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "Historial Medico [historial/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2025-06-23T00:29:28.339Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "Seguimiento [seguimiento/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2025-06-23T00:29:34.623Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "USUARIOS [/security/user_list]",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2025-06-23T00:30:05.216Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "Citas [citas/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2025-06-23T00:30:15.364Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "Diagnosticos [diagnosticos/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2025-06-23T00:30:26.116Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "7",
+        "object_repr": "Recetas [recetas/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2025-06-23T00:30:34.161Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "8",
+        "object_repr": "Usuarios [usuarios/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2025-06-23T00:30:42.460Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "9",
+        "object_repr": "Configuracion [configuracion/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2025-06-23T00:30:53.121Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "10",
+        "object_repr": "Reportes [reportes/]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2025-06-23T00:31:04.742Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "Usuarios [/security/user_list]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nombre\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2025-06-23T00:31:13.050Z",
+        "user": 3,
+        "content_type": 8,
+        "object_id": "15",
+        "object_repr": "Grupos [/security/group_list]",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nombre\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2025-06-23T01:28:00.904Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "12",
+        "object_repr": "Recetas - Administradores",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2025-06-23T01:28:31.486Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "13",
+        "object_repr": "Usuarios - Administradores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2025-06-23T01:28:47.416Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "14",
+        "object_repr": "Menus - Administradores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2025-06-23T01:29:02.703Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "15",
+        "object_repr": "Modulos - Administradores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2025-06-23T01:29:17.591Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "16",
+        "object_repr": "Grupos - Administradores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2025-06-23T01:29:33.214Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "17",
+        "object_repr": "Group module permission - Administradores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2025-06-26T23:04:29.410Z",
+        "user": 3,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "O+",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2025-06-26T23:04:51.577Z",
+        "user": 3,
+        "content_type": 20,
+        "object_id": "1",
+        "object_repr": "Gonzalon, Raul",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2025-06-28T21:47:54.370Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "Usuarios - Consultor",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2025-06-28T21:47:54.370Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "Modulos - Consultor",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2025-06-28T21:47:54.370Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "Menus - Consultor",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2025-06-28T21:47:54.370Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "8",
+        "object_repr": "Grupos - Consultor",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2025-06-28T21:47:54.370Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "9",
+        "object_repr": "Group module permission - Consultor",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2025-06-28T21:53:08.878Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "18",
+        "object_repr": "Seguimiento - Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2025-06-28T21:53:59.453Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "19",
+        "object_repr": "Historial Medico - Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 73,
+    "fields": {
+        "action_time": "2025-06-28T21:55:06.546Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "20",
+        "object_repr": "Recetas - Medicos",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 74,
+    "fields": {
+        "action_time": "2025-06-28T21:56:23.270Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Diagnosticos - Medicos",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permisos\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 75,
+    "fields": {
+        "action_time": "2025-06-28T21:57:52.001Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "Registro de Pacientes - Asistentes",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permisos\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 76,
+    "fields": {
+        "action_time": "2025-06-28T21:58:19.602Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "21",
+        "object_repr": "Seguimiento - Asistentes",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 77,
+    "fields": {
+        "action_time": "2025-06-28T23:10:35.323Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 78,
+    "fields": {
+        "action_time": "2025-06-28T23:11:02.906Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 79,
+    "fields": {
+        "action_time": "2025-06-28T23:42:23.922Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "8",
+        "object_repr": "mbappe1@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 80,
+    "fields": {
+        "action_time": "2025-06-28T23:55:23.902Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "9",
+        "object_repr": "mbappe1@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 81,
+    "fields": {
+        "action_time": "2025-07-02T21:39:59.235Z",
+        "user": 3,
+        "content_type": 12,
+        "object_id": "1",
+        "object_repr": "A09 - Fiebre Severa",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 82,
+    "fields": {
+        "action_time": "2025-07-02T21:40:04.285Z",
+        "user": 3,
+        "content_type": 25,
+        "object_id": "1",
+        "object_repr": "Atención de Gonzalon, Raul el 2025-07-02 21:40",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 83,
+    "fields": {
+        "action_time": "2025-07-02T21:40:49.663Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "1",
+        "object_repr": "Pago 1 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 100",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 84,
+    "fields": {
+        "action_time": "2025-07-02T22:36:58.152Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "1",
+        "object_repr": "Pago 1 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 100.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 85,
+    "fields": {
+        "action_time": "2025-07-02T23:27:11.426Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "3",
+        "object_repr": "Pago 3 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2000.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 86,
+    "fields": {
+        "action_time": "2025-07-02T23:27:11.426Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "2",
+        "object_repr": "Pago 2 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 100.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 87,
+    "fields": {
+        "action_time": "2025-07-02T23:31:26.400Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "4",
+        "object_repr": "Pago 4 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 10000.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 88,
+    "fields": {
+        "action_time": "2025-07-02T23:33:57.979Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "5",
+        "object_repr": "Pago 5 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 1000.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 89,
+    "fields": {
+        "action_time": "2025-07-02T23:36:00.133Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "6",
+        "object_repr": "Pago 6 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 1999.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 90,
+    "fields": {
+        "action_time": "2025-07-03T01:12:57.432Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "8",
+        "object_repr": "Pago 8 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2222",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 91,
+    "fields": {
+        "action_time": "2025-07-03T01:36:32.926Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "8",
+        "object_repr": "Pago 8 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2222.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 92,
+    "fields": {
+        "action_time": "2025-07-03T01:36:32.926Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "7",
+        "object_repr": "Pago 7 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2999.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 93,
+    "fields": {
+        "action_time": "2025-07-03T02:05:32.974Z",
+        "user": 3,
+        "content_type": 20,
+        "object_id": "2",
+        "object_repr": "Perez, Juan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 94,
+    "fields": {
+        "action_time": "2025-07-03T02:07:02.311Z",
+        "user": 3,
+        "content_type": 25,
+        "object_id": "2",
+        "object_repr": "Atención de Perez, Juan el 2025-07-03 02:07",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 95,
+    "fields": {
+        "action_time": "2025-07-03T02:14:30.535Z",
+        "user": 3,
+        "content_type": 25,
+        "object_id": "3",
+        "object_repr": "Atención de Perez, Juan el 2025-07-03 02:14",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 96,
+    "fields": {
+        "action_time": "2025-07-03T02:23:26.581Z",
+        "user": 3,
+        "content_type": 24,
+        "object_id": "1",
+        "object_repr": "Radiografia",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 97,
+    "fields": {
+        "action_time": "2025-07-03T02:26:00.559Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "9",
+        "object_repr": "Pago 9 - Atención de Perez, Juan el 2025-07-03 02:14 - 10.00",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"Detalle de Pago\", \"object\": \"Radiografia - Cantidad: 1 - Subtotal: 45.00\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 98,
+    "fields": {
+        "action_time": "2025-07-03T17:44:34.634Z",
+        "user": 3,
+        "content_type": 28,
+        "object_id": "1",
+        "object_repr": "Radiografia - Cantidad: 1 - Subtotal: 45.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 99,
+    "fields": {
+        "action_time": "2025-07-03T19:57:34.332Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "14",
+        "object_repr": "Pago 14 - None - 90.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 100,
+    "fields": {
+        "action_time": "2025-07-03T21:49:20.010Z",
+        "user": 3,
+        "content_type": 20,
+        "object_id": "3",
+        "object_repr": "Cortez, Cristian",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 101,
+    "fields": {
+        "action_time": "2025-07-03T21:50:18.818Z",
+        "user": 3,
+        "content_type": 25,
+        "object_id": "4",
+        "object_repr": "Atención de Cortez, Cristian el 2025-07-03 21:50",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 102,
+    "fields": {
+        "action_time": "2025-07-03T22:30:52.505Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "25",
+        "object_repr": "Pago 25 - Atención de Cortez, Cristian el 2025-07-03 21:50 - 300.00",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"M\\u00e9todo de Pago\"]}}, {\"added\": {\"name\": \"Detalle de Pago\", \"object\": \"Radiografia - Cantidad: 1 - Subtotal: 100.00\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 103,
+    "fields": {
+        "action_time": "2025-07-03T22:31:43.236Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "25",
+        "object_repr": "Pago 25 - Atención de Cortez, Cristian el 2025-07-03 21:50 - 300.00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 104,
+    "fields": {
+        "action_time": "2025-07-03T22:34:16.335Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "26",
+        "object_repr": "Pago 26 - Atención de Cortez, Cristian el 2025-07-03 21:50 - 40.00",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"M\\u00e9todo de Pago\", \"Observaciones\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 105,
+    "fields": {
+        "action_time": "2025-07-03T23:52:35.026Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "hector1@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 106,
+    "fields": {
+        "action_time": "2025-07-04T01:39:25.982Z",
+        "user": 3,
+        "content_type": 27,
+        "object_id": "12",
+        "object_repr": "Pago 12 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 200.00",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Estado\", \"Evidencia de Pago\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add Menu",
+        "content_type": 6,
+        "codename": "add_menu"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change Menu",
+        "content_type": 6,
+        "codename": "change_menu"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete Menu",
+        "content_type": 6,
+        "codename": "delete_menu"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view Menu",
+        "content_type": 6,
+        "codename": "view_menu"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add Usuario",
+        "content_type": 7,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change Usuario",
+        "content_type": 7,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete Usuario",
+        "content_type": 7,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view Usuario",
+        "content_type": 7,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Cambiar perfil de Usuario",
+        "content_type": 7,
+        "codename": "change_userprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Cambiar contrase▒a de Usuario",
+        "content_type": 7,
+        "codename": "change_userpassword"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can add M¥dulo",
+        "content_type": 8,
+        "codename": "add_module"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can change M¥dulo",
+        "content_type": 8,
+        "codename": "change_module"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can delete M¥dulo",
+        "content_type": 8,
+        "codename": "delete_module"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can view M¥dulo",
+        "content_type": 8,
+        "codename": "view_module"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can add Grupo m¥dulo permiso",
+        "content_type": 9,
+        "codename": "add_groupmodulepermission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can change Grupo m¥dulo permiso",
+        "content_type": 9,
+        "codename": "change_groupmodulepermission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can delete Grupo m¥dulo permiso",
+        "content_type": 9,
+        "codename": "delete_groupmodulepermission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can view Grupo m¥dulo permiso",
+        "content_type": 9,
+        "codename": "view_groupmodulepermission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can add Paciente",
+        "content_type": 10,
+        "codename": "add_patient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can change Paciente",
+        "content_type": 10,
+        "codename": "change_patient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can delete Paciente",
+        "content_type": 10,
+        "codename": "delete_patient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can view Paciente",
+        "content_type": 10,
+        "codename": "view_patient"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can add Diagn¥stico",
+        "content_type": 11,
+        "codename": "add_diagnosis"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can change Diagn¥stico",
+        "content_type": 11,
+        "codename": "change_diagnosis"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can delete Diagn¥stico",
+        "content_type": 11,
+        "codename": "delete_diagnosis"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can view Diagn¥stico",
+        "content_type": 11,
+        "codename": "view_diagnosis"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can add Diagnóstico",
+        "content_type": 12,
+        "codename": "add_diagnostico"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can change Diagnóstico",
+        "content_type": 12,
+        "codename": "change_diagnostico"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can delete Diagnóstico",
+        "content_type": 12,
+        "codename": "delete_diagnostico"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can view Diagnóstico",
+        "content_type": 12,
+        "codename": "view_diagnostico"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can add Especialidad médica",
+        "content_type": 13,
+        "codename": "add_especialidad"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can change Especialidad médica",
+        "content_type": 13,
+        "codename": "change_especialidad"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can delete Especialidad médica",
+        "content_type": 13,
+        "codename": "delete_especialidad"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can view Especialidad médica",
+        "content_type": 13,
+        "codename": "view_especialidad"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can add Marca de Medicamento",
+        "content_type": 14,
+        "codename": "add_marcamedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can change Marca de Medicamento",
+        "content_type": 14,
+        "codename": "change_marcamedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can delete Marca de Medicamento",
+        "content_type": 14,
+        "codename": "delete_marcamedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can view Marca de Medicamento",
+        "content_type": 14,
+        "codename": "view_marcamedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can add Tipo de Medicamento",
+        "content_type": 15,
+        "codename": "add_tipomedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can change Tipo de Medicamento",
+        "content_type": 15,
+        "codename": "change_tipomedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can delete Tipo de Medicamento",
+        "content_type": 15,
+        "codename": "delete_tipomedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can view Tipo de Medicamento",
+        "content_type": 15,
+        "codename": "view_tipomedicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can add Tipo de Sangre",
+        "content_type": 16,
+        "codename": "add_tiposangre"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can change Tipo de Sangre",
+        "content_type": 16,
+        "codename": "change_tiposangre"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can delete Tipo de Sangre",
+        "content_type": 16,
+        "codename": "delete_tiposangre"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can view Tipo de Sangre",
+        "content_type": 16,
+        "codename": "view_tiposangre"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can add Empleado",
+        "content_type": 17,
+        "codename": "add_empleado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can change Empleado",
+        "content_type": 17,
+        "codename": "change_empleado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can delete Empleado",
+        "content_type": 17,
+        "codename": "delete_empleado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can view Empleado",
+        "content_type": 17,
+        "codename": "view_empleado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can add Doctor",
+        "content_type": 18,
+        "codename": "add_doctor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can change Doctor",
+        "content_type": 18,
+        "codename": "change_doctor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+        "name": "Can delete Doctor",
+        "content_type": 18,
+        "codename": "delete_doctor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+        "name": "Can view Doctor",
+        "content_type": 18,
+        "codename": "view_doctor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+        "name": "Can add Medicamento",
+        "content_type": 19,
+        "codename": "add_medicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+        "name": "Can change Medicamento",
+        "content_type": 19,
+        "codename": "change_medicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+        "name": "Can delete Medicamento",
+        "content_type": 19,
+        "codename": "delete_medicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+        "name": "Can view Medicamento",
+        "content_type": 19,
+        "codename": "view_medicamento"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+        "name": "Can add Paciente",
+        "content_type": 20,
+        "codename": "add_paciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+        "name": "Can change Paciente",
+        "content_type": 20,
+        "codename": "change_paciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 81,
+    "fields": {
+        "name": "Can delete Paciente",
+        "content_type": 20,
+        "codename": "delete_paciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 82,
+    "fields": {
+        "name": "Can view Paciente",
+        "content_type": 20,
+        "codename": "view_paciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 83,
+    "fields": {
+        "name": "Can add Tipo de Gasto",
+        "content_type": 21,
+        "codename": "add_tipogasto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 84,
+    "fields": {
+        "name": "Can change Tipo de Gasto",
+        "content_type": 21,
+        "codename": "change_tipogasto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 85,
+    "fields": {
+        "name": "Can delete Tipo de Gasto",
+        "content_type": 21,
+        "codename": "delete_tipogasto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 86,
+    "fields": {
+        "name": "Can view Tipo de Gasto",
+        "content_type": 21,
+        "codename": "view_tipogasto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 87,
+    "fields": {
+        "name": "Can add Foto del Paciente",
+        "content_type": 22,
+        "codename": "add_fotopaciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 88,
+    "fields": {
+        "name": "Can change Foto del Paciente",
+        "content_type": 22,
+        "codename": "change_fotopaciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 89,
+    "fields": {
+        "name": "Can delete Foto del Paciente",
+        "content_type": 22,
+        "codename": "delete_fotopaciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 90,
+    "fields": {
+        "name": "Can view Foto del Paciente",
+        "content_type": 22,
+        "codename": "view_fotopaciente"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 91,
+    "fields": {
+        "name": "Can add Gasto Mensual",
+        "content_type": 23,
+        "codename": "add_gastomensual"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 92,
+    "fields": {
+        "name": "Can change Gasto Mensual",
+        "content_type": 23,
+        "codename": "change_gastomensual"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+        "name": "Can delete Gasto Mensual",
+        "content_type": 23,
+        "codename": "delete_gastomensual"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+        "name": "Can view Gasto Mensual",
+        "content_type": 23,
+        "codename": "view_gastomensual"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+        "name": "Can add Servicio Adicional",
+        "content_type": 24,
+        "codename": "add_serviciosadicionales"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+        "name": "Can change Servicio Adicional",
+        "content_type": 24,
+        "codename": "change_serviciosadicionales"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 97,
+    "fields": {
+        "name": "Can delete Servicio Adicional",
+        "content_type": 24,
+        "codename": "delete_serviciosadicionales"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 98,
+    "fields": {
+        "name": "Can view Servicio Adicional",
+        "content_type": 24,
+        "codename": "view_serviciosadicionales"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 99,
+    "fields": {
+        "name": "Can add Atención Médica",
+        "content_type": 25,
+        "codename": "add_atencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 100,
+    "fields": {
+        "name": "Can change Atención Médica",
+        "content_type": 25,
+        "codename": "change_atencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 101,
+    "fields": {
+        "name": "Can delete Atención Médica",
+        "content_type": 25,
+        "codename": "delete_atencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 102,
+    "fields": {
+        "name": "Can view Atención Médica",
+        "content_type": 25,
+        "codename": "view_atencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 103,
+    "fields": {
+        "name": "Can add Detalle de Atención",
+        "content_type": 26,
+        "codename": "add_detalleatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 104,
+    "fields": {
+        "name": "Can change Detalle de Atención",
+        "content_type": 26,
+        "codename": "change_detalleatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 105,
+    "fields": {
+        "name": "Can delete Detalle de Atención",
+        "content_type": 26,
+        "codename": "delete_detalleatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 106,
+    "fields": {
+        "name": "Can view Detalle de Atención",
+        "content_type": 26,
+        "codename": "view_detalleatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 107,
+    "fields": {
+        "name": "Can add Pago",
+        "content_type": 27,
+        "codename": "add_pago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 108,
+    "fields": {
+        "name": "Can change Pago",
+        "content_type": 27,
+        "codename": "change_pago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 109,
+    "fields": {
+        "name": "Can delete Pago",
+        "content_type": 27,
+        "codename": "delete_pago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 110,
+    "fields": {
+        "name": "Can view Pago",
+        "content_type": 27,
+        "codename": "view_pago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 111,
+    "fields": {
+        "name": "Can add Detalle de Pago",
+        "content_type": 28,
+        "codename": "add_detallepago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 112,
+    "fields": {
+        "name": "Can change Detalle de Pago",
+        "content_type": 28,
+        "codename": "change_detallepago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 113,
+    "fields": {
+        "name": "Can delete Detalle de Pago",
+        "content_type": 28,
+        "codename": "delete_detallepago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 114,
+    "fields": {
+        "name": "Can view Detalle de Pago",
+        "content_type": 28,
+        "codename": "view_detallepago"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 115,
+    "fields": {
+        "name": "Can add Cita Médica",
+        "content_type": 29,
+        "codename": "add_citamedica"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 116,
+    "fields": {
+        "name": "Can change Cita Médica",
+        "content_type": 29,
+        "codename": "change_citamedica"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 117,
+    "fields": {
+        "name": "Can delete Cita Médica",
+        "content_type": 29,
+        "codename": "delete_citamedica"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 118,
+    "fields": {
+        "name": "Can view Cita Médica",
+        "content_type": 29,
+        "codename": "view_citamedica"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 119,
+    "fields": {
+        "name": "Can add Horario de Atención",
+        "content_type": 30,
+        "codename": "add_horarioatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 120,
+    "fields": {
+        "name": "Can change Horario de Atención",
+        "content_type": 30,
+        "codename": "change_horarioatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 121,
+    "fields": {
+        "name": "Can delete Horario de Atención",
+        "content_type": 30,
+        "codename": "delete_horarioatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 122,
+    "fields": {
+        "name": "Can view Horario de Atención",
+        "content_type": 30,
+        "codename": "view_horarioatencion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 123,
+    "fields": {
+        "name": "Can add Auditoria Usuario ",
+        "content_type": 31,
+        "codename": "add_audituser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 124,
+    "fields": {
+        "name": "Can change Auditoria Usuario ",
+        "content_type": 31,
+        "codename": "change_audituser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 125,
+    "fields": {
+        "name": "Can delete Auditoria Usuario ",
+        "content_type": 31,
+        "codename": "delete_audituser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 126,
+    "fields": {
+        "name": "Can view Auditoria Usuario ",
+        "content_type": 31,
+        "codename": "view_audituser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 127,
+    "fields": {
+        "name": "Can add Cargo",
+        "content_type": 32,
+        "codename": "add_cargo"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 128,
+    "fields": {
+        "name": "Can change Cargo",
+        "content_type": 32,
+        "codename": "change_cargo"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 129,
+    "fields": {
+        "name": "Can delete Cargo",
+        "content_type": 32,
+        "codename": "delete_cargo"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 130,
+    "fields": {
+        "name": "Can view Cargo",
+        "content_type": 32,
+        "codename": "view_cargo"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 131,
+    "fields": {
+        "name": "Can add PayPal IPN",
+        "content_type": 33,
+        "codename": "add_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 132,
+    "fields": {
+        "name": "Can change PayPal IPN",
+        "content_type": 33,
+        "codename": "change_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 133,
+    "fields": {
+        "name": "Can delete PayPal IPN",
+        "content_type": 33,
+        "codename": "delete_paypalipn"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 134,
+    "fields": {
+        "name": "Can view PayPal IPN",
+        "content_type": 33,
+        "codename": "view_paypalipn"
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "Asistentes",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+        "name": "Consultor",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+        "name": "Medicos",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 5,
+    "fields": {
+        "name": "Administradores",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 6,
+    "fields": {
+        "name": "Asesores",
+        "permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "security",
+        "model": "menu"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "security",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "security",
+        "model": "module"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "security",
+        "model": "groupmodulepermission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "miapp",
+        "model": "patient"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "miapp",
+        "model": "diagnosis"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "core",
+        "model": "diagnostico"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "core",
+        "model": "especialidad"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "core",
+        "model": "marcamedicamento"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "core",
+        "model": "tipomedicamento"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "core",
+        "model": "tiposangre"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "core",
+        "model": "empleado"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "core",
+        "model": "doctor"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+        "app_label": "core",
+        "model": "medicamento"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+        "app_label": "core",
+        "model": "paciente"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+        "app_label": "core",
+        "model": "tipogasto"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+        "app_label": "core",
+        "model": "fotopaciente"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 23,
+    "fields": {
+        "app_label": "core",
+        "model": "gastomensual"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 24,
+    "fields": {
+        "app_label": "doctor",
+        "model": "serviciosadicionales"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 25,
+    "fields": {
+        "app_label": "doctor",
+        "model": "atencion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 26,
+    "fields": {
+        "app_label": "doctor",
+        "model": "detalleatencion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 27,
+    "fields": {
+        "app_label": "doctor",
+        "model": "pago"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 28,
+    "fields": {
+        "app_label": "doctor",
+        "model": "detallepago"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 29,
+    "fields": {
+        "app_label": "doctor",
+        "model": "citamedica"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 30,
+    "fields": {
+        "app_label": "doctor",
+        "model": "horarioatencion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 31,
+    "fields": {
+        "app_label": "security",
+        "model": "audituser"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 32,
+    "fields": {
+        "app_label": "core",
+        "model": "cargo"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 33,
+    "fields": {
+        "app_label": "ipn",
+        "model": "paypalipn"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "1y9xjqm0dnpzy3pm1d0y5wgds0rjoxbw",
+    "fields": {
+        "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uX9Fl:URoFctsX85Q_9DnREhTOHd8-r0JNoGCkGmW66H56PU8",
+        "expire_date": "2025-07-17T02:00:45.129Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2c21u1vhnmvx1ulhutw451txaoweyt88",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhKC:qmNbXuLnI-0HyK0eqvxM_P7QmIi13zQ9BpyQlhBt6VM",
+        "expire_date": "2025-06-09T23:33:44.428Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "7dci60asa8bnwuxe6tfcg7xqdzi7t5cf",
+    "fields": {
+        "session_data": ".eJxVjsEOwiAQRP-FsyHbQKF49O43NLC7lKoB05aT8d-lpged48ybybzE6OuWxrryMs4kzkKJ068XPN457wHdfJ6KxJK3ZQ5yR-SRrvJaiB-Xg_0bSH5Nra01KQreEUPvNJhAQ2fQAmKMrleDdtaFJiQNitj0EZrHYFVA7kxso9NS6vN7snt_APCLPKU:1uTW0R:dBzAf17RTe8Yd8zoERw6p4NQM4xej8Xe6Qu1EtuFJdU",
+        "expire_date": "2025-07-07T01:29:55.101Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "9vry9fzmz93zqoipnomjnu6rnaapmtn6",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hAZWjq4dO8ZyAwMUjU0Ke3KeHfbpAvd_vfef6tA61LC2mQOY1IXZdTpd2OKT6k7SA-q90nHqS7zyHpX9EGbvk1JXtfD_Tso1MpWMwK4zg7ZApAZPLqeyXc5ofTWIGVEb42RbpNiFgYW30dkATgnJ4P6fAHDQzeH:1uNfEi:uKc9IJlJcMhiYPD2dGNGo00kq2ngqt0244qxSEUo-Ms",
+        "expire_date": "2025-06-20T22:08:28.777Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "awyrpqpaqso1aguoxczta99j06on38q1",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhD5:Z6yZFVFtiHx85JWTS7QowmG0rRMx5Zmti4Ze1j91L60",
+        "expire_date": "2025-06-09T23:26:23.852Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "c8vu1guagp3y4ws1uy3ibgi7eq5p22kr",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hAZWjq4dO8ZyAwMUjU0Ke3KeHfbpAvd_vfef6tA61LC2mQOY1IXZdTpd2OKT6k7SA-q90nHqS7zyHpX9EGbvk1JXtfD_Tso1MpWMwK4zg7ZApAZPLqeyXc5ofTWIGVEb42RbpNiFgYW30dkATgnJ4P6fAHDQzeH:1uNfFf:gWO0000Nv1GG8iViXDIjW0OqpHbWHgwpKoPxgambeGQ",
+        "expire_date": "2025-06-20T22:09:27.209Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "i6t9urq58mvc4jjnai75zvgkv1wy6x5d",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhK5:RH--SH9d_VWdf7Cz3YSnxLNcwKYiaea94HMUKh0igjQ",
+        "expire_date": "2025-06-09T23:33:37.212Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "in1pwflzt0kasgzr13mqdbkwhhul5tye",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhQZ:xlwNqSBIYygvm_aGf6jWlRhwclgfCX8r2JxZTYwkxVQ",
+        "expire_date": "2025-06-09T23:40:19.960Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "k4xcsk1mjhv6vfy263y3x4nvwt0vut72",
+    "fields": {
+        "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uX52g:XDV7VHPNasCPZ8YCLg75_6yFBiTDeopFEvi6HLRGC_I",
+        "expire_date": "2025-07-16T21:30:58.256Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mc2e232e3ksc2y8cpe5yor45bnh1yws7",
+    "fields": {
+        "session_data": ".eJxVjsEOwiAQRP-FsyHbQKF49O43NLC7lKoB05aT8d-lpged48ybybzE6OuWxrryMs4kzkKJ068XPN457wHdfJ6KxJK3ZQ5yR-SRrvJaiB-Xg_0bSH5Nra01KQreEUPvNJhAQ2fQAmKMrleDdtaFJiQNitj0EZrHYFVA7kxso9NS6vN7snt_APCLPKU:1uOQzm:jfRDhMom_Zd2lVMOVDKYCTdtY3AjWrrY6HiUKEkkZ0Y",
+        "expire_date": "2025-06-23T01:08:14.452Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "n2jf7imcqzx554xku8dh1n7z642snz2n",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhGY:ESN8tQ9pGiHGI-eJsMBx3p8VdW1gF0ORRFCzVjo5la0",
+        "expire_date": "2025-06-09T23:29:58.958Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nanzmjhbxk1y8k7cy95ngosheklx7uxm",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhFC:MwcFgb_UWANL012vUrPtoUu48Khn6rFfY3Pk_hm56ao",
+        "expire_date": "2025-06-09T23:28:34.710Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "o97vkmjsuoa7wwooxqempxcwyezzfjdd",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhpQ:8-m0klOwGIc0MUSlTFHs-13YAw7oquSpQ509dqXmzp8",
+        "expire_date": "2025-06-10T00:06:00.677Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ownz8fnf8teh5rtvru5vpuc6f7m4lc9a",
+    "fields": {
+        "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJgys:v8zrQDHtJINDcD15ZWyySNCZ1mcNKSOldwjBDMKahF0",
+        "expire_date": "2025-06-09T23:11:42.410Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "pzqlu2nblqyf1xr03mv08sv1eb3eqg8u",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAURP-FtSE0vIpL934D4T6QqqFJaVeN_y5NutBZnjkzu4hpW0vcGi9xInEVWlx-GSR8cT0Keqb6mCXOdV0mkIciz7bJ-0z8vp3u30FJrfS1MaQJUiBWNhjlgMbBoVeIOQerRxN8gB4kozSxs1l1xsprQB5cFp8v9pA4cQ:1uX9Fa:z5eeZ12u7viTT-m3FdInWqmqgB8eZ_rd0GkczgIURdI",
+        "expire_date": "2025-07-17T02:00:34.812Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "q5lvwu784avdv5t65l7sj7pkigp6fca9",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hAZWjq4dO8ZyAwMUjU0Ke3KeHfbpAvd_vfef6tA61LC2mQOY1IXZdTpd2OKT6k7SA-q90nHqS7zyHpX9EGbvk1JXtfD_Tso1MpWMwK4zg7ZApAZPLqeyXc5ofTWIGVEb42RbpNiFgYW30dkATgnJ4P6fAHDQzeH:1uNfDM:b1INOsq0RbgW-mlXwytdzP8IjtudyYBLNu0AQ4x-fWo",
+        "expire_date": "2025-06-20T22:07:04.514Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "tzi7q58ld5rs4k26xp3cji6a5s8o9qgo",
+    "fields": {
+        "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uXYfk:ZsBcqtlCFLRei_F9YjGVTHaFhj3CKAdYOZe5N85cs-Q",
+        "expire_date": "2025-07-18T05:09:16.633Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ug3k2fxkwlpc5vsxts7lu02yo0lzg233",
+    "fields": {
+        "session_data": ".eJxVjsEOwiAQRP-FsyFboVA8evcbGthd2qqBhrYn479LTQ86x5k3k3mJ3m_r2G8Ll34icRFKnH694PHBaQ_o7tOQJea0linIHZFHushbJn5eD_ZvYPTLWNtak6LgHTG0ToMJ1DUGLSDG6FrVaWddqELSoIhNG6F6DFYF5MbEOjqUvM3fk-f3B_CNPKY:1uOnnc:NdL0ogoRk2vNbpMk77N6RdmIUmGIdX_gioOzGmk1j3U",
+        "expire_date": "2025-06-24T01:29:12.848Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "z30kcsemawhznwlmq0hhzh5igwpodw4p",
+    "fields": {
+        "session_data": ".eJxVjsEOwiAQRP-FsyHbQKF49O43NLC7lKoB05aT8d-lpged48ybybzE6OuWxrryMs4kzkKJ068XPN457wHdfJ6KxJK3ZQ5yR-SRrvJaiB-Xg_0bSH5Nra01KQreEUPvNJhAQ2fQAmKMrleDdtaFJiQNitj0EZrHYFVA7kxso9NS6vN7snt_APCLPKU:1uOPfo:izcGpiQfDmzBrTDx6GKIeUQyUnzY1UvK_Syj48l0IXU",
+        "expire_date": "2025-06-22T23:43:32.338Z"
+    }
+},
+{
+    "model": "ipn.paypalipn",
+    "pk": 1,
+    "fields": {
+        "business": "sb-uptn029244386@business.example.com",
+        "charset": "UTF-8",
+        "custom": "3",
+        "notify_version": "3.90",
+        "parent_txn_id": "",
+        "receiver_email": "sb-uptn029244386@business.example.com",
+        "receiver_id": "T6QC44HMGSZBG",
+        "residence_country": "EC",
+        "test_ipn": true,
+        "txn_id": "0B6702859J482312P",
+        "txn_type": "web_accept",
+        "verify_sign": "AD0AxvxNUDqNFdn3xZmqC6Vhx.NsAyhax9Laxvzwzkxu9WLXUCQMfz68",
+        "address_country": "",
+        "address_city": "",
+        "address_country_code": "",
+        "address_name": "",
+        "address_state": "",
+        "address_status": "",
+        "address_street": "",
+        "address_zip": "",
+        "contact_phone": "",
+        "first_name": "John",
+        "last_name": "Doe",
+        "payer_business_name": "",
+        "payer_email": "sb-ihbq944315001@personal.example.com",
+        "payer_id": "YH6QSSKZHM6R6",
+        "auth_amount": "0.00",
+        "auth_exp": "",
+        "auth_id": "",
+        "auth_status": "",
+        "exchange_rate": "0E-16",
+        "invoice": "atencion-3",
+        "item_name": "Pago de Atención médica",
+        "item_number": "",
+        "mc_currency": "USD",
+        "mc_fee": "0.84",
+        "mc_gross": "10.00",
+        "mc_handling": "0.00",
+        "mc_shipping": "0.00",
+        "memo": "",
+        "num_cart_items": 0,
+        "option_name1": "",
+        "option_name2": "",
+        "option_selection1": "",
+        "option_selection2": "",
+        "payer_status": "verified",
+        "payment_date": "2025-07-03T02:15:14Z",
+        "payment_gross": "10.00",
+        "payment_status": "Completed",
+        "payment_type": "instant",
+        "pending_reason": "",
+        "protection_eligibility": "Eligible",
+        "quantity": 1,
+        "reason_code": "",
+        "remaining_settle": "0.00",
+        "settle_amount": "0.00",
+        "settle_currency": "",
+        "shipping": "0.00",
+        "shipping_method": "Default",
+        "tax": "0.00",
+        "transaction_entity": "",
+        "auction_buyer_id": "",
+        "auction_closing_date": null,
+        "auction_multi_item": 0,
+        "for_auction": "0.00",
+        "amount": "0.00",
+        "amount_per_cycle": "0.00",
+        "initial_payment_amount": "0.00",
+        "next_payment_date": null,
+        "outstanding_balance": "0.00",
+        "payment_cycle": "",
+        "period_type": "",
+        "product_name": "",
+        "product_type": "",
+        "profile_status": "",
+        "recurring_payment_id": "",
+        "rp_invoice_id": "",
+        "time_created": null,
+        "amount1": "0.00",
+        "amount2": "0.00",
+        "amount3": "0.00",
+        "mc_amount1": "0.00",
+        "mc_amount2": "0.00",
+        "mc_amount3": "0.00",
+        "password": "",
+        "period1": "",
+        "period2": "",
+        "period3": "",
+        "reattempt": "",
+        "recur_times": 0,
+        "recurring": "",
+        "retry_at": null,
+        "subscr_date": null,
+        "subscr_effective": null,
+        "subscr_id": "",
+        "username": "",
+        "mp_id": null,
+        "case_creation_date": null,
+        "case_id": "",
+        "case_type": "",
+        "receipt_id": "",
+        "currency_code": "USD",
+        "handling_amount": "0.00",
+        "transaction_subject": "",
+        "ipaddress": "127.0.0.1",
+        "flag": false,
+        "flag_code": "",
+        "flag_info": "",
+        "query": "mc_gross=10.00&invoice=atencion-3&protection_eligibility=Eligible&payer_id=YH6QSSKZHM6R6&payment_date=19%3A15%3A14+Jul+02%2C+2025+PDT&payment_status=Completed&charset=UTF-8&first_name=John&mc_fee=0.84&notify_version=3.9&custom=3&payer_status=verified&business=sb-uptn029244386%40business.example.com&quantity=1&verify_sign=AD0AxvxNUDqNFdn3xZmqC6Vhx.NsAyhax9Laxvzwzkxu9WLXUCQMfz68&payer_email=sb-ihbq944315001%40personal.example.com&txn_id=0B6702859J482312P&payment_type=instant&last_name=Doe&receiver_email=sb-uptn029244386%40business.example.com&payment_fee=0.84&shipping_discount=0.00&receiver_id=T6QC44HMGSZBG&insurance_amount=0.00&txn_type=web_accept&item_name=Pago+de+Atenci%C3%B3n+m%C3%A9dica&discount=0.00&mc_currency=USD&item_number=&residence_country=EC&test_ipn=1&shipping_method=Default&transaction_subject=&payment_gross=10.00&ipn_track_id=f3528260bd158",
+        "response": "VERIFIED",
+        "created_at": "2025-07-03T02:15:23.474Z",
+        "updated_at": "2025-07-03T02:15:23.491Z",
+        "from_view": null
+    }
+},
+{
+    "model": "security.menu",
+    "pk": 1,
+    "fields": {
+        "name": "Pacientes",
+        "icon": "bi bi-person",
+        "order": 1
+    }
+},
+{
+    "model": "security.menu",
+    "pk": 2,
+    "fields": {
+        "name": "Seguridad",
+        "icon": "fa-solid fa-shield",
+        "order": 2
+    }
+},
+{
+    "model": "security.menu",
+    "pk": 3,
+    "fields": {
+        "name": "Consultas",
+        "icon": "bi bi-calendar-check",
+        "order": 3
+    }
+},
+{
+    "model": "security.menu",
+    "pk": 4,
+    "fields": {
+        "name": "Administracion",
+        "icon": "fa-solid fa-gear",
+        "order": 4
+    }
+},
+{
+    "model": "security.menu",
+    "pk": 6,
+    "fields": {
+        "name": "Recursos humanos",
+        "icon": "fas fa-chalkboard-teacher",
+        "order": 5
+    }
+},
+{
+    "model": "security.module",
+    "pk": 1,
+    "fields": {
+        "url": "core/pacientes_list",
+        "name": "Registro de pacientes",
+        "menu": 1,
+        "description": "Gestion de informacion de pacientes",
+        "icon": "fas fa-user-plus",
+        "is_active": true,
+        "order": 1,
+        "permissions": [
+            39,
+            40,
+            41,
+            42
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 2,
+    "fields": {
+        "url": "historial/",
+        "name": "Historial clinico",
+        "menu": 1,
+        "description": "Historial clinico de pacientes",
+        "icon": "fas fa-notes-medical",
+        "is_active": true,
+        "order": 2,
+        "permissions": []
+    }
+},
+{
+    "model": "security.module",
+    "pk": 3,
+    "fields": {
+        "url": "seguimiento/",
+        "name": "Seguimiento",
+        "menu": 1,
+        "description": "Seguimiento de tratamientos y evolucion",
+        "icon": "fas fa-chart-line",
+        "is_active": true,
+        "order": 3,
+        "permissions": []
+    }
+},
+{
+    "model": "security.module",
+    "pk": 4,
+    "fields": {
+        "url": "/security/user_list",
+        "name": "Usuarios",
+        "menu": 2,
+        "description": "Gestion de Usuarios del Sistema",
+        "icon": "fas fa-user",
+        "is_active": true,
+        "order": 1,
+        "permissions": [
+            25,
+            26,
+            30,
+            29,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 5,
+    "fields": {
+        "url": "citas/",
+        "name": "Citas",
+        "menu": 3,
+        "description": "Programacion de citas medicas",
+        "icon": "fas fa-calendar-check",
+        "is_active": true,
+        "order": 1,
+        "permissions": [
+            20
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 6,
+    "fields": {
+        "url": "core/diagnosticos/",
+        "name": "Diagnosticos",
+        "menu": 3,
+        "description": "Registro de diagnosticos medicos",
+        "icon": "fa-solid fa-stethoscope",
+        "is_active": true,
+        "order": 2,
+        "permissions": [
+            43,
+            44,
+            45,
+            46
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 7,
+    "fields": {
+        "url": "recetas/",
+        "name": "Recetas",
+        "menu": 3,
+        "description": "Emision de recetas medicas",
+        "icon": "fas fa-prescription",
+        "is_active": true,
+        "order": 3,
+        "permissions": []
+    }
+},
+{
+    "model": "security.module",
+    "pk": 8,
+    "fields": {
+        "url": "usuarios/",
+        "name": "Usuarios",
+        "menu": 4,
+        "description": "Personalizacion de perfil",
+        "icon": "fas fa-user-cog",
+        "is_active": true,
+        "order": 1,
+        "permissions": []
+    }
+},
+{
+    "model": "security.module",
+    "pk": 9,
+    "fields": {
+        "url": "configuracion/",
+        "name": "Configuracion",
+        "menu": 4,
+        "description": "Configuracion general del sistema",
+        "icon": "fa-solid fa-sliders",
+        "is_active": true,
+        "order": 2,
+        "permissions": []
+    }
+},
+{
+    "model": "security.module",
+    "pk": 10,
+    "fields": {
+        "url": "reportes/",
+        "name": "Reportes",
+        "menu": 4,
+        "description": "Generacion de reportes y estadisticas",
+        "icon": "fas fa-file-alt",
+        "is_active": true,
+        "order": 3,
+        "permissions": []
+    }
+},
+{
+    "model": "security.module",
+    "pk": 11,
+    "fields": {
+        "url": "security/module_list",
+        "name": "Modulos",
+        "menu": 2,
+        "description": "Gestionar modulos",
+        "icon": "fa-solid fa-puzzle-piece",
+        "is_active": true,
+        "order": 2,
+        "permissions": [
+            38
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 12,
+    "fields": {
+        "url": "security/menu_list",
+        "name": "Menus",
+        "menu": 2,
+        "description": "Gestion de Menus",
+        "icon": "fa-solid fa-bars",
+        "is_active": true,
+        "order": 3,
+        "permissions": [
+            21
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 15,
+    "fields": {
+        "url": "/security/group_list",
+        "name": "Grupos",
+        "menu": 2,
+        "description": "Gestionar los grupos del sistema",
+        "icon": "fas fa-user-friends",
+        "is_active": true,
+        "order": 4,
+        "permissions": [
+            10,
+            11,
+            12
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 16,
+    "fields": {
+        "url": "/security/groupmodulepermission_list/",
+        "name": "Group module permission",
+        "menu": 2,
+        "description": "Manejar los permisos de a los modulos que tienen cada grupo",
+        "icon": "fas fa-user-shield",
+        "is_active": true,
+        "order": 5,
+        "permissions": [
+            35,
+            36,
+            37,
+            38
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 17,
+    "fields": {
+        "url": "doctor/atencion_list",
+        "name": "Atencion medica",
+        "menu": 1,
+        "description": "Atencion a Pacientes",
+        "icon": "fas fa-briefcase-medical",
+        "is_active": true,
+        "order": 0,
+        "permissions": [
+            99,
+            100,
+            101,
+            102
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 18,
+    "fields": {
+        "url": "security/preubas",
+        "name": "Prueba",
+        "menu": 2,
+        "description": "Prueba xd",
+        "icon": "fas fa-user",
+        "is_active": true,
+        "order": 6,
+        "permissions": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 19,
+    "fields": {
+        "url": "doctor/pago_list",
+        "name": "Pagos",
+        "menu": 3,
+        "description": "Gestionar los Pagos",
+        "icon": "fas fa-credit-card",
+        "is_active": true,
+        "order": 1,
+        "permissions": [
+            107,
+            108,
+            109,
+            110
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 20,
+    "fields": {
+        "url": "doctor/servicios_list",
+        "name": "Servicios adicionales",
+        "menu": 3,
+        "description": "Servicios Adicionales",
+        "icon": "fas fa-stethoscope",
+        "is_active": true,
+        "order": 5,
+        "permissions": [
+            95,
+            96,
+            97,
+            98
+        ]
+    }
+},
+{
+    "model": "security.module",
+    "pk": 21,
+    "fields": {
+        "url": "doctor/horarios_list",
+        "name": "Horarios",
+        "menu": 4,
+        "description": null,
+        "icon": "fas fa-clock",
+        "is_active": true,
+        "order": 2,
+        "permissions": [
+            119,
+            120,
+            121,
+            122
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 2,
+    "fields": {
+        "group": 3,
+        "module": 1,
+        "permissions": [
+            39,
+            40,
+            41,
+            42
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 3,
+    "fields": {
+        "group": 3,
+        "module": 6,
+        "permissions": [
+            49,
+            43,
+            44,
+            46
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 4,
+    "fields": {
+        "group": 1,
+        "module": 1,
+        "permissions": [
+            80,
+            81,
+            39,
+            42
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 7,
+    "fields": {
+        "group": 3,
+        "module": 9,
+        "permissions": [
+            22,
+            24
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 11,
+    "fields": {
+        "group": 6,
+        "module": 6,
+        "permissions": [
+            43,
+            44,
+            45,
+            46
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 13,
+    "fields": {
+        "group": 5,
+        "module": 4,
+        "permissions": [
+            25,
+            26,
+            30,
+            29,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 14,
+    "fields": {
+        "group": 5,
+        "module": 12,
+        "permissions": [
+            21,
+            22,
+            23,
+            24
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 15,
+    "fields": {
+        "group": 5,
+        "module": 11,
+        "permissions": [
+            24,
+            31,
+            32,
+            33,
+            34
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 16,
+    "fields": {
+        "group": 5,
+        "module": 15,
+        "permissions": [
+            9,
+            10,
+            11,
+            12
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 17,
+    "fields": {
+        "group": 5,
+        "module": 16,
+        "permissions": [
+            35,
+            36,
+            37,
+            38
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 18,
+    "fields": {
+        "group": 3,
+        "module": 3,
+        "permissions": [
+            99,
+            100,
+            101,
+            102
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 19,
+    "fields": {
+        "group": 3,
+        "module": 2,
+        "permissions": [
+            79,
+            80,
+            81,
+            82
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 20,
+    "fields": {
+        "group": 3,
+        "module": 7,
+        "permissions": [
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 21,
+    "fields": {
+        "group": 1,
+        "module": 3,
+        "permissions": [
+            99,
+            100,
+            101,
+            102
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 22,
+    "fields": {
+        "group": 3,
+        "module": 17,
+        "permissions": [
+            47,
+            48,
+            49,
+            50,
+            71,
+            75,
+            76,
+            77,
+            78,
+            82,
+            59,
+            62,
+            99,
+            100,
+            101,
+            102,
+            115,
+            116,
+            118,
+            103,
+            104,
+            105,
+            106
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 23,
+    "fields": {
+        "group": 5,
+        "module": 18,
+        "permissions": [
+            43,
+            45,
+            46
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 24,
+    "fields": {
+        "group": 2,
+        "module": 19,
+        "permissions": [
+            107,
+            108,
+            109,
+            110
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 25,
+    "fields": {
+        "group": 3,
+        "module": 19,
+        "permissions": [
+            107,
+            108,
+            109,
+            110
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 26,
+    "fields": {
+        "group": 3,
+        "module": 20,
+        "permissions": [
+            95,
+            96,
+            97,
+            98
+        ]
+    }
+},
+{
+    "model": "security.groupmodulepermission",
+    "pk": 27,
+    "fields": {
+        "group": 3,
+        "module": 21,
+        "permissions": [
+            119,
+            120,
+            121,
+            122
+        ]
+    }
+},
+{
+    "model": "security.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$UXZjDpWE8IUc4v5wESo2Ic$3PQ0K8Z/+NnoBFqtROEnYnrSg4LfVcCWscptZ72qTKo=",
+        "last_login": "2025-05-27T00:06:00.396Z",
+        "is_superuser": true,
+        "username": "Xhector",
+        "first_name": "Hector",
+        "last_name": "Romero",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-05-26T23:10:38Z",
+        "dni": null,
+        "image": "security/users/perfil.jpg",
+        "email": "hector@gmail.com",
+        "direction": null,
+        "phone": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "security.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$gl52RdnFprY9u8gXManDEM$fg/53DutyJENv1Yth84HJx6t8Iu4pmpI0R00sIdVDfk=",
+        "last_login": "2025-07-03T16:55:15Z",
+        "is_superuser": true,
+        "username": "XhectorOne",
+        "first_name": "Hector",
+        "last_name": "Romero",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-06-07T18:17:19Z",
+        "dni": null,
+        "image": "",
+        "email": "hector1@gmail.com",
+        "direction": null,
+        "phone": null,
+        "groups": [
+            1,
+            2,
+            3,
+            5,
+            6
+        ],
+        "user_permissions": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            5,
+            6,
+            7,
+            8,
+            13,
+            14,
+            15,
+            16,
+            127,
+            128,
+            129,
+            130,
+            47,
+            48,
+            49,
+            50,
+            71,
+            72,
+            73,
+            74,
+            67,
+            68,
+            69,
+            70,
+            51,
+            52,
+            53,
+            54,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            55,
+            56,
+            57,
+            58,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            99,
+            100,
+            101,
+            102,
+            115,
+            116,
+            117,
+            118,
+            103,
+            104,
+            105,
+            106,
+            111,
+            112,
+            113,
+            114,
+            119,
+            120,
+            121,
+            122,
+            107,
+            108,
+            109,
+            110,
+            95,
+            96,
+            97,
+            98,
+            131,
+            132,
+            133,
+            134,
+            43,
+            44,
+            45,
+            46,
+            39,
+            40,
+            41,
+            42,
+            123,
+            124,
+            125,
+            126,
+            35,
+            36,
+            37,
+            38,
+            21,
+            22,
+            23,
+            24,
+            31,
+            32,
+            33,
+            34,
+            25,
+            26,
+            30,
+            29,
+            27,
+            28,
+            17,
+            18,
+            19,
+            20
+        ]
+    }
+},
+{
+    "model": "security.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$9GhyRTYk1Uuot7Ug3ugweh$QpX/TjO8TsM+lY8u8vuEA0Zs4UGyeoHTtkym2ki7Q6E=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Raul",
+        "first_name": "Raul",
+        "last_name": "Romero",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-06-07T18:31:06Z",
+        "dni": null,
+        "image": "",
+        "email": "raulromerog002@gmail.com",
+        "direction": null,
+        "phone": null,
+        "groups": [
+            3
+        ],
+        "user_permissions": [
+            43,
+            44,
+            45,
+            46,
+            39,
+            40,
+            41,
+            42
+        ]
+    }
+},
+{
+    "model": "security.user",
+    "pk": 5,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Lionel",
+        "first_name": "Lionel",
+        "last_name": "Messi",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-06-07T23:33:40.444Z",
+        "dni": null,
+        "image": "",
+        "email": "messigoat@gmail.com",
+        "direction": null,
+        "phone": null,
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "security.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$sz7cwd6zxTBdoD9Z81N05L$Cq4AX2viFu6OXKmMgqVg+shsOQeS+0W0HI4HyP9UXOg=",
+        "last_login": "2025-06-29T00:13:36.003Z",
+        "is_superuser": false,
+        "username": "KylianX",
+        "first_name": "Kylian",
+        "last_name": "Mbappe",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-06-28T23:46:22.078Z",
+        "dni": null,
+        "image": "",
+        "email": "mbappe1@gmail.com",
+        "direction": null,
+        "phone": null,
+        "groups": [
+            3
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "security.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$qM9Wt2TuKtYVW9nokQuiiM$oVfdrogg6X/0EKg47wCk36nB25ctA2dcL+G8IL8RQPE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "ErlingH",
+        "first_name": "Erling",
+        "last_name": "Haaland",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-06-29T00:25:11.348Z",
+        "dni": null,
+        "image": "",
+        "email": "erling1@gmail.com",
+        "direction": null,
+        "phone": null,
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "core.tiposangre",
+    "pk": 1,
+    "fields": {
+        "tipo": "O+",
+        "descripcion": "O+"
+    }
+},
+{
+    "model": "core.paciente",
+    "pk": 1,
+    "fields": {
+        "nombres": "Raul",
+        "apellidos": "Gonzalon",
+        "cedula_ecuatoriana": "0943784157",
+        "dni": null,
+        "fecha_nacimiento": "2005-03-03",
+        "telefono": "+593985593704",
+        "email": "raulromerog006@gmail.com",
+        "sexo": "masculino",
+        "estado_civil": "soltero",
+        "direccion": "3 de noviembre",
+        "latitud": null,
+        "longitud": null,
+        "tipo_sangre": 1,
+        "foto": "",
+        "antecedentes_personales": "",
+        "antecedentes_quirurgicos": "",
+        "antecedentes_familiares": "",
+        "alergias": "",
+        "medicamentos_actuales": "",
+        "habitos_toxicos": "ninguno",
+        "vacunas": "",
+        "antecedentes_gineco_obstetricos": "",
+        "activo": true
+    }
+},
+{
+    "model": "core.paciente",
+    "pk": 2,
+    "fields": {
+        "nombres": "Alberto",
+        "apellidos": "Zea",
+        "cedula_ecuatoriana": "1710203694",
+        "dni": "17102036947",
+        "fecha_nacimiento": "2000-11-12",
+        "telefono": "+593985593704",
+        "email": "alberto@gmail.com",
+        "sexo": "masculino",
+        "estado_civil": "casado",
+        "direccion": "3 de noviembre",
+        "latitud": "-2.738290",
+        "longitud": "-80.271870",
+        "tipo_sangre": 1,
+        "foto": "",
+        "antecedentes_personales": "Diabetes",
+        "antecedentes_quirurgicos": "Ninguna",
+        "antecedentes_familiares": "Ninguna",
+        "alergias": "Ninguna",
+        "medicamentos_actuales": "Ninguna",
+        "habitos_toxicos": "ninguno",
+        "vacunas": "Ninguna",
+        "antecedentes_gineco_obstetricos": "Ninguna",
+        "activo": true
+    }
+},
+{
+    "model": "core.paciente",
+    "pk": 3,
+    "fields": {
+        "nombres": "Cristian",
+        "apellidos": "Cortez",
+        "cedula_ecuatoriana": "1721147898",
+        "dni": null,
+        "fecha_nacimiento": "1990-07-03",
+        "telefono": "+593985593792",
+        "email": "cristian@gmail.com",
+        "sexo": "masculino",
+        "estado_civil": "soltero",
+        "direccion": "3 de noviembre",
+        "latitud": null,
+        "longitud": null,
+        "tipo_sangre": 1,
+        "foto": "",
+        "antecedentes_personales": "",
+        "antecedentes_quirurgicos": "",
+        "antecedentes_familiares": "",
+        "alergias": "",
+        "medicamentos_actuales": "",
+        "habitos_toxicos": "ninguno",
+        "vacunas": "",
+        "antecedentes_gineco_obstetricos": "",
+        "activo": true
+    }
+},
+{
+    "model": "core.diagnostico",
+    "pk": 1,
+    "fields": {
+        "codigo": "A09",
+        "descripcion": "Fiebre Severa",
+        "datos_adicionales": "mucho cuidado",
+        "activo": true
+    }
+},
+{
+    "model": "doctor.atencion",
+    "pk": 1,
+    "fields": {
+        "paciente": 1,
+        "fecha_atencion": "2025-07-02T21:40:04.266Z",
+        "presion_arterial": "120/80",
+        "pulso": 40,
+        "temperatura": "34.0",
+        "frecuencia_respiratoria": 100,
+        "saturacion_oxigeno": "30.00",
+        "peso": "60.00",
+        "altura": "1.65",
+        "motivo_consulta": "dolores",
+        "sintomas": "fiebre",
+        "tratamiento": "paracetamol",
+        "examen_fisico": "",
+        "examenes_enviados": "",
+        "comentario_adicional": "",
+        "es_control": false,
+        "diagnostico": [
+            1
+        ]
+    }
+},
+{
+    "model": "doctor.atencion",
+    "pk": 2,
+    "fields": {
+        "paciente": 2,
+        "fecha_atencion": "2025-07-03T02:07:02.287Z",
+        "presion_arterial": "120/80",
+        "pulso": 45,
+        "temperatura": "34.0",
+        "frecuencia_respiratoria": 123,
+        "saturacion_oxigeno": "23.00",
+        "peso": "78.00",
+        "altura": "1.89",
+        "motivo_consulta": "se siente mal",
+        "sintomas": "fiebre",
+        "tratamiento": "nada",
+        "examen_fisico": "esta del orto",
+        "examenes_enviados": "",
+        "comentario_adicional": "",
+        "es_control": true,
+        "diagnostico": [
+            1
+        ]
+    }
+},
+{
+    "model": "doctor.atencion",
+    "pk": 3,
+    "fields": {
+        "paciente": 2,
+        "fecha_atencion": "2025-07-03T02:14:30.516Z",
+        "presion_arterial": "120/80",
+        "pulso": 34,
+        "temperatura": "34.0",
+        "frecuencia_respiratoria": 34,
+        "saturacion_oxigeno": "55.00",
+        "peso": "56.00",
+        "altura": "1.76",
+        "motivo_consulta": "se muere",
+        "sintomas": "fiebre",
+        "tratamiento": "nada",
+        "examen_fisico": "",
+        "examenes_enviados": "",
+        "comentario_adicional": "",
+        "es_control": false,
+        "diagnostico": [
+            1
+        ]
+    }
+},
+{
+    "model": "doctor.atencion",
+    "pk": 4,
+    "fields": {
+        "paciente": 3,
+        "fecha_atencion": "2025-07-03T21:50:18.805Z",
+        "presion_arterial": "130/60",
+        "pulso": 45,
+        "temperatura": "32.0",
+        "frecuencia_respiratoria": 45,
+        "saturacion_oxigeno": "78.00",
+        "peso": "67.00",
+        "altura": "1.76",
+        "motivo_consulta": "Chequeo",
+        "sintomas": "Fiebre",
+        "tratamiento": "Parectamol",
+        "examen_fisico": "",
+        "examenes_enviados": "",
+        "comentario_adicional": "",
+        "es_control": true,
+        "diagnostico": [
+            1
+        ]
+    }
+},
+{
+    "model": "doctor.serviciosadicionales",
+    "pk": 1,
+    "fields": {
+        "nombre_servicio": "Radiografia",
+        "costo_servicio": "100.00",
+        "descripcion": "Radiografia",
+        "activo": true
+    }
+},
+{
+    "model": "doctor.serviciosadicionales",
+    "pk": 3,
+    "fields": {
+        "nombre_servicio": "Electrocardiograma",
+        "costo_servicio": "100.00",
+        "descripcion": "Electrocardiograma (ECG)",
+        "activo": true
+    }
+},
+{
+    "model": "doctor.pago",
+    "pk": 9,
+    "fields": {
+        "atencion": 3,
+        "metodo_pago": "paypal",
+        "monto_total": "10.00",
+        "estado": "pagado",
+        "fecha_pago": "2025-07-03T02:15:23Z",
+        "fecha_creacion": "2025-07-03T02:15:23.508Z",
+        "nombre_pagador": "sb-ihbq944315001@personal.example.com",
+        "referencia_externa": "0B6702859J482312P",
+        "evidencia_pago": "Pagado vía PayPal txn_id: 0B6702859J482312P",
+        "observaciones": "Pago confirmado por PayPal",
+        "activo": true
+    }
+},
+{
+    "model": "doctor.pago",
+    "pk": 12,
+    "fields": {
+        "atencion": 1,
+        "metodo_pago": "paypal",
+        "monto_total": "200.00",
+        "estado": "pendiente",
+        "fecha_pago": "2025-04-12T05:00:00Z",
+        "fecha_creacion": "2025-07-03T19:11:11.984Z",
+        "nombre_pagador": "Hector",
+        "referencia_externa": "28932909021212",
+        "evidencia_pago": "",
+        "observaciones": "NInguna",
+        "activo": true
+    }
+},
+{
+    "model": "doctor.pago",
+    "pk": 19,
+    "fields": {
+        "atencion": 1,
+        "metodo_pago": "transaccion",
+        "monto_total": "30.00",
+        "estado": "pagado",
+        "fecha_pago": "2025-06-12T05:00:00Z",
+        "fecha_creacion": "2025-07-03T20:12:29.448Z",
+        "nombre_pagador": "Berta",
+        "referencia_externa": "12128919wh21990",
+        "evidencia_pago": "doctor/evidencia_pagos/POO_REPARTIDO_W3ekSb9.pdf",
+        "observaciones": "None",
+        "activo": true
+    }
+},
+{
+    "model": "doctor.detallepago",
+    "pk": 2,
+    "fields": {
+        "pago": 9,
+        "servicio_adicional": 1,
+        "cantidad": 1,
+        "precio_unitario": "200.00",
+        "subtotal": "54.00",
+        "descuento_porcentaje": "10.00",
+        "aplica_seguro": true,
+        "valor_seguro": "60.00",
+        "descripcion_seguro": "medicare"
+    }
+},
+{
+    "model": "doctor.detallepago",
+    "pk": 4,
+    "fields": {
+        "pago": 12,
+        "servicio_adicional": 1,
+        "cantidad": 1,
+        "precio_unitario": "35.00",
+        "subtotal": "35.00",
+        "descuento_porcentaje": "0.00",
+        "aplica_seguro": false,
+        "valor_seguro": null,
+        "descripcion_seguro": "medicare S2"
+    }
+},
+{
+    "model": "doctor.detallepago",
+    "pk": 5,
+    "fields": {
+        "pago": 19,
+        "servicio_adicional": 1,
+        "cantidad": 1,
+        "precio_unitario": "400.00",
+        "subtotal": "32.55",
+        "descuento_porcentaje": "7.00",
+        "aplica_seguro": true,
+        "valor_seguro": "35.00",
+        "descripcion_seguro": "medicare S22"
+    }
+},
+{
+    "model": "doctor.detallepago",
+    "pk": 10,
+    "fields": {
+        "pago": 9,
+        "servicio_adicional": 3,
+        "cantidad": 1,
+        "precio_unitario": "60.00",
+        "subtotal": "60.00",
+        "descuento_porcentaje": "0.00",
+        "aplica_seguro": false,
+        "valor_seguro": null,
+        "descripcion_seguro": null
+    }
+}
+]

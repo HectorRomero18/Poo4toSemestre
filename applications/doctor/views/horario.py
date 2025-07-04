@@ -30,7 +30,7 @@ class HorarioAtencionCreateView(PermissionMixin, CreateViewMixin, CreateView):
     model = HorarioAtencion
     template_name = 'doctor/horario/form.html'
     form_class = HorarioAtencionForm
-    success_url = reverse_lazy('doctor:horario_list')
+    success_url = reverse_lazy('doctor:horarios_list')
     permission_required = 'add_horarioatencion'
 
     def get_context_data(self, **kwargs):
@@ -53,7 +53,7 @@ class HorarioAtencionUpdateView(PermissionMixin, UpdateViewMixin, UpdateView):
     model = HorarioAtencion
     template_name = 'doctor/horario/form.html'
     form_class = HorarioAtencionForm
-    success_url = reverse_lazy('doctor:horario_list')
+    success_url = reverse_lazy('doctor:horarios_list')
     permission_required = 'change_horarioatencion'
 
     def get_context_data(self, **kwargs):
@@ -75,7 +75,7 @@ class HorarioAtencionUpdateView(PermissionMixin, UpdateViewMixin, UpdateView):
 class HorarioAtencionDeleteView(PermissionMixin, DeleteViewMixin, DeleteView):
     model = HorarioAtencion
     template_name = 'doctor/delete.html'
-    success_url = reverse_lazy('doctor:horario_list')
+    success_url = reverse_lazy('doctor:horarios_list')
     permission_required = 'delete_horarioatencion'
 
     def get_context_data(self, **kwargs):
