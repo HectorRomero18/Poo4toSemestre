@@ -30,7 +30,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58f0-157-100-64-49.ngrok-free.app', '799b-157-100-64-50.ngrok-free.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58f0-157-100-64-49.ngrok-free.app', '799b-157-100-64-50.ngrok-free.app', 'eb23-157-100-64-50.ngrok-free.app']
 X_FRAME_OPTIONS = 'ALLOWALL'
 
 CSRF_TRUSTED_ORIGINS = [
