@@ -105,15 +105,15 @@ WSGI_APPLICATION = 'proy_clinico.wsgi.application'
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
-DATABASES = {
-    'default': {
-        'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-    }
+DATABASES ={
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_medico',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',  # o la IP del servidor de base de datos
+        'PORT': '5432',
+    }            
 }
 
 # Password validation
@@ -153,7 +153,7 @@ DATE_FORMAT = 'd/m/Y'
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)#carpeta fisica de archivos estaticos
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)#carpeta fisica de archivos estaticos
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') # carpeta fisica de archivos de Imagenes
 MEDIA_URL = '/media/' # url de imagenes
 # Default primary key field type
