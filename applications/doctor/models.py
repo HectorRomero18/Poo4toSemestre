@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.db import models
 from applications.doctor.utils.cita_medica import EstadoCitaChoices
 from applications.doctor.utils.doctor import DiaSemanaChoices
+from django.db.models import Sum
 from applications.doctor.utils.pago import MetodoPagoChoices, EstadoPagoChoices
 
 """
@@ -291,6 +292,7 @@ class Pago(models.Model):
                                    verbose_name="Método de Pago")
     monto_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       verbose_name="Monto Total")
+
     estado = models.CharField(max_length=20, choices=EstadoPagoChoices.choices,
                               default=EstadoPagoChoices.PENDIENTE, verbose_name="Estado")
 
@@ -316,6 +318,14 @@ class Pago(models.Model):
     observaciones = models.TextField(verbose_name="Observaciones", blank=True, null=True)
 
     activo = models.BooleanField(default=True, verbose_name="Activo")
+
+    @property
+    def total_detalles(self):
+        return self.detalles.aggregate(total=Sum('subtotal'))['total'] or 0
+    
+    @property
+    def precio_final(self):
+        return (self.monto_total or 0) + self.total_detalles
 
     def __str__(self):
         return f"Pago {self.id} - {self.atencion} - {self.monto_total}"
@@ -372,6 +382,7 @@ class DetallePago(models.Model):
         decimal_places=2,
         verbose_name="Subtotal",
         editable=False,
+        default=Decimal('0.00'),
         help_text="Subtotal calculado automáticamente, considerando seguro y descuento."
     )
 

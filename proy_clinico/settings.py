@@ -30,7 +30,12 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58f0-157-100-64-49.ngrok-free.app', '799b-157-100-64-50.ngrok-free.app']
+X_FRAME_OPTIONS = 'ALLOWALL'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+]
 
 
 # Application de djang
@@ -48,8 +53,12 @@ THIRD_PARTY_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload', 
+    'paypal.standard.ipn',
 
 ]
+PAYPAL_RECEIVER_EMAIL = 'sb-uptn029244386@business.example.com'
+PAYPAL_TEST = True  # En desarrollo usar True, en producción False
+
 # Aplicaciones propias
 LOCAL_APPS = [
     'applications.security.apps.SecurityConfig',

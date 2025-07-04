@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalle de Pago</title>
+    <style>
+        /* Estilos base inspirados en el segundo HTML */
+        .services-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            padding: 32px;
+            margin: 32px 0;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .services-header h3 {
+            color: #1e293b;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .services-header h3::before {
+            content: '💳';
+            font-size: 0.9em;
+        }
+
+        /* Contenedor del formulario con estilo de tarjeta */
+        .form-container {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 2px solid #e5e7eb;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container:hover {
+            border-color: #10b981;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Grid para organizar campos en filas */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #374151;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            font-size: 16px;
+            background: #ffffff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            font-weight: 500;
+            color: #1f2937;
+            box-sizing: border-box;
+        }
+        
+
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 
+                0 0 0 4px rgba(102, 126, 234, 0.12),
+                0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover:not(:focus) {
+            border-color: #d1d5db;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Estilos para select */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+            padding-right: 50px;
+        }
+
+        /* Estilos para textarea */
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Estilos para checkbox y radio */
+        .checkbox-wrapper, .radio-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"],
+        .radio-wrapper input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #10b981;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper label,
+        .radio-wrapper label {
+            margin: 0;
+            font-weight: 500;
+            color: #374151;
+            text-transform: none;
+            letter-spacing: normal;
+            cursor: pointer;
+        }
+
+        .required {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Botón de envío mejorado */
+        .submit-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Estilo para botón cancelar */
+        .cancel-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cancel-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cancel-btn:hover::before {
+            left: 100%;
+        }
+
+        .cancel-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .cancel-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Efectos de focus para form-group */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .form-group:focus-within::after {
+            transform: scaleX(1);
+        }
+
+        /* Mensajes de error */
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875em;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+        }
+
+        /* Texto de ayuda */
+        .help-text {
+            color: #6b7280;
+            font-size: 0.875em;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Animaciones */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-section {
+                padding: 20px;
+                margin: 16px 0;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .services-header h3 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-control {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+
+            .submit-btn, .cancel-btn {
+                padding: 16px 24px;
+                font-size: 14px;
+            }
+        }
+
+        /* Efectos adicionales para inputs */
+        .form-control:focus {
+            animation: pulse 0.3s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Iconos para diferentes tipos de campos */
+        .form-group[data-field-type="text"] label::before,
+        .form-group[data-field-type="email"] label::before,
+        .form-group[data-field-type="number"] label::before,
+        .form-group[data-field-type="date"] label::before,
+        .form-group[data-field-type="select"] label::before,
+        .form-group[data-field-type="textarea"] label::before {
+            margin-right: 8px;
+            font-size: 0.9em;
+        }
+
+        .form-group[data-field-type="text"] label::before { content: '📝'; }
+        .form-group[data-field-type="email"] label::before { content: '📧'; }
+        .form-group[data-field-type="number"] label::before { content: '🔢'; }
+        .form-group[data-field-type="date"] label::before { content: '📅'; }
+        .form-group[data-field-type="select"] label::before { content: '📋'; }
+        .form-group[data-field-type="textarea"] label::before { content: '💬'; }
+    </style>
+</head>
+<body>
+    <div class="services-section">
+        <div class="services-header">
+            <h3>Detalle de Pago</h3>
+        </div>
+        
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-grid">
+                    {% for field in det_form %}
+                        <div class="form-group" data-field-type="{{ field.field.widget.input_type|default:'text' }}">
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                                {% if field.field.required %}<span class="required">*</span>{% endif %}
+                            </label>
+                            
+                            {% if field.field.widget.input_type == 'select' %}
+                                <div class="select-wrapper">
+                                    {{ field }}
+                                </div>
+                            {% elif field.field.widget.input_type == 'checkbox' %}
+                                <div class="checkbox-wrapper">
+                                    {{ field }}
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                            {% elif field.field.widget.input_type == 'radio' %}
+                                <div class="radio-wrapper">
+                                    {{ field }}
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                            
+                            {% if field.help_text %}
+                                <div class="help-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            
+                            {% for error in field.errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="button-container">
+                    <button type="submit" class="submit-btn">
+                        💾 Guardar Detalle
+                    </button>
+                    
+                    <a href="#" onclick="window.location.href='/doctor/pago_list/'"  class="cancel-btn">✖️ Cancelar</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Efectos de hover mejorados para inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar clase form-control a todos los inputs del formulario Django
+            const formInputs = document.querySelectorAll('input, select, textarea');
+            formInputs.forEach(input => {
+                if (!input.classList.contains('form-control')) {
+                    input.classList.add('form-control');
+                }
+            });
+            
+            // Efectos de hover y focus
+            document.addEventListener('focusin', function(e) {
+                if (e.target.classList.contains('form-control')) {
+                    const formGroup = e.target.closest('.form-group');
+                    if (formGroup) {
+                        formGroup.style.transform = 'translateY(-2px)';
+                    }
+                }
+            });
+            
+            document.addEventListener('focusout', function(e) {
+                if (e.target.classList.contains('form-control')) {
+                    const formGroup = e.target.closest('.form-group');
+                    if (formGroup) {
+                        formGroup.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+
+            // Animación de carga del formulario
+            const formContainer = document.querySelector('.form-container');
+            if (formContainer) {
+                formContainer.style.opacity = '0';
+                formContainer.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    formContainer.style.transition = 'all 0.5s ease';
+                    formContainer.style.opacity = '1';
+                    formContainer.style.transform = 'translateY(0)';
+                }, 100);
+            }
+
+            // Efectos de ripple en el botón
+            const submitBtn = document.querySelector('.submit-btn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            }
+        });
+
+        // Animación de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

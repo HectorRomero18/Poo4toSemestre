@@ -18,7 +18,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.shortcuts import redirect
 from applications.security.views.home import ModuloTemplateView
+
+def redirect_pago_exitoso(request):
+    return redirect('/doctor/pago-exitoso/')
+
+def redirect_pago_cancelado(request):
+    return redirect('/doctor/pago-cancelado/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +34,7 @@ urlpatterns = [
     path('core/', include('applications.core.urls', namespace='core')),
     path('doctor/', include('applications.doctor.urls', namespace='doctor')),
     path("__reload__/", include("django_browser_reload.urls")),
+    path('paypal/', include('paypal.standard.ipn.urls')),
+    path('pago-exitoso/', redirect_pago_exitoso),
+    path('pago-cancelado/', redirect_pago_cancelado),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
