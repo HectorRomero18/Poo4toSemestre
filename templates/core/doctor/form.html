@@ -1,0 +1,71 @@
+{% extends 'home.html' %}
+<title>{% block title %}{{ title }}{% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<section class="min-h-screen gradient-bg dark:bg-gradient-to-br dark:from-gray-900 dark:via-purple-900 dark:to-violet-900 py-12 px-4 font-inter">
+    <div class="text-center mb-12 slide-in">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 font-poppins">
+            <span class="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">{{ title1 }}</span>
+        </h1>
+        <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto rounded-full"></div>
+    </div>
+
+    {% if form.non_field_errors %}
+    <div class="max-w-4xl mx-auto mb-8 slide-in">
+        <div class="error-message p-6 rounded-2xl shadow-lg">
+            <h3 class="text-red-800 dark:text-red-200 font-semibold text-lg mb-2">Errores encontrados</h3>
+            <ul class="space-y-1 text-red-700 dark:text-red-300">
+                {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="max-w-6xl mx-auto">
+        <div class="glass-card rounded-3xl p-8 md:p-12 hover-scale slide-in">
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="space-y-6">
+                    {% for field in form.visible_fields %}
+                    <div class="input-group">
+                        {{ field }}
+                        <label class="floating-label {% if field.errors %}text-red-500{% endif %}">
+                            {{ field.label }}{% if field.field.required %}<span class="text-red-400 ml-1">*</span>{% endif %}
+                        </label>
+                        {% if field.help_text %}<p class="text-sm text-gray-400">{{ field.help_text }}</p>{% endif %}
+                        {% if field.errors %}
+                        <div class="mt-2 text-red-400 text-sm space-y-1">
+                            {% for error in field.errors %}<div>{{ error }}</div>{% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="success-button px-12 py-4 rounded-2xl text-white font-bold text-lg uppercase tracking-wider inline-flex items-center">
+                    <i class="fas fa-save mr-3"></i>
+                    {{ grabar }}
+                    <i class="fas fa-arrow-right ml-3"></i>
+                </button>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ back_url }}" class="bg-yellow-500 hover:bg-yellow-600 px-12 py-4 rounded-2xl text-white font-bold text-lg uppercase tracking-wider inline-flex items-center">
+                    <i class="fas fa-undo-alt mr-3"></i>
+                    {{ cancelar }}
+                    <i class="fas fa-arrow-left ml-3"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script>
+// Tus scripts de animación y validación siguen igual.
+</script>
+
+{% endblock %}
