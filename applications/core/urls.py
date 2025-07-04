@@ -2,6 +2,14 @@ from django.urls import path
 from applications.core.views.paciente import paciente_find, PacienteCreateView,PacienteDeleteView, PacienteUpdateView, PacienteListView
 from applications.core.views.diagnostico import DiagnosticoCreateView, DiagnosticoListView, DiagnosticoDeleteView, DiagnosticoUpdateView
 
+from applications.core.views.paciente import paciente_find, PacienteCreateView
+from applications.core.views.tipoSangre import TipoSangreListView, TipoSangreCreateView,TipoSangreUpdateView, TipoSangreDeleteView  
+from applications.core.views.especialidad import EspecialidadListView, EspecialidadCreateView, EspecialidadUpdateView, EspecialidadDeleteView
+from applications.core.views.doctor import DoctorListView, DoctorCreateView, DoctorUpdateView, DoctorDeleteView
+from applications.core.views.empleado import EmpleadoListView, EmpleadoCreateView, EmpleadoUpdateView, EmpleadoDeleteView
+from applications.core.views.cargo import CargoListView, CargoCreateView, CargoUpdateView, CargoDeleteView
+
+
 app_name='core' # define un espacio de nombre para la aplicacion
 urlpatterns = [
      path('paciente_find/', paciente_find, name="paciente_find"),
@@ -16,19 +24,6 @@ urlpatterns = [
     path('diagnosticos/nuevo/', DiagnosticoCreateView.as_view(), name='diagnostico_create'),
     path('diagnosticos/<int:pk>/editar/', DiagnosticoUpdateView.as_view(), name='diagnostico_edit'),
     path('diagnosticos/<int:pk>/eliminar/', DiagnosticoDeleteView.as_view(), name='diagnostico_delete'),
-    # Calendario
-    path('calendario/', vista_calendario, name='calendario'),
-
-    # APIs citas
-    path('api/citas/', citas_json, name='citas_json'),
-    path('api/cita/nueva/', crear_cita, name='crear_cita'),
-    path('api/cita/<int:id>/mover/', mover_cita, name='mover_cita'),
-    path('api/paciente/existe/', verificar_paciente, name='verificar_paciente'),
-    path('api/disponible/', verificar_disponibilidad, name='verificar_disponibilidad'),
-
-    
-
-
 
      path('pacientes/crear/', PacienteCreateView.as_view(), name='paciente_create'),
     
@@ -62,4 +57,3 @@ urlpatterns = [
     path('cargos/<int:pk>/editar/', CargoUpdateView.as_view(), name='cargo_update'),
     path('cargos/<int:pk>/eliminar/', CargoDeleteView.as_view(), name='cargo_delete'),
 ]
-   
