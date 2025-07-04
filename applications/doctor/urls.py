@@ -9,6 +9,8 @@ from applications.doctor.views.paypal import pago_paypal, pago_cancelado, pago_e
 
 from applications.doctor.views.horario import HorarioAtencionCreateView, HorarioAtencionDeleteView, HorarioAtencionListView, HorarioAtencionUpdateView
 from applications.doctor.views import cita
+from applications.doctor.views.atencion import ver_detalle_atencion
+from applications.doctor.views.receta import receta_imprimir
 
 
 app_name='doctor' # define un espacio de nombre para la aplicacion
@@ -49,6 +51,8 @@ urlpatterns = [
     path('pago-exitoso/', pago_exitoso, name='pago_exitoso'),
     path('pago-cancelado/', pago_cancelado, name='pago_cancelado'),
 
-    
+    path('atencion/<int:atencion_id>/detalle/', ver_detalle_atencion, name='detalle_atencion'),
+    path('receta/<int:detalle_id>/imprimir/', receta_imprimir, name='receta_imprimir'),
+    path('receta/atencion/<int:atencion_id>/imprimir/', receta_imprimir, name='receta_atencion_imprimir'),
 
 ]

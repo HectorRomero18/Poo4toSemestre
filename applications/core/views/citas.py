@@ -1,12 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
-from .models import CitaMedica, Paciente, Doctor, HorarioAtencion
 from django.views.decorators.csrf import csrf_exempt
-import json
 from datetime import datetime
-
-def vista_calendario(request):
-    return render(request, 'core/calendario.html')
+import json
+from applications.core.models import Paciente
+from applications.doctor.models import CitaMedica, HorarioAtencion
 
 def citas_json(request):
     anio = int(request.GET.get('anio', datetime.now().year))

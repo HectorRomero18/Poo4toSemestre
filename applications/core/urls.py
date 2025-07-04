@@ -57,4 +57,3 @@ urlpatterns = [
     path('cargos/<int:pk>/editar/', CargoUpdateView.as_view(), name='cargo_update'),
     path('cargos/<int:pk>/eliminar/', CargoDeleteView.as_view(), name='cargo_delete'),
 ]
-   

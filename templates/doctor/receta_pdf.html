@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Receta Médica</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; }
+        .receta { border: 1px solid #ccc; padding: 20px; }
+        .titulo { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        .campo { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="receta">
+        <div class="titulo">Receta Médica</div>
+        <div class="campo"><strong>Paciente:</strong> {{ detalle.atencion.paciente.nombre_completo }}</div>
+        <div class="campo"><strong>Fecha:</strong> {{ detalle.atencion.fecha_atencion|date:"d/m/Y" }}</div>
+        <hr>
+        <div class="campo"><strong>Medicamento:</strong> {{ detalle.medicamento.nombre }}</div>
+        <div class="campo"><strong>Prescripción:</strong> {{ detalle.prescripcion }}</div>
+        <div class="campo"><strong>Cantidad:</strong> {{ detalle.cantidad }}</div>
+        <div class="campo"><strong>Frecuencia:</strong> {{ detalle.frecuencia_diaria }} veces/día</div>
+        <div class="campo"><strong>Duración:</strong> {{ detalle.duracion_tratamiento }} días</div>
+        <br><br>
+        <p><em>Firma del médico:</em> ___________________________</p>
+         <button onclick="window.print()">🖨️ Imprimir Receta</button>
+
+    </div>
+</body>
+</html>
