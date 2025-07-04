@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Doctores</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header i {
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .toggle-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .toggle-btn:not(.active) {
+            background: #f8fafc;
+            color: #64748b;
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Lista de Doctores */
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .doctor-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doctor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #4f46e5;
+        }
+
+        .doctor-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .doctor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .doctor-details h3 {
+            color: #1e293b;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .doctor-details p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .doctor-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            width: 16px;
+            color: #4f46e5;
+        }
+
+        .doctor-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .edit-btn {
+            background: #fbbf24;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Formulario */
+        .form-container {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-input-label:hover {
+            background: #f1f5f9;
+            border-color: #4f46e5;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8fafc;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Modal de confirmación */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .modal h3 {
+            color: #1e293b;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal p {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .list-view {
+            display: block;
+        }
+
+        .list-view.active {
+            display: block;
+        }
+
+        .form-view {
+            display: none;
+        }
+
+        .form-view.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .doctors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-user-md"></i>
+                Gestión de Doctores
+            </h1>
+        </div>
+
+        <div class="main-content">
+            <div class="view-toggle">
+                <button class="toggle-btn active" onclick="showView('list')">
+                    <i class="fas fa-list"></i>
+                    Lista de Doctores
+                </button>
+                <button class="toggle-btn" onclick="showView('form')">
+                    <i class="fas fa-plus"></i>
+                    Agregar Doctor
+                </button>
+            </div>
+
+            <!-- Vista de Lista -->
+            <div id="list-view" class="list-view active">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Buscar por nombre o apellido...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                        Buscar
+                    </button>
+                    <button class="add-btn" onclick="showView('form')">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Doctor
+                    </button>
+                </div>
+
+                <div class="doctors-grid">
+                    <!-- Ejemplo de tarjetas de doctores -->
+                    <div class="doctor-card">
+                        <div class="doctor-info">
+                            <div class="doctor-avatar">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="doctor-details">
+                                <h3>Dr. Juan Pérez García</h3>
+                                <p>Cardiólogo</p>
+                            </div>
+                        </div>
+                        <div class="doctor-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-id-card"></i>
+                                <span>RUC: 0123456789001</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+593 99 123 4567</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>juan.perez@hospital.com</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Av. 9 de Octubre 123, Guayaquil</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Lun-Vie: 08:00-17:00</span>
+                            </div>
+                        </div>
+                        <div class="doctor-actions">
+                            <button class="action-btn edit-btn" onclick="editDoctor(1)">
+                                <i class="fas fa-edit"></i>
+                                Editar
+                            </button>
+                            <button class="action-btn delete-btn" onclick="showDeleteModal('Dr. Juan Pérez García')">
+                                <i class="fas fa-trash"></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card">
+                        <div class="doctor-info">
+                            <div class="doctor-avatar">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="doctor-details">
+                                <h3>Dra. María González López</h3>
+                                <p>Pediatra</p>
+                            </div>
+                        </div>
+                        <div class="doctor-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-id-card"></i>
+                                <span>RUC: 0987654321001</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+593 99 876 5432</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>maria.gonzalez@clinica.com</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mall del Sol, Torre A, Piso 3</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Lun-Sab: 09:00-18:00</span>
+                            </div>
+                        </div>
+                        <div class="doctor-actions">
+                            <button class="action-btn edit-btn" onclick="editDoctor(2)">
+                                <i class="fas fa-edit"></i>
+                                Editar
+                            </button>
+                            <button class="action-btn delete-btn" onclick="showDeleteModal('Dra. María González López')">
+                                <i class="fas fa-trash"></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Formulario -->
+            <div id="form-view" class="form-container">
+                <h2 style="margin-bottom: 30px; color: #1e293b; font-size: 1.8rem;">
+                    <i class="fas fa-user-plus"></i>
+                    Agregar Nuevo Doctor
+                </h2>
+                
+                <form class="doctor-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nombres">Nombres *</label>
+                            <input type="text" id="nombres" name="nombres" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos *</label>
+                            <input type="text" id="apellidos" name="apellidos" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ruc">RUC *</label>
+                            <input type="text" id="ruc" name="ruc" required maxlength="13">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fecha_nacimiento">Fecha de Nacimiento *</label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefonos">Teléfonos *</label>
+                            <input type="tel" id="telefonos" name="telefonos" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="direccion">Dirección de Trabajo *</label>
+                            <input type="text" id="direccion" name="direccion" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="latitud">Latitud</label>
+                            <input type="number" id="latitud" name="latitud" step="0.000001" placeholder="Ej: -2.146999">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="longitud">Longitud</label>
+                            <input type="number" id="longitud" name="longitud" step="0.000001" placeholder="Ej: -79.966995">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="codigo_unico">Código Único *</label>
+                            <input type="text" id="codigo_unico" name="codigo_unico" required maxlength="20">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="duracion_atencion">Duración de Cita (minutos)</label>
+                            <input type="number" id="duracion_atencion" name="duracion_atencion" value="30" min="15" max="180">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="especialidad">Especialidades *</label>
+                            <select id="especialidad" name="especialidad" multiple required>
+                                <option value="cardiologia">Cardiología</option>
+                                <option value="pediatria">Pediatría</option>
+                                <option value="ginecologia">Ginecología</option>
+                                <option value="dermatologia">Dermatología</option>
+                                <option value="traumatologia">Traumatología</option>
+                                <option value="neurologia">Neurología</option>
+                                <option value="medicina_general">Medicina General</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="horario_atencion">Horario de Atención *</label>
+                            <textarea id="horario_atencion" name="horario_atencion" required placeholder="Ej: Lunes a Viernes, 08:00 - 17:00"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="foto">Foto del Doctor</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="foto" name="foto" accept="image/*">
+                                <label for="foto" class="file-input-label">
+                                    <i class="fas fa-camera"></i>
+                                    Seleccionar foto
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curriculum">Currículum Vitae</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="curriculum" name="curriculum" accept=".pdf,.doc,.docx">
+                                <label for="curriculum" class="file-input-label">
+                                    <i class="fas fa-file-pdf"></i>
+                                    Seleccionar CV
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="firma_digital">Firma Digital</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="firma_digital" name="firma_digital" accept="image/*">
+                                <label for="firma_digital" class="file-input-label">
+                                    <i class="fas fa-signature"></i>
+                                    Seleccionar firma
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imagen_receta">Imagen para Recetas</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="imagen_receta" name="imagen_receta" accept="image/*">
+                                <label for="imagen_receta" class="file-input-label">
+                                    <i class="fas fa-prescription-bottle"></i>
+                                    Seleccionar imagen
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="showView('list')">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Guardar Doctor
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>¿Eliminar Doctor?</h3>
+            <p>¿Estás seguro de que deseas eliminar a <strong id="doctorName"></strong>?</p>
+            <p style="color: #ef4444; font-size: 0.9rem;">Esta acción no se puede deshacer.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="hideDeleteModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+                <button class="btn" style="background: #ef4444; color: white;" onclick="confirmDelete()">
+                    <i class="fas fa-trash"></i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showView(viewName) {
+            // Ocultar todas las vistas
+            document.getElementById('list-view').classList.remove('active');
+            document.getElementById('form-view').classList.remove('active');
+            
+            // Remover clase active de todos los botones
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar la vista seleccionada
+            document.getElementById(viewName + '-view').classList.add('active');
+            
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+        }
+
+        function editDoctor(id) {
+            // Aquí iría la lógica para cargar los datos del doctor en el formulario
+            showView('form');
+            document.querySelector('#form-view h2').innerHTML = '<i class="fas fa-user-edit"></i> Editar Doctor';
+            document.querySelector('button[type="submit"]').innerHTML = '<i class="fas fa-save"></i> Actualizar Doctor';
+        }
+
+        function showDeleteModal(doctorName) {
+            document.getElementById('doctorName').textContent = doctorName;
+            document.getElementById('deleteModal').classList.add('active');
+        }
+
+        function hideDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('active');
+        }
+
+        function confirmDelete() {
+            // Aquí iría la lógica para eliminar el doctor
+            console.log('Doctor eliminado');
+            hideDeleteModal();
+            // Mostrar mensaje de éxito, recargar lista, etc.
+        }
+
+        // Manejar envío del formulario
+        document.querySelector('.doctor-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí iría la lógica para enviar los datos al servidor
+            console.log('Formulario enviado');
+            
+            // Simular éxito y volver a la lista
+            alert('Doctor guardado exitosamente');
+            showView('list');
+        });
+
+        // Manejar búsqueda
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const query = document.querySelector('.search-input').value;
+            console.log('Buscar:', query);
+            // Aquí iría la lógica de búsqueda
+        });
+
+        // Búsqueda en tiempo real
+        document.querySelector('.search-input').addEventListener('input', function() {
+            const query = this.value;
+            // Aquí iría la lógica de filtrado en tiempo real
+        });
+    </script>
+</body>
+</html>

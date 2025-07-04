@@ -405,499 +405,75 @@
                 <!-- Formulario -->
                 <form method="post" enctype="multipart/form-data" class="space-y-8">
                     {% csrf_token %}
-                    
+
                     <!-- Información Personal -->
                     <div class="space-y-6">
                         <h3 class="section-title">
                             <i class="fa-solid fa-user text-blue-500"></i>
                             Información Personal
                         </h3>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Nombres -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-user mr-2 text-blue-500"></i>
-                                    Nombres
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-id-card input-icon"></i>
-                                    <input 
-                                        type="text" 
-                                        name="nombres"
-                                        class="modern-input" 
-                                        placeholder="Ej: Juan Carlos"
-                                        maxlength="100"
-                                        required
-                                    >
-                                </div>
-                            </div>
-                            
-                            <!-- Apellidos -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-user mr-2 text-blue-500"></i>
-                                    Apellidos
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-id-card input-icon"></i>
-                                    <input 
-                                        type="text" 
-                                        name="apellidos"
-                                        class="modern-input" 
-                                        placeholder="Ej: Pérez García"
-                                        maxlength="100"
-                                        required
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <!-- Cédula Ecuatoriana -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-id-card mr-2 text-green-500"></i>
-                                    Cédula Ecuatoriana
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-passport input-icon"></i>
-                                    <input 
-                                        type="text" 
-                                        name="cedula_ecuatoriana"
-                                        class="modern-input" 
-                                        placeholder="1234567890"
-                                        maxlength="10"
-                                        pattern="[0-9]{10}"
-                                        required
-                                    >
-                                </div>
-                            </div>
-                            
-                            <!-- DNI Internacional -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-passport mr-2 text-purple-500"></i>
-                                    DNI Internacional
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-globe input-icon"></i>
-                                    <input 
-                                        type="text" 
-                                        name="dni"
-                                        class="modern-input" 
-                                        placeholder="Pasaporte, DNI, etc."
-                                        maxlength="30"
-                                    >
-                                </div>
-                            </div>
-                            
-                            <!-- Fecha de Nacimiento -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-calendar mr-2 text-orange-500"></i>
-                                    Fecha de Nacimiento
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-birthday-cake input-icon"></i>
-                                    <input 
-                                        type="date" 
-                                        name="fecha_nacimiento"
-                                        class="modern-input" 
-                                        required
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Sexo -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-venus-mars mr-2 text-pink-500"></i>
-                                    Sexo
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-user input-icon"></i>
-                                    <select name="sexo" class="modern-select" required>
-                                        <option value="">Seleccione...</option>
-                                        <option value="masculino">Masculino</option>
-                                        <option value="femenino">Femenino</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <!-- Estado Civil -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-heart mr-2 text-red-500"></i>
-                                    Estado Civil
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-users input-icon"></i>
-                                    <select name="estado_civil" class="modern-select" required>
-                                        <option value="">Seleccione...</option>
-                                        <option value="soltero">Soltero/a</option>
-                                        <option value="casado">Casado/a</option>
-                                        <option value="divorciado">Divorciado/a</option>
-                                        <option value="viudo">Viudo/a</option>
-                                        <option value="union_libre">Unión Libre</option>
-                                    </select>
-                                </div>
-                            </div>
+                            {% for field in form %}
+                                {% if field.name == "nombres" or field.name == "apellidos" or field.name == "cedula_ecuatoriana" or field.name == "dni" or field.name == "fecha_nacimiento" or field.name == "telefono" or field.name == "email" or field.name == "sexo" or field.name == "estado_civil" or field.name == "direccion" or field.name == "latitud" or field.name == "longitud" or field.name == "tipo_sangre" or field.name == "foto" %}
+                                    <div class="field-group">
+                                        <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                            <i class="fa-solid fa-circle-info mr-2 text-blue-500"></i>
+                                            {{ field.label }}
+                                            {% if field.field.required %}
+                                                <span class="text-red-500 ml-1">*</span>
+                                            {% endif %}
+                                        </label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-pen input-icon"></i>
+                                            {{ field }}
+                                            {% if field.errors %}
+                                                <p class="text-red-500 text-sm mt-1">{{ field.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
-                    
-                    <div class="section-divider"></div>
-                    
-                    <!-- Información de Contacto -->
+
+                    <!-- Antecedentes Médicos -->
                     <div class="space-y-6">
                         <h3 class="section-title">
-                            <i class="fa-solid fa-phone text-green-500"></i>
-                            Información de Contacto
+                            <i class="fa-solid fa-notes-medical text-green-500"></i>
+                            Antecedentes Médicos
                         </h3>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Teléfono -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-phone mr-2 text-green-500"></i>
-                                    Teléfono(s)
-                                    <span class="text-red-500 ml-1">*</span>
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-mobile input-icon"></i>
-                                    <input 
-                                        type="text" 
-                                        name="telefono"
-                                        class="modern-input" 
-                                        placeholder="0987654321 o varios separados por coma"
-                                        maxlength="50"
-                                        required
-                                    >
-                                </div>
-                            </div>
-                            
-                            <!-- Email -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-envelope mr-2 text-indigo-500"></i>
-                                    Correo Electrónico
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-at input-icon"></i>
-                                    <input 
-                                        type="email" 
-                                        name="email"
-                                        class="modern-input" 
-                                        placeholder="correo@ejemplo.com"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Dirección -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-map-marker-alt mr-2 text-red-500"></i>
-                                Dirección Domiciliaria
-                                <span class="text-red-500 ml-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-home input-icon"></i>
-                                <input 
-                                    type="text" 
-                                    name="direccion"
-                                    class="modern-input" 
-                                    placeholder="Calle, número, sector, ciudad"
-                                    maxlength="255"
-                                    required
-                                >
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Latitud -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-map mr-2 text-blue-500"></i>
-                                    Latitud (Opcional)
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-compass input-icon"></i>
-                                    <input 
-                                        type="number" 
-                                        name="latitud"
-                                        class="modern-input" 
-                                        placeholder="-2.123456"
-                                        step="0.000001"
-                                    >
-                                </div>
-                            </div>
-                            
-                            <!-- Longitud -->
-                            <!-- Longitud -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-map mr-2 text-blue-500"></i>
-                                    Longitud (Opcional)
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-compass input-icon"></i>
-                                    <input 
-                                        type="number" 
-                                        name="longitud"
-                                        class="modern-input" 
-                                        placeholder="-80.123456"
-                                        step="0.000001"
-                                    >
-                                </div>
-                            </div>
+                            {% for field in form %}
+                                {% if field.name == "antecedentes_personales" or field.name == "antecedentes_quirurgicos" or field.name == "antecedentes_familiares" or field.name == "alergias" or field.name == "medicamentos_actuales" or field.name == "habitos_toxicos" or field.name == "vacunas" or field.name == "antecedentes_gineco_obstetricos" %}
+                                    <div class="field-group">
+                                        <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                            <i class="fa-solid fa-circle-info mr-2 text-green-500"></i>
+                                            {{ field.label }}
+                                        </label>
+                                        <div class="relative">
+                                            <i class="fa-solid fa-file-medical input-icon"></i>
+                                            {{ field }}
+                                            {% if field.errors %}
+                                                <p class="text-red-500 text-sm mt-1">{{ field.errors.0 }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
-                    
-                    <div class="section-divider"></div>
-                    
-                    <!-- Información Médica Básica -->
-                    <div class="space-y-6">
-                        <h3 class="section-title">
-                            <i class="fa-solid fa-heartbeat text-red-500"></i>
-                            Información Médica Básica
-                        </h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Tipo de Sangre -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-tint mr-2 text-red-500"></i>
-                                    Tipo de Sangre
-                                </label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-heart input-icon"></i>
-                                    <select name="tipo_sangre" class="modern-select">
-                                        <option value="">Seleccione...</option>
-                                        <!-- Aquí se cargarían los tipos de sangre desde la base de datos -->
-                                        <option value="1">O+</option>
-                                        <option value="2">O-</option>
-                                        <option value="3">A+</option>
-                                        <option value="4">A-</option>
-                                        <option value="5">B+</option>
-                                        <option value="6">B-</option>
-                                        <option value="7">AB+</option>
-                                        <option value="8">AB-</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <!-- Foto -->
-                            <div class="field-group">
-                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                    <i class="fa-solid fa-camera mr-2 text-purple-500"></i>
-                                    Foto del Paciente
-                                </label>
-                                <div class="file-input-container">
-                                    <input type="file" name="foto" accept="image/*" id="foto_input">
-                                    <label for="foto_input" class="file-input-label">
-                                        <i class="fa-solid fa-cloud-upload-alt input-icon"></i>
-                                        Seleccionar imagen...
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="section-divider"></div>
-                    
-                    <!-- Historia Clínica -->
-                    <div class="space-y-6">
-                        <h3 class="section-title">
-                            <i class="fa-solid fa-file-medical text-green-500"></i>
-                            Historia Clínica
-                        </h3>
-                        
-                        <!-- Antecedentes Personales -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-user-md mr-2 text-blue-500"></i>
-                                Antecedentes Personales Patológicos
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-notes-medical input-icon"></i>
-                                <textarea 
-                                    name="antecedentes_personales"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Ej.: Diabetes tipo 2, hipertensión, asma, etc."
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Antecedentes Quirúrgicos -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-cut mr-2 text-orange-500"></i>
-                                Antecedentes Quirúrgicos
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-procedures input-icon"></i>
-                                <textarea 
-                                    name="antecedentes_quirurgicos"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Ej.: Apendicectomía en 2018, cesárea en 2021, etc."
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Antecedentes Familiares -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-users mr-2 text-purple-500"></i>
-                                Antecedentes Familiares
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-family input-icon"></i>
-                                <textarea 
-                                    name="antecedentes_familiares"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Enfermedades hereditarias (padres, abuelos, hermanos)"
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Alergias -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-exclamation-triangle mr-2 text-red-500"></i>
-                                Alergias
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-allergies input-icon"></i>
-                                <textarea 
-                                    name="alergias"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Ej.: Penicilina, mariscos, polvo, etc."
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Medicamentos Actuales -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-pills mr-2 text-green-500"></i>
-                                Medicamentos Actuales
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-prescription-bottle input-icon"></i>
-                                <textarea 
-                                    name="medicamentos_actuales"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Nombre, dosis y frecuencia. Ej.: Losartán 50mg diario"
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Hábitos Tóxicos -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-smoking mr-2 text-orange-500"></i>
-                                Hábitos Tóxicos o Perjudiciales
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-wine-bottle input-icon"></i>
-                                <input 
-                                    type="text" 
-                                    name="habitos_toxicos"
-                                    class="modern-input" 
-                                    placeholder="Ej.: Tabaco, alcohol, drogas, sedentarismo, etc."
-                                    value="ninguno"
-                                    maxlength="200"
-                                >
-                            </div>
-                        </div>
-                        
-                        <!-- Vacunas -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-syringe mr-2 text-blue-500"></i>
-                                Vacunas
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-shield-virus input-icon"></i>
-                                <textarea 
-                                    name="vacunas"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Vacunas importantes recibidas. Ej.: COVID-19, influenza, etc."
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Antecedentes Gineco-Obstétricos -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-baby mr-2 text-pink-500"></i>
-                                Antecedentes Gineco-Obstétricos
-                                <span class="text-gray-500 text-xs ml-2">(Solo en mujeres)</span>
-                            </label>
-                            <div class="relative">
-                                <i class="fa-solid fa-female input-icon"></i>
-                                <textarea 
-                                    name="antecedentes_gineco_obstetricos"
-                                    class="modern-input modern-textarea" 
-                                    placeholder="Ej.: menarquia, embarazos, anticonceptivos, etc."
-                                    rows="3"
-                                ></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Estado Activo -->
-                        <div class="field-group">
-                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
-                                <i class="fa-solid fa-toggle-on mr-2 text-green-500"></i>
-                                Estado del Paciente
-                            </label>
-                            <div class="flex items-center space-x-3">
-                                <input 
-                                    type="checkbox" 
-                                    name="activo"
-                                    class="modern-checkbox"
-                                    checked
-                                >
-                                <span class="text-gray-700">Paciente activo</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Botones de acción -->
-                    <div class="pt-8 border-t border-gray-200">
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center">
-                            <button 
-                                type="submit" 
-                                class="modern-btn btn-primary w-full sm:w-auto"
-                            >
-                                <i class="fa-solid fa-save mr-2"></i>
-                                Guardar Paciente
-                            </button>
-                            <a 
-                                href="{% url 'core:pacientes_list' %}" 
-                                class="modern-btn btn-secondary w-full sm:w-auto text-center"
-                            >
-                                <i class="fa-solid fa-times mr-2"></i>
-                                Cancelar
-                            </a>
-                        </div>
+
+                    <!-- Botón de envío -->
+                    <div class="text-right mt-6">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md">
+                            Guardar
+                        </button>
                     </div>
                 </form>
+
+
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58f0-157-100-64-49.ngrok-free.app', '799b-157-100-64-50.ngrok-free.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58f0-157-100-64-49.ngrok-free.app', '799b-157-100-64-50.ngrok-free.app', 'eb23-157-100-64-50.ngrok-free.app']
 X_FRAME_OPTIONS = 'ALLOWALL'
 
 CSRF_TRUSTED_ORIGINS = [
@@ -162,7 +162,7 @@ DATE_FORMAT = 'd/m/Y'
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)#carpeta fisica de archivos estaticos
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)#carpeta fisica de archivos estaticos
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') # carpeta fisica de archivos de Imagenes
 MEDIA_URL = '/media/' # url de imagenes
 # Default primary key field type

@@ -10,7 +10,8 @@ from django.utils import timezone
 """Modelo que representa los diferentes tipos de sangre."""
 class TipoSangre(models.Model):
     tipo = models.CharField(max_length=10, verbose_name="Tipo de Sangre", unique=True)
-    descripcion = models.CharField(max_length=100, verbose_name="Descripcion")
+    descripcion = models.TextField(
+        verbose_name="Descripción",)
 
     class Meta:
         # Nombre en singular y plural del modelo en la interfaz de administración

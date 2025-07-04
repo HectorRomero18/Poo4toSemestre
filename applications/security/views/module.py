@@ -12,7 +12,7 @@ class ModuleListView(PermissionMixin, ListViewMixin, ListView):
     model = Module
     context_object_name = 'modules'
     permission_required = 'view_module'
-
+    
     def get_queryset(self):
         q1 = self.request.GET.get('q')
         if q1 is not None:
