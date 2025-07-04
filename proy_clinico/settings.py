@@ -114,15 +114,15 @@ WSGI_APPLICATION = 'proy_clinico.wsgi.application'
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
-DATABASES ={
-    'default':{
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_medico',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',  # o la IP del servidor de base de datos
-        'PORT': '5432',
-    }            
+DATABASES = {
+    'default': {
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+    }
 }
 
 # Password validation

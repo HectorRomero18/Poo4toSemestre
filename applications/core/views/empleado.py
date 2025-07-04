@@ -39,7 +39,7 @@ class EmpleadoCreateView(PermissionMixin, CreateViewMixin, CreateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        object = self.object.nombre
+        object = self.object.nombres
         messages.success(self.request, f'Empleado {object} creado exitosamente')
         return response
     
@@ -58,7 +58,7 @@ class EmpleadoUpdateView(PermissionMixin, UpdateViewMixin, UpdateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        object = self.object.nombre
+        object = self.object.nombres
         messages.success(self.request, f'Empleado {object} actualizado exitosamente')
         return response
     
@@ -70,13 +70,13 @@ class EmpleadoDeleteView(PermissionMixin, DeleteViewMixin, DeleteView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object'] = self.object.nombre
+        context['object'] = self.object.nombres
         context['back_url'] = self.success_url
         return context
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, f'Empleado {self.object.nombre} eliminado exitosamente')
+        messages.success(self.request, f'Empleado {self.object.nombres} eliminado exitosamente')
         return response
     
 
