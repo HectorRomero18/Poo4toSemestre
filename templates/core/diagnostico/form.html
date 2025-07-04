@@ -1,0 +1,180 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="max-w-4xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 mb-8 text-white shadow-2xl">
+        <div class="flex items-center space-x-4">
+            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                <i class="fas fa-stethoscope text-white text-2xl drop-shadow-lg"></i>
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold mb-2 text-white drop-shadow-lg">Diagnóstico</h2>
+                <p class="text-emerald-100 text-lg drop-shadow-sm">Registra el diagnóstico del paciente</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        <div class="bg-gray-50 px-8 py-6 border-b border-gray-200">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-clipboard-list text-emerald-600 text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900">Información del Diagnóstico</h3>
+                    <p class="text-gray-600 text-sm">Complete los campos requeridos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="space-y-6">
+                    {{ form.as_p }}
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="flex items-center justify-end space-x-4 pt-8 border-t border-gray-200 mt-8">
+                    <a href="javascript:history.back()" 
+                       class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-3">
+                        <i class="fas fa-arrow-left text-lg"></i>
+                        <span>Cancelar</span>
+                    </a>
+                    
+                    <button type="submit" 
+                            class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 flex items-center space-x-3 border-2 border-emerald-600 hover:border-emerald-700">
+                        <i class="fas fa-save text-lg text-white"></i>
+                        <span class="text-white font-bold">Guardar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-6">
+        <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-lightbulb text-blue-600 text-xl"></i>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-blue-900 mb-2">Recordatorio</h4>
+                <p class="text-blue-800 text-sm leading-relaxed">
+                    Asegúrate de completar todos los campos requeridos. El diagnóstico debe ser preciso y detallado para garantizar el mejor tratamiento para el paciente.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Estilos para los campos del formulario generados por Django */
+.space-y-6 p {
+    margin-bottom: 1.5rem;
+}
+
+.space-y-6 label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.space-y-6 input,
+.space-y-6 select,
+.space-y-6 textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    color: #374151;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.space-y-6 input:focus,
+.space-y-6 select:focus,
+.space-y-6 textarea:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.space-y-6 textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.space-y-6 select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 48px;
+}
+
+/* Estilos para mensajes de error */
+.errorlist {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.errorlist li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.errorlist li::before {
+    content: "⚠️";
+    font-size: 0.75rem;
+}
+
+/* Estilos mejorados para el botón de guardar */
+button[type="submit"] {
+    background-color: #10b981 !important;
+    color: white !important;
+    border: 2px solid #10b981 !important;
+}
+
+button[type="submit"]:hover {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+button[type="submit"] span {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+button[type="submit"] i {
+    color: white !important;
+}
+
+/* Mejor contraste para el título */
+.bg-gradient-to-r h2 {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 800 !important;
+}
+
+.bg-gradient-to-r p {
+    color: #d1fae5 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Añadir sombra al header para mejor definición */
+.bg-gradient-to-r {
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+}
+</style>
+{% endblock %}

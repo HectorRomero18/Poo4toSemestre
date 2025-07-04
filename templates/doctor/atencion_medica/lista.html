@@ -1,0 +1,28 @@
+<!-- ...existing code... -->
+<thead>
+    <tr>
+        <!-- ...otras columnas... -->
+        <th>Diagnósticos</th>
+        <!-- ...otras columnas... -->
+    </tr>
+</thead>
+<tbody>
+    {% for atencion in atenciones %}
+    <tr>
+        <!-- ...otras celdas... -->
+        <td>
+            <div class="flex flex-wrap gap-1 justify-center">
+                {% for diagnostico in atencion.diagnostico.all %}
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                        {{ diagnostico.codigo }} - {{ diagnostico.descripcion }}
+                    </span>
+                {% empty %}
+                    <span class="text-gray-400 italic text-xs">Sin diagnóstico</span>
+                {% endfor %}
+            </div>
+        </td>
+        <!-- ...otras celdas... -->
+    </tr>
+    {% endfor %}
+</tbody>
+<!-- ...existing code... -->

@@ -1,0 +1,172 @@
+{% extends 'home.html' %}
+{% block title %}Horarios de Atención{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 mb-8 text-white">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <h1 class="text-4xl font-bold mb-3">Horarios de Atención</h1>
+                <p class="text-blue-100 text-lg">Gestiona y organiza tus horarios de consulta médica</p>
+            </div>
+            <a href="{% url 'doctor:horario_create' %}" 
+               class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-3">
+                <i class="fas fa-plus text-lg"></i>
+                <span>Crear Nuevo Horario</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Total Horarios</p>
+                    <p class="text-3xl font-bold text-gray-900">{{ horarios|length }}</p>
+                </div>
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <i class="fas fa-calendar-alt text-blue-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Horarios Activos</p>
+                    <p class="text-3xl font-bold text-green-600">{% for h in horarios %}{% if h.activo %}{{ forloop.counter }}{% endif %}{% endfor %}</p>
+                </div>
+                <div class="bg-green-100 p-3 rounded-full">
+                    <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Días Configurados</p>
+                    <p class="text-3xl font-bold text-purple-600">{{ horarios|length }}</p>
+                </div>
+                <div class="bg-purple-100 p-3 rounded-full">
+                    <i class="fas fa-clock text-purple-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horarios Grid -->
+    <div class="grid gap-6">
+        {% for horario in horarios %}
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+            <div class="p-6">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <!-- Día de la semana -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-lg">{{ horario.get_dia_semana_display|slice:":3" }}</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">{{ horario.get_dia_semana_display }}</h3>
+                            <p class="text-gray-500 text-sm">Día de atención</p>
+                        </div>
+                    </div>
+
+                    <!-- Información de horarios -->
+                    <div class="flex flex-wrap gap-4">
+                        <!-- Hora de inicio -->
+                        <div class="bg-green-50 border border-green-200 rounded-xl p-4 min-w-[140px]">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-play text-green-600 text-lg"></i>
+                                <span class="text-sm font-medium text-green-800">Inicio</span>
+                            </div>
+                            <p class="text-xl font-bold text-green-900">{{ horario.hora_inicio }}</p>
+                        </div>
+
+                        <!-- Hora de fin -->
+                        <div class="bg-red-50 border border-red-200 rounded-xl p-4 min-w-[140px]">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-stop text-red-600 text-lg"></i>
+                                <span class="text-sm font-medium text-red-800">Fin</span>
+                            </div>
+                            <p class="text-xl font-bold text-red-900">{{ horario.hora_fin }}</p>
+                        </div>
+
+                        <!-- Intervalo -->
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 min-w-[140px]">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-pause text-yellow-600 text-lg"></i>
+                                <span class="text-sm font-medium text-yellow-800">Intervalo</span>
+                            </div>
+                            {% if horario.intervalo_desde and horario.intervalo_hasta %}
+                                <p class="text-sm font-bold text-yellow-900">{{ horario.intervalo_desde }} - {{ horario.intervalo_hasta }}</p>
+                            {% else %}
+                                <p class="text-sm font-medium text-gray-500">Sin intervalo</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Estado activo -->
+                        <div class="{% if horario.activo %}bg-emerald-50 border-emerald-200{% else %}bg-gray-50 border-gray-200{% endif %} border rounded-xl p-4 min-w-[140px]">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas {% if horario.activo %}fa-toggle-on text-emerald-600{% else %}fa-toggle-off text-gray-400{% endif %} text-lg"></i>
+                                <span class="text-sm font-medium {% if horario.activo %}text-emerald-800{% else %}text-gray-600{% endif %}">Estado</span>
+                            </div>
+                            <p class="text-sm font-bold {% if horario.activo %}text-emerald-900{% else %}text-gray-500{% endif %}">
+                                {% if horario.activo %}Activo{% else %}Inactivo{% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="flex items-center space-x-4">
+                        <a href="{% url 'doctor:horario_edit' horario.pk %}" 
+                           class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
+                            <i class="fas fa-edit text-lg"></i>
+                            <span>Editar</span>
+                        </a>
+                        
+                        <button onclick="openDeleteModal('{{ horario.id }}', '{{ horario.get_dia_semana_display }}')"
+                                class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
+                            <i class="fas fa-trash text-lg"></i>
+                            <span>Eliminar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <!-- Estado vacío -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-12 text-center">
+            <div class="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-clock text-gray-400 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">No hay horarios registrados</h3>
+            <p class="text-gray-500 mb-8 max-w-md mx-auto">
+                Comienza creando tu primer horario de atención para organizar tus consultas médicas.
+            </p>
+            <a href="{% url 'doctor:horario_create' %}" 
+               class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center space-x-3">
+                <i class="fas fa-plus text-lg"></i>
+                <span>Crear Primer Horario</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'fragments/delete.html' %}
+
+<script>
+function openDeleteModal(id, dia) {
+    const deleteForm = document.getElementById('deleteForm');
+    deleteForm.action = `{% url 'doctor:horario_delete' 0 %}`.replace('0', id);
+    document.getElementById('Description').textContent = `Horario de atención: ${dia}`;
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('deleteModal').classList.add('hidden');
+}
+</script>
+{% endblock %}
