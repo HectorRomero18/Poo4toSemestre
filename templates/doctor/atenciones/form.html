@@ -444,6 +444,10 @@
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Comentario Adicional</label>
                                 <textarea id="id_comentario_adicional" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" rows="3" placeholder="Comentarios adicionales...">{{ atencion.comentario_adicional|default:'' }}</textarea>
                             </div>
+
+                            <button id="start-btn" type="button" class="mt-3 px-4 py-2 bg-blue-600 text-white rounded">Hablar y convertir a texto</button>
+
+
                         </div>
                     </div>
 
@@ -869,6 +873,7 @@ class GestorAtencionMedica {
             console.log('💊 Modo edición detectado - Cargando medicamentos existentes...');
             this.cargarMedicamentosExistentes(medicamentosDesdeServidor);
         }
+        this.inicializarReconocimientoVoz();
 
     }
 
@@ -1188,11 +1193,14 @@ inicializarDiagnosticos() {
                     .filter(id => id !== null); // Filtrar valores inválidos
             }
 
+            
             // Capturar plan terapéutico
             this.tratamiento = this.obtenerValorSeguro('id_tratamiento');
             this.examenesEnviados = this.obtenerValorSeguro('id_examenes_enviados');
-            this.comentarioAdicional = this.obtenerValorSeguro('id_comentario_adicional');
-
+            
+            
+            
+            
             // Validar campos obligatorios
             const errores = this.validarCamposObligatorios();
             if (errores.length > 0) {
@@ -1209,13 +1217,43 @@ inicializarDiagnosticos() {
 
             console.log('✅ Proceso de grabación iniciado');
             window.location.href = "{% url 'doctor:atencion_list' %}"
-
+            
         } catch (error) {
             console.error('❌ Error en grabarAtencion:', error);
             alert('Error al procesar los datos: ' + error.message);
         }
     }
+    
+    // Aqui estoy capturando el id del Boton para covertir de voz a texto
+    inicializarReconocimientoVoz() {
+        this.comentarioAdicional = this.obtenerElementoSeguro('id_comentario_adicional');
+        const startBtn = document.getElementById('start-btn');
 
+        if (!this.comentarioAdicional || !startBtn) {
+            console.warn('No se encontró textarea o botón para reconocimiento de voz');
+            return;
+        }
+
+        const reconocimiento = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        reconocimiento.lang = 'es-ES';
+        reconocimiento.continuous = false;
+        reconocimiento.interimResults = false;
+
+        startBtn.onclick = () => {
+            reconocimiento.start();
+        };
+
+        reconocimiento.onresult = (event) => {
+            const texto = event.results[0][0].transcript;
+            this.comentarioAdicional.value = this.comentarioAdicional.value 
+                ? this.comentarioAdicional.value + '\n' + texto 
+                : texto;
+        };
+
+        reconocimiento.onerror = (event) => {
+            alert('Error en reconocimiento de voz: ' + event.error);
+        };
+    }
     /**
      * Método para enviar datos al backend usando fetch
      * @param {Object} datos - Datos de la atención médica
