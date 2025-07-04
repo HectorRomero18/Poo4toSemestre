@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Editar Detalle de Pago{% endblock %}</title>
+    <style>
+        /* Estilos base inspirados en el diseño original */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .services-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            padding: 32px;
+            margin: 32px auto;
+            max-width: 1200px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .services-header h3 {
+            color: #1e293b;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .services-header h3::before {
+            content: '✏️';
+            font-size: 0.9em;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 0.9em;
+            margin-bottom: 16px;
+        }
+
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #1d4ed8;
+        }
+
+        .breadcrumb span {
+            color: #94a3b8;
+        }
+
+        /* Información del pago */
+        .pago-info {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .pago-info::before {
+            content: '💰';
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.5em;
+        }
+
+        .pago-info h4 {
+            color: #1e40af;
+            margin: 0 0 12px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .pago-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .pago-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pago-detail-item span:first-child {
+            font-weight: 600;
+        }
+
+        /* Contenedor del formulario */
+        .form-container {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 2px solid #e5e7eb;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.1);
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            border-radius: 16px 16px 0 0;
+        }
+
+        /* Grid para organizar campos */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #374151;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            font-size: 16px;
+            background: #ffffff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            font-weight: 500;
+            color: #1f2937;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: #f59e0b;
+            box-shadow: 
+                0 0 0 4px rgba(245, 158, 11, 0.12),
+                0 4px 12px rgba(245, 158, 11, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover:not(:focus) {
+            border-color: #d1d5db;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Estilos para select */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #f59e0b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+            padding-right: 50px;
+        }
+
+        /* Estilos para textarea */
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Estilos para checkbox y radio */
+        .checkbox-wrapper, .radio-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"],
+        .radio-wrapper input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #f59e0b;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper label,
+        .radio-wrapper label {
+            margin: 0;
+            font-weight: 500;
+            color: #374151;
+            text-transform: none;
+            letter-spacing: normal;
+            cursor: pointer;
+        }
+
+        .required {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Botones de acción */
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            min-width: 160px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 10px 25px rgba(107, 114, 128, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Efectos de focus para form-group */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .form-group:focus-within::after {
+            transform: scaleX(1);
+        }
+
+        /* Mensajes de error */
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875em;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+        }
+
+        /* Texto de ayuda */
+        .help-text {
+            color: #6b7280;
+            font-size: 0.875em;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Indicador de campo obligatorio */
+        .required-indicator {
+            background: #ef4444;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            margin-left: 8px;
+        }
+
+        /* Animaciones */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-section {
+                padding: 20px;
+                margin: 16px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .services-header h3 {
+                font-size: 1.5em;
+            }
+
+            .services-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .pago-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-control {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 16px 24px;
+                font-size: 14px;
+            }
+        }
+
+        /* Efectos adicionales */
+        .form-control:focus {
+            animation: pulse 0.3s ease-in-out;
+        }
+
+        /* Iconos para diferentes tipos de campos */
+        .form-group[data-field-type="text"] label::before,
+        .form-group[data-field-type="email"] label::before,
+        .form-group[data-field-type="number"] label::before,
+        .form-group[data-field-type="date"] label::before,
+        .form-group[data-field-type="select"] label::before,
+        .form-group[data-field-type="textarea"] label::before {
+            margin-right: 8px;
+            font-size: 0.9em;
+        }
+
+        .form-group[data-field-type="text"] label::before { content: '📝'; }
+        .form-group[data-field-type="email"] label::before { content: '📧'; }
+        .form-group[data-field-type="number"] label::before { content: '💰'; }
+        .form-group[data-field-type="date"] label::before { content: '📅'; }
+        .form-group[data-field-type="select"] label::before { content: '📋'; }
+        .form-group[data-field-type="textarea"] label::before { content: '💬'; }
+
+        /* Mensaje de confirmación */
+        .confirmation-message {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #16a34a;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            color: #166534;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .confirmation-message::before {
+            content: '✅';
+            font-size: 1.2em;
+        }
+
+        /* Estilos específicos para inputs, selects y textareas de Django */
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        input[type="datetime-local"],
+        input[type="time"],
+        input[type="url"],
+        input[type="password"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            font-size: 16px;
+            background: #ffffff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            font-weight: 500;
+            color: #1f2937;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        input[type="datetime-local"]:focus,
+        input[type="time"]:focus,
+        input[type="url"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #f59e0b;
+            box-shadow: 
+                0 0 0 4px rgba(245, 158, 11, 0.12),
+                0 4px 12px rgba(245, 158, 11, 0.15);
+            transform: translateY(-2px);
+        }
+
+        select {
+            appearance: none;
+            cursor: pointer;
+            padding-right: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23f59e0b" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 12px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="services-section">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="{% url 'doctor:pago_list' %}">Lista de Pagos</a>
+            <span>›</span>
+            <span>Editar Detalle</span>
+        </div>
+
+        <div class="services-header">
+            <h3>Editar Detalle de Pago</h3>
+            <div style="display: flex; gap: 12px;">
+                <a href="{% url 'doctor:pago_list' %}" class="btn btn-secondary">
+                    ← Volver a Lista
+                </a>
+            </div>
+        </div>
+
+        <!-- Mensajes de Django -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="confirmation-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Campos no específicos del formulario -->
+                {% if form.non_field_errors %}
+                    <div class="error-message">
+                        {% for error in form.non_field_errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="form-grid">
+                    {% for field in form %}
+                        <div class="form-group" data-field-type="{{ field.field.widget.input_type|default:'text' }}">
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                                {% if field.field.required %}
+                                    <span class="required">*</span>
+                                {% endif %}
+                            </label>
+                            
+                            {% if field.field.widget.input_type == 'checkbox' %}
+                                <div class="checkbox-wrapper">
+                                    {{ field }}
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                            {% elif field.field.widget.input_type == 'radio' %}
+                                <div class="radio-wrapper">
+                                    {{ field }}
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                            
+                            {% if field.help_text %}
+                                <div class="help-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            
+                            {% for error in field.errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="#" class="btn btn-secondary">
+                        <button onclick="window.history.back()">🔙 Volver</button>
+
+                    </a>
+                    
+                    <a href="" class="btn btn-secondary">
+                       
+                        <button type="submit" onclick="window.history.go(-1)" class="btn btn-primary">
+                            💾 {{ grabar|default:"Actualizar" }} Detalle
+                        </button>
+
+                    </a>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Efectos de hover mejorados para inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efectos de hover y focus
+            document.addEventListener('focusin', function(e) {
+                if (e.target.matches('input, select, textarea')) {
+                    const formGroup = e.target.closest('.form-group');
+                    if (formGroup) {
+                        formGroup.style.transform = 'translateY(-2px)';
+                        formGroup.style.transition = 'transform 0.3s ease';
+                    }
+                }
+            });
+            
+            document.addEventListener('focusout', function(e) {
+                if (e.target.matches('input, select, textarea')) {
+                    const formGroup = e.target.closest('.form-group');
+                    if (formGroup) {
+                        formGroup.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+
+            // Animación de carga del formulario
+            const formContainer = document.querySelector('.form-container');
+            if (formContainer) {
+                formContainer.style.opacity = '0';
+                formContainer.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    formContainer.style.transition = 'all 0.5s ease';
+                    formContainer.style.opacity = '1';
+                    formContainer.style.transform = 'translateY(0)';
+                }, 100);
+            }
+
+            // Efectos de ripple en los botones
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Validación del formulario
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = form.querySelector('.btn-primary');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '⏳ Guardando...';
+                        
+                        // Rehabilitar botón después de 3 segundos por si hay errores
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '💾 {{ grabar|default:"Actualizar" }} Detalle';
+                        }, 3000);
+                    }
+                });
+            }
+
+            // Auto-ocultar mensajes después de 5 segundos
+            const messages = document.querySelectorAll('.confirmation-message');
+            messages.forEach(message => {
+                setTimeout(() => {
+                    message.style.transition = 'opacity 0.5s ease';
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 5000);
+            });
+        });
+
+        // Animación de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

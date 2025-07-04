@@ -1,0 +1,510 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}Servicios Adicionales{% endblock %}
+
+{% block content %}
+    {% include 'fragments/messages.html' %}
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Configuración de Tailwind personalizada */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        .content-wrapper {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6f3ff 100%);
+            min-height: 100vh;
+            margin: -20px;
+            padding: 20px;
+        }
+        
+        /* Contenedor principal con glassmorphism */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Inputs modernos */
+        .modern-input {
+            width: 100%;
+            padding: 16px 20px 16px 48px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            color: #2d3748;
+        }
+        
+        .modern-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+        
+        .modern-input:hover:not(:focus) {
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        /* Textarea específico */
+        .modern-textarea {
+            padding: 16px 20px 16px 48px;
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+        
+        /* Botones modernos */
+        .modern-btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modern-btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4299e1 0%, #667eea 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f56565 0%, #ed8936 100%);
+            color: white;
+        }
+        
+        /* Checkbox moderno */
+        .modern-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #4299e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modern-checkbox:checked {
+            transform: scale(1.1);
+        }
+        
+        /* Iconos de entrada */
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            transition: color 0.3s ease;
+        }
+        
+        .field-group:hover .input-icon {
+            color: #4299e1;
+        }
+        
+        /* Efectos de hover para tarjetas */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Animaciones suaves */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Estilos para errores */
+        .error-input {
+            border-color: #f56565 !important;
+            background: rgba(254, 242, 242, 0.8) !important;
+        }
+        
+        .error-text {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        /* Placeholder mejorado */
+        .modern-input::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modern-input {
+                padding: 14px 16px 14px 44px;
+            }
+            
+            .modern-textarea {
+                min-height: 100px;
+            }
+            
+            .content-wrapper {
+                margin: -10px;
+                padding: 10px;
+            }
+        }
+        
+        /* Utilidades de Tailwind simuladas */
+        .max-w-6xl { max-width: 72rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-center { text-align: center; }
+        .mb-12 { margin-bottom: 3rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .font-bold { font-weight: 700; }
+        .mb-4 { margin-bottom: 1rem; }
+        .w-24 { width: 6rem; }
+        .h-1 { height: 0.25rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .gap-8 { gap: 2rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .relative { position: relative; }
+        .inline-block { display: inline-block; }
+        .h-24 { height: 6rem; }
+        .rounded-full { border-radius: 9999px; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-white { color: rgb(255 255 255); }
+        .absolute { position: absolute; }
+        .-top-2 { top: -0.5rem; }
+        .-right-2 { right: -0.5rem; }
+        .w-6 { width: 1.5rem; }
+        .h-6 { height: 1.5rem; }
+        .bg-green-500 { background-color: rgb(34 197 94); }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .font-semibold { font-weight: 600; }
+        .text-gray-700 { color: rgb(55 65 81); }
+        .mt-4 { margin-top: 1rem; }
+        .text-gray-500 { color: rgb(107 114 128); }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .text-blue-500 { color: rgb(59 130 246); }
+        .text-red-500 { color: rgb(239 68 68); }
+        .ml-1 { margin-left: 0.25rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .text-green-500 { color: rgb(34 197 94); }
+        .text-purple-500 { color: rgb(168 85 247); }
+        .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .from-blue-50 { --tw-gradient-from: rgb(239 246 255); --tw-gradient-to: rgb(239 246 255 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .to-indigo-50 { --tw-gradient-to: rgb(238 242 255); }
+        .p-6 { padding: 1.5rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .border { border-width: 1px; }
+        .border-blue-200 { border-color: rgb(191 219 254); }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .w-12 { width: 3rem; }
+        .h-12 { height: 3rem; }
+        .bg-white { background-color: rgb(255 255 255); }
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .flex-grow { flex-grow: 1; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .text-gray-600 { color: rgb(75 85 99); }
+        .mt-1 { margin-top: 0.25rem; }
+        .flex-col { flex-direction: column; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .pt-8 { padding-top: 2rem; }
+        .border-t { border-top-width: 1px; }
+        .border-gray-200 { border-color: rgb(229 231 235); }
+        .w-full { width: 100%; }
+        .min-h-screen { min-height: 100vh; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        
+        @media (min-width: 640px) {
+            .sm\\:flex-row { flex-direction: row; }
+            .sm\\:space-y-0 > * + * { margin-top: 0; }
+            .sm\\:space-x-6 > * + * { margin-left: 1.5rem; }
+            .sm\\:w-auto { width: auto; }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+    </style>
+
+    <div class="content-wrapper">
+        <div class="max-w-6xl mx-auto">
+            <!-- Título principal -->
+            <div class="text-center mb-12 animate-fadeInUp">
+                <h1 class="text-5xl font-bold mb-4" style="background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Nuevo Servicio Médico
+                </h1>
+                <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #3b82f6, #8b5cf6);"></div>
+            </div>
+            
+            <!-- Formulario principal -->
+            <div class="glass-container rounded-3xl p-8 card-hover animate-fadeInUp">
+                <!-- Vista previa del ícono -->
+                <div class="text-center mb-12">
+                    <div class="relative inline-block">
+                        <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center shadow-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
+                            <i id="iconPreview" class="fa-solid fa-stethoscope text-3xl text-white"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-700 mt-4">Vista previa del ícono</h2>
+                    <p class="text-gray-500 text-sm">El ícono se actualiza automáticamente</p>
+                </div>
+                
+                <!-- Formulario -->
+                <form method="post" class="space-y-8">
+                    {% csrf_token %}
+                    
+                    <!-- Grid de campos -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Nombre del servicio -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-tag mr-2 text-blue-500"></i>
+                                Nombre del servicio
+                                <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-file-medical input-icon"></i>
+                                <input 
+                                    type="text" 
+                                    name="nombre_servicio"
+                                    class="modern-input" 
+                                    placeholder="Ej: Consulta General"
+                                    id="nombre_servicio"
+                                    required
+                                >
+                            </div>
+                        </div>
+                        
+                        <!-- Costo del servicio -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-dollar-sign mr-2 text-green-500"></i>
+                                Costo del servicio
+                                <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-coins input-icon"></i>
+                                <input 
+                                    type="number" 
+                                    name="costo_servicio"
+                                    class="modern-input" 
+                                    placeholder="0.00"
+                                    step="0.01"
+                                    id="costo_servicio"
+                                    required
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Descripción -->
+                    <div class="field-group">
+                        <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                            <i class="fa-solid fa-align-left mr-2 text-purple-500"></i>
+                            Descripción del servicio
+                            <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-edit input-icon" style="top: 20px;"></i>
+                            <textarea 
+                                name="descripcion"
+                                class="modern-input modern-textarea" 
+                                placeholder="Describe detalladamente el servicio que ofreces..."
+                                id="descripcion"
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Estado activo -->
+                    <div class="field-group">
+                        <div class="from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-200" style="background: linear-gradient(to right, rgb(239 246 255), rgb(238 242 255));">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+                                        <i class="fa-solid fa-toggle-on text-2xl text-blue-500"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex items-center space-x-3">
+                                        <input 
+                                            type="checkbox" 
+                                            name="activo"
+                                            class="modern-checkbox" 
+                                            id="activo"
+                                            checked
+                                        >
+                                        <label for="activo" class="font-semibold text-gray-700">
+                                            Servicio activo
+                                        </label>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">
+                                        Marque esta opción para que el servicio esté disponible
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones de acción -->
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-8 border-t border-gray-200">
+                        <button 
+                            type="submit" 
+                            class="modern-btn btn-primary flex items-center justify-center w-full sm:w-auto"
+                        >
+                            <i class="fa-solid fa-save mr-2"></i>
+                            Guardar Servicio
+                        </button>
+                        <button 
+                            type="button" 
+                            class="modern-btn btn-secondary flex items-center justify-center w-full sm:w-auto"
+                            onclick="window.history.back()"
+                        >
+                            <i class="fa-solid fa-arrow-left mr-2"></i>
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript para vista previa del ícono
+        document.addEventListener('DOMContentLoaded', function() {
+            const iconPreview = document.getElementById('iconPreview');
+            
+            // Lista de iconos médicos para rotación
+            const medicalIcons = [
+                'fa-solid fa-stethoscope',
+                'fa-solid fa-user-md',
+                'fa-solid fa-heart',
+                'fa-solid fa-pills',
+                'fa-solid fa-syringe',
+                'fa-solid fa-ambulance',
+                'fa-solid fa-heartbeat',
+                'fa-solid fa-tooth'
+            ];
+            
+            let currentIconIndex = 0;
+            
+            function rotateIcon() {
+                iconPreview.className = medicalIcons[currentIconIndex] + ' text-3xl text-white';
+                iconPreview.style.transition = 'all 0.5s ease';
+                currentIconIndex = (currentIconIndex + 1) % medicalIcons.length;
+            }
+            
+            // Rotación automática cada 3 segundos
+            setInterval(rotateIcon, 3000);
+            
+            // Efectos de validación en tiempo real
+            const inputs = document.querySelectorAll('.modern-input');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.classList.add('error-input');
+                    } else {
+                        this.classList.remove('error-input');
+                    }
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error-input') && this.value.trim()) {
+                        this.classList.remove('error-input');
+                    }
+                });
+            });
+            
+            // Efectos suaves para el formulario
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                // Validación básica antes de enviar
+                let isValid = true;
+                const requiredInputs = this.querySelectorAll('input[required], textarea[required]');
+                
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        input.classList.add('error-input');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('error-input');
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
+                submitBtn.disabled = true;
+                
+                // El formulario se enviará normalmente a Django
+                // Pero mostramos el estado de carga
+                setTimeout(() => {
+                    if (submitBtn.disabled) {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                }, 5000);
+            });
+        });
+    </script>
+{% endblock %}

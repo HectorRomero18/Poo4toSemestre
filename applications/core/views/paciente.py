@@ -9,6 +9,8 @@ from django.urls import reverse_lazy
 from applications.security.components.mixin_crud import CreateViewMixin, DeleteViewMixin, ListViewMixin, PermissionMixin, UpdateViewMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
+from django.db.models.deletion import ProtectedError
+from django.shortcuts import redirect
 
 """  Vista para buscar pacientes mediante AJAX. Por nombres, apellidos, cédula o teléfono. """
 
@@ -155,16 +157,86 @@ def paciente_find(request):
             'pacientes': []
         }, status=500)
 
+
+
+class PacienteListView(PermissionMixin, ListView, ListViewMixin):
+    model = Paciente
+    context_object_name = 'pacientes'
+    template_name = 'core/pacientes/list.html'
+    permission_required = 'view_paciente'
+
+    def get_queryset(self):
+        q1 = self.request.GET.get('q')
+        if not hasattr(self, 'query') or self.query is None:
+            self.query = Q()
+        if q1 is not None:
+            self.query.add(Q(nombres__icontains=q1), Q.OR)
+        return self.model.objects.filter(self.query).order_by('id')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['create_url'] = reverse_lazy('core:paciente_create')
+        return context
+
 class PacienteCreateView(PermissionMixin, CreateView, CreateViewMixin):
     model = Paciente
     form_class = PacienteForm
     permission_required = 'add_paciente'
-    template_name = 'doctor/atenciones/form.html'
-    success_url = reverse_lazy('pacientes:list')
+    template_name = 'core/pacientes/form.html'
+    success_url = reverse_lazy('core:pacientes_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['grabar'] = 'Crear Paciente'
         context['back_url'] = self.success_url
         return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Paciente creado exitosamente')
+        return response
+    
+class PacienteUpdateView(PermissionMixin, UpdateView, UpdateViewMixin):
+    model = Paciente
+    form_class = PacienteForm
+    permission_required = 'change_paciente'
+    template_name = 'core/pacientes/form.html'
+    success_url = reverse_lazy('core:pacientes_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['grabar'] = 'Actualzar Paciente'
+        context['back_url'] = self.success_url
+        return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Paciente actualizado exitosamente')
+        return response
+class PacienteDeleteView(PermissionMixin, DeleteView, DeleteViewMixin):
+    model = Paciente
+    permission_required = 'delete_paciente'
+    success_url = reverse_lazy('core:pacientes_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['description'] = 'Estas seguro de eliminar el Paciente?'
+        context['back_url'] = self.success_url
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(
+                request,
+                f"No se puede eliminar el servicio '{self.object.nombre_completo}' porque está asociado a uno o más atenciones."
+            )
+            return redirect(self.success_url)
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Paciente eliminado exitosamente')
+        return response
     

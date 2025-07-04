@@ -1,51 +1,56 @@
-<!-- templates/fragments/messages.html -->
 {% if messages %}
-<div id="messagesContainer" class="messages-container">
+<div id="messagesContainer" class="messages-container space-y-4">
     {% for message in messages %}
     <div id="message-{{ forloop.counter }}" 
-         class="message-alert message-{{ message.tags }}"
+         class="message-alert message-{{ message.tags }} rounded-xl shadow-lg p-5 flex items-start justify-between
+         {% if message.tags == 'success' %} bg-green-600 text-white
+         {% elif message.tags == 'error' %} bg-red-600 text-white
+         {% elif message.tags == 'warning' %} bg-yellow-400 text-black
+         {% elif message.tags == 'info' %} bg-blue-500 text-white
+         {% else %} bg-gray-600 text-white
+         {% endif %}"
          data-message-id="{{ forloop.counter }}">
-        
-        <div class="message-content">
-            <div class="message-body">
-                <!-- Icono según tipo de mensaje -->
-                <div class="message-icon">
-                    {% if message.tags == 'success' %}
-                        <div class="icon-circle icon-success">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                    {% elif message.tags == 'error' %}
-                        <div class="icon-circle icon-error">
-                            <i class="fa-solid fa-times"></i>
-                        </div>
-                    {% elif message.tags == 'warning' %}
-                        <div class="icon-circle icon-warning">
-                            <i class="fa-solid fa-exclamation"></i>
-                        </div>
-                    {% elif message.tags == 'info' %}
-                        <div class="icon-circle icon-info">
-                            <i class="fa-solid fa-info"></i>
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <!-- Contenido del mensaje -->
-                <div class="message-text">
-                    <p>{{ message|safe }}</p>
-                </div>
+
+        <div class="message-content flex items-center gap-4">
+            <!-- Icono según tipo de mensaje -->
+            <div class="message-icon text-2xl">
+                {% if message.tags == 'success' %}
+                    <div class="icon-circle icon-success">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                {% elif message.tags == 'error' %}
+                    <div class="icon-circle icon-error">
+                        <i class="fa-solid fa-times"></i>
+                    </div>
+                {% elif message.tags == 'warning' %}
+                    <div class="icon-circle icon-warning">
+                        <i class="fa-solid fa-exclamation"></i>
+                    </div>
+                {% elif message.tags == 'info' %}
+                    <div class="icon-circle icon-info">
+                        <i class="fa-solid fa-info"></i>
+                    </div>
+                {% endif %}
             </div>
             
-            <!-- Botón cerrar -->
-            <button onclick="closeMessage({{ forloop.counter }})" class="close-btn">
-                <i class="fa-solid fa-times"></i>
-            </button>
+            <!-- Contenido del mensaje -->
+            <div class="message-text text-lg font-medium">
+                <p>{{ message|safe }}</p>
+            </div>
         </div>
-        
+
+        <!-- Botón cerrar -->
+        <button onclick="closeMessage({{ forloop.counter }})"
+                class="close-btn text-xl ml-4 hover:text-red-300 transition">
+            <i class="fa-solid fa-times"></i>
+        </button>
+
         <!-- Barra de progreso para auto-hide -->
-        <div class="progress-bar"></div>
+        <div class="progress-bar mt-2 h-1 bg-white/30"></div>
     </div>
     {% endfor %}
 </div>
+
 
 <!-- CSS personalizado -->
 <style>
@@ -53,6 +58,7 @@
 .messages-container {
     position: fixed;
     top: 1rem;
+    font-size: 50px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
@@ -64,8 +70,8 @@
 /* Alerta base */
 .message-alert {
     position: relative;
-    margin-bottom: 1rem;
-    padding: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 2.5rem;
     border-radius: 0.75rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     border-left: 4px solid;
@@ -84,7 +90,7 @@
 .message-error {
     background: linear-gradient(to right, #fef2f2, #fecaca);
     border-left-color: #ef4444;
-    color: #991b1b;
+    color: green;
     animation: slideInDown 0.5s ease-out forwards, shake 0.5s ease-in-out;
 }
 
@@ -109,7 +115,7 @@
     
     .message-error {
         background: linear-gradient(to right, rgba(153, 27, 27, 0.3), rgba(185, 28, 28, 0.3));
-        color: #fca5a5;
+        color: white;
     }
     
     .message-warning {

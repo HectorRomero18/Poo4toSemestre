@@ -1,0 +1,961 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}Nuevo Paciente{% endblock %}
+
+{% block content %}
+    {% include 'fragments/messages.html' %}
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Configuración de Tailwind personalizada */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        .content-wrapper {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6f3ff 100%);
+            min-height: 100vh;
+            margin: -20px;
+            padding: 20px;
+        }
+        
+        /* Contenedor principal con glassmorphism */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Inputs modernos */
+        .modern-input {
+            width: 100%;
+            padding: 16px 20px 16px 48px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            color: #2d3748;
+        }
+        
+        .modern-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+        
+        .modern-input:hover:not(:focus) {
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        /* Textarea específico */
+        .modern-textarea {
+            padding: 16px 20px 16px 48px;
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+        
+        /* Select moderno */
+        .modern-select {
+            width: 100%;
+            padding: 16px 20px 16px 48px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            color: #2d3748;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 48px;
+        }
+        
+        .modern-select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+        
+        /* Input de archivo personalizado */
+        .file-input-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .file-input-container input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px 16px 48px;
+            border: 2px dashed #cbd5e0;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .file-input-label:hover {
+            border-color: #4299e1;
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-1px);
+        }
+        
+        /* Botones modernos */
+        .modern-btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modern-btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4299e1 0%, #667eea 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f56565 0%, #ed8936 100%);
+            color: white;
+        }
+        
+        /* Checkbox moderno */
+        .modern-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #4299e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modern-checkbox:checked {
+            transform: scale(1.1);
+        }
+        
+        /* Iconos de entrada */
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            transition: color 0.3s ease;
+        }
+        
+        .field-group:hover .input-icon {
+            color: #4299e1;
+        }
+        
+        /* Efectos de hover para tarjetas */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Animaciones suaves */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Estilos para errores */
+        .error-input {
+            border-color: #f56565 !important;
+            background: rgba(254, 242, 242, 0.8) !important;
+        }
+        
+        .error-text {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        /* Placeholder mejorado */
+        .modern-input::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+        
+        /* Secciones del formulario */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-divider {
+            margin: 2rem 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modern-input, .modern-select {
+                padding: 14px 16px 14px 44px;
+            }
+            
+            .modern-textarea {
+                min-height: 100px;
+            }
+            
+            .content-wrapper {
+                margin: -10px;
+                padding: 10px;
+            }
+        }
+        
+        /* Utilidades de Tailwind simuladas */
+        .max-w-6xl { max-width: 72rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-center { text-align: center; }
+        .mb-12 { margin-bottom: 3rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .font-bold { font-weight: 700; }
+        .mb-4 { margin-bottom: 1rem; }
+        .w-24 { width: 6rem; }
+        .h-1 { height: 0.25rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .gap-8 { gap: 2rem; }
+        .gap-6 { gap: 1.5rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .relative { position: relative; }
+        .inline-block { display: inline-block; }
+        .h-24 { height: 6rem; }
+        .rounded-full { border-radius: 9999px; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-white { color: rgb(255 255 255); }
+        .absolute { position: absolute; }
+        .-top-2 { top: -0.5rem; }
+        .-right-2 { right: -0.5rem; }
+        .w-6 { width: 1.5rem; }
+        .h-6 { height: 1.5rem; }
+        .bg-green-500 { background-color: rgb(34 197 94); }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .font-semibold { font-weight: 600; }
+        .text-gray-700 { color: rgb(55 65 81); }
+        .mt-4 { margin-top: 1rem; }
+        .text-gray-500 { color: rgb(107 114 128); }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .text-blue-500 { color: rgb(59 130 246); }
+        .text-red-500 { color: rgb(239 68 68); }
+        .text-green-500 { color: rgb(34 197 94); }
+        .text-purple-500 { color: rgb(168 85 247); }
+        .text-orange-500 { color: rgb(249 115 22); }
+        .text-pink-500 { color: rgb(236 72 153); }
+        .text-indigo-500 { color: rgb(99 102 241); }
+        .text-yellow-500 { color: rgb(234 179 8); }
+        .ml-1 { margin-left: 0.25rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .from-blue-50 { --tw-gradient-from: rgb(239 246 255); --tw-gradient-to: rgb(239 246 255 / 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+        .to-indigo-50 { --tw-gradient-to: rgb(238 242 255); }
+        .p-6 { padding: 1.5rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .border { border-width: 1px; }
+        .border-blue-200 { border-color: rgb(191 219 254); }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .w-12 { width: 3rem; }
+        .h-12 { height: 3rem; }
+        .bg-white { background-color: rgb(255 255 255); }
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .flex-grow { flex-grow: 1; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .text-gray-600 { color: rgb(75 85 99); }
+        .mt-1 { margin-top: 0.25rem; }
+        .flex-col { flex-direction: column; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .pt-8 { padding-top: 2rem; }
+        .border-t { border-top-width: 1px; }
+        .border-gray-200 { border-color: rgb(229 231 235); }
+        .w-full { width: 100%; }
+        .min-h-screen { min-height: 100vh; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .col-span-2 { grid-column: span 2 / span 2; }
+        .col-span-3 { grid-column: span 3 / span 3; }
+        
+        @media (min-width: 640px) {
+            .sm\\:flex-row { flex-direction: row; }
+            .sm\\:space-y-0 > * + * { margin-top: 0; }
+            .sm\\:space-x-6 > * + * { margin-left: 1.5rem; }
+            .sm\\:w-auto { width: auto; }
+        }
+        
+        @media (min-width: 768px) {
+            .md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .lg\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+    </style>
+
+    <div class="content-wrapper">
+        <div class="max-w-6xl mx-auto">
+            <!-- Título principal -->
+            <div class="text-center mb-12 animate-fadeInUp">
+                <h1 class="text-5xl font-bold mb-4" style="background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Registro de Nuevo Paciente
+                </h1>
+                <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #3b82f6, #8b5cf6);"></div>
+            </div>
+            
+            <!-- Formulario principal -->
+            <div class="glass-container rounded-3xl p-8 card-hover animate-fadeInUp">
+                <!-- Vista previa del avatar -->
+                <div class="text-center mb-12">
+                    <div class="relative inline-block">
+                        <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center shadow-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
+                            <i id="avatarPreview" class="fa-solid fa-user text-3xl text-white"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-plus text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-700 mt-4">Nuevo Paciente</h2>
+                    <p class="text-gray-500 text-sm">Complete la información del paciente</p>
+                </div>
+                
+                <!-- Formulario -->
+                <form method="post" enctype="multipart/form-data" class="space-y-8">
+                    {% csrf_token %}
+                    
+                    <!-- Información Personal -->
+                    <div class="space-y-6">
+                        <h3 class="section-title">
+                            <i class="fa-solid fa-user text-blue-500"></i>
+                            Información Personal
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Nombres -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-user mr-2 text-blue-500"></i>
+                                    Nombres
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-id-card input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        name="nombres"
+                                        class="modern-input" 
+                                        placeholder="Ej: Juan Carlos"
+                                        maxlength="100"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            
+                            <!-- Apellidos -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-user mr-2 text-blue-500"></i>
+                                    Apellidos
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-id-card input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        name="apellidos"
+                                        class="modern-input" 
+                                        placeholder="Ej: Pérez García"
+                                        maxlength="100"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Cédula Ecuatoriana -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-id-card mr-2 text-green-500"></i>
+                                    Cédula Ecuatoriana
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-passport input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        name="cedula_ecuatoriana"
+                                        class="modern-input" 
+                                        placeholder="1234567890"
+                                        maxlength="10"
+                                        pattern="[0-9]{10}"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            
+                            <!-- DNI Internacional -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-passport mr-2 text-purple-500"></i>
+                                    DNI Internacional
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-globe input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        name="dni"
+                                        class="modern-input" 
+                                        placeholder="Pasaporte, DNI, etc."
+                                        maxlength="30"
+                                    >
+                                </div>
+                            </div>
+                            
+                            <!-- Fecha de Nacimiento -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-calendar mr-2 text-orange-500"></i>
+                                    Fecha de Nacimiento
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-birthday-cake input-icon"></i>
+                                    <input 
+                                        type="date" 
+                                        name="fecha_nacimiento"
+                                        class="modern-input" 
+                                        required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Sexo -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-venus-mars mr-2 text-pink-500"></i>
+                                    Sexo
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-user input-icon"></i>
+                                    <select name="sexo" class="modern-select" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="masculino">Masculino</option>
+                                        <option value="femenino">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Estado Civil -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-heart mr-2 text-red-500"></i>
+                                    Estado Civil
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-users input-icon"></i>
+                                    <select name="estado_civil" class="modern-select" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="soltero">Soltero/a</option>
+                                        <option value="casado">Casado/a</option>
+                                        <option value="divorciado">Divorciado/a</option>
+                                        <option value="viudo">Viudo/a</option>
+                                        <option value="union_libre">Unión Libre</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Información de Contacto -->
+                    <div class="space-y-6">
+                        <h3 class="section-title">
+                            <i class="fa-solid fa-phone text-green-500"></i>
+                            Información de Contacto
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Teléfono -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-phone mr-2 text-green-500"></i>
+                                    Teléfono(s)
+                                    <span class="text-red-500 ml-1">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-mobile input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        name="telefono"
+                                        class="modern-input" 
+                                        placeholder="0987654321 o varios separados por coma"
+                                        maxlength="50"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-envelope mr-2 text-indigo-500"></i>
+                                    Correo Electrónico
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-at input-icon"></i>
+                                    <input 
+                                        type="email" 
+                                        name="email"
+                                        class="modern-input" 
+                                        placeholder="correo@ejemplo.com"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dirección -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-map-marker-alt mr-2 text-red-500"></i>
+                                Dirección Domiciliaria
+                                <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-home input-icon"></i>
+                                <input 
+                                    type="text" 
+                                    name="direccion"
+                                    class="modern-input" 
+                                    placeholder="Calle, número, sector, ciudad"
+                                    maxlength="255"
+                                    required
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Latitud -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-map mr-2 text-blue-500"></i>
+                                    Latitud (Opcional)
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-compass input-icon"></i>
+                                    <input 
+                                        type="number" 
+                                        name="latitud"
+                                        class="modern-input" 
+                                        placeholder="-2.123456"
+                                        step="0.000001"
+                                    >
+                                </div>
+                            </div>
+                            
+                            <!-- Longitud -->
+                            <!-- Longitud -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-map mr-2 text-blue-500"></i>
+                                    Longitud (Opcional)
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-compass input-icon"></i>
+                                    <input 
+                                        type="number" 
+                                        name="longitud"
+                                        class="modern-input" 
+                                        placeholder="-80.123456"
+                                        step="0.000001"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Información Médica Básica -->
+                    <div class="space-y-6">
+                        <h3 class="section-title">
+                            <i class="fa-solid fa-heartbeat text-red-500"></i>
+                            Información Médica Básica
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Tipo de Sangre -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-tint mr-2 text-red-500"></i>
+                                    Tipo de Sangre
+                                </label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-heart input-icon"></i>
+                                    <select name="tipo_sangre" class="modern-select">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Aquí se cargarían los tipos de sangre desde la base de datos -->
+                                        <option value="1">O+</option>
+                                        <option value="2">O-</option>
+                                        <option value="3">A+</option>
+                                        <option value="4">A-</option>
+                                        <option value="5">B+</option>
+                                        <option value="6">B-</option>
+                                        <option value="7">AB+</option>
+                                        <option value="8">AB-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Foto -->
+                            <div class="field-group">
+                                <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                    <i class="fa-solid fa-camera mr-2 text-purple-500"></i>
+                                    Foto del Paciente
+                                </label>
+                                <div class="file-input-container">
+                                    <input type="file" name="foto" accept="image/*" id="foto_input">
+                                    <label for="foto_input" class="file-input-label">
+                                        <i class="fa-solid fa-cloud-upload-alt input-icon"></i>
+                                        Seleccionar imagen...
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <!-- Historia Clínica -->
+                    <div class="space-y-6">
+                        <h3 class="section-title">
+                            <i class="fa-solid fa-file-medical text-green-500"></i>
+                            Historia Clínica
+                        </h3>
+                        
+                        <!-- Antecedentes Personales -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-user-md mr-2 text-blue-500"></i>
+                                Antecedentes Personales Patológicos
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-notes-medical input-icon"></i>
+                                <textarea 
+                                    name="antecedentes_personales"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Ej.: Diabetes tipo 2, hipertensión, asma, etc."
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Antecedentes Quirúrgicos -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-cut mr-2 text-orange-500"></i>
+                                Antecedentes Quirúrgicos
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-procedures input-icon"></i>
+                                <textarea 
+                                    name="antecedentes_quirurgicos"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Ej.: Apendicectomía en 2018, cesárea en 2021, etc."
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Antecedentes Familiares -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-users mr-2 text-purple-500"></i>
+                                Antecedentes Familiares
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-family input-icon"></i>
+                                <textarea 
+                                    name="antecedentes_familiares"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Enfermedades hereditarias (padres, abuelos, hermanos)"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Alergias -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-exclamation-triangle mr-2 text-red-500"></i>
+                                Alergias
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-allergies input-icon"></i>
+                                <textarea 
+                                    name="alergias"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Ej.: Penicilina, mariscos, polvo, etc."
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Medicamentos Actuales -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-pills mr-2 text-green-500"></i>
+                                Medicamentos Actuales
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-prescription-bottle input-icon"></i>
+                                <textarea 
+                                    name="medicamentos_actuales"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Nombre, dosis y frecuencia. Ej.: Losartán 50mg diario"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Hábitos Tóxicos -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-smoking mr-2 text-orange-500"></i>
+                                Hábitos Tóxicos o Perjudiciales
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-wine-bottle input-icon"></i>
+                                <input 
+                                    type="text" 
+                                    name="habitos_toxicos"
+                                    class="modern-input" 
+                                    placeholder="Ej.: Tabaco, alcohol, drogas, sedentarismo, etc."
+                                    value="ninguno"
+                                    maxlength="200"
+                                >
+                            </div>
+                        </div>
+                        
+                        <!-- Vacunas -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-syringe mr-2 text-blue-500"></i>
+                                Vacunas
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-shield-virus input-icon"></i>
+                                <textarea 
+                                    name="vacunas"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Vacunas importantes recibidas. Ej.: COVID-19, influenza, etc."
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Antecedentes Gineco-Obstétricos -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-baby mr-2 text-pink-500"></i>
+                                Antecedentes Gineco-Obstétricos
+                                <span class="text-gray-500 text-xs ml-2">(Solo en mujeres)</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-female input-icon"></i>
+                                <textarea 
+                                    name="antecedentes_gineco_obstetricos"
+                                    class="modern-input modern-textarea" 
+                                    placeholder="Ej.: menarquia, embarazos, anticonceptivos, etc."
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Estado Activo -->
+                        <div class="field-group">
+                            <label class="flex items-center font-semibold text-gray-700 text-sm mb-3">
+                                <i class="fa-solid fa-toggle-on mr-2 text-green-500"></i>
+                                Estado del Paciente
+                            </label>
+                            <div class="flex items-center space-x-3">
+                                <input 
+                                    type="checkbox" 
+                                    name="activo"
+                                    class="modern-checkbox"
+                                    checked
+                                >
+                                <span class="text-gray-700">Paciente activo</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones de acción -->
+                    <div class="pt-8 border-t border-gray-200">
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center">
+                            <button 
+                                type="submit" 
+                                class="modern-btn btn-primary w-full sm:w-auto"
+                            >
+                                <i class="fa-solid fa-save mr-2"></i>
+                                Guardar Paciente
+                            </button>
+                            <a 
+                                href="{% url 'core:pacientes_list' %}" 
+                                class="modern-btn btn-secondary w-full sm:w-auto text-center"
+                            >
+                                <i class="fa-solid fa-times mr-2"></i>
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Previsualización de imagen
+        document.getElementById('foto_input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const avatarPreview = document.getElementById('avatarPreview');
+            const label = document.querySelector('label[for="foto_input"]');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    avatarPreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover rounded-full">`;
+                    label.innerHTML = '<i class="fa-solid fa-check input-icon"></i>Imagen seleccionada';
+                    label.style.color = '#10b981';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Validación de cédula ecuatoriana
+        document.querySelector('input[name="cedula_ecuatoriana"]').addEventListener('input', function(e) {
+            const value = e.target.value.replace(/\D/g, '');
+            e.target.value = value;
+            
+            if (value.length === 10) {
+                // Validación básica de cédula ecuatoriana
+                const digits = value.split('').map(Number);
+                const province = parseInt(value.substring(0, 2));
+                
+                if (province < 1 || province > 24) {
+                    e.target.classList.add('error-input');
+                } else {
+                    e.target.classList.remove('error-input');
+                }
+            }
+        });
+        
+        // Formateo de teléfono
+        document.querySelector('input[name="telefono"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^\d,\s]/g, '');
+            e.target.value = value;
+        });
+        
+        // Animaciones al scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.field-group').forEach(group => {
+            observer.observe(group);
+        });
+    </script>
+
+{% endblock %}

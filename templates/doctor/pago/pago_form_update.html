@@ -1,0 +1,787 @@
+{% extends 'home.html' %}
+{% block title %}Editar Pago{% endblock %}
+{% block content %}
+<style>
+    .payment-form-wrapper {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: 80vh;
+    }
+
+    .payment-container {
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.08),
+            0 0 0 1px rgba(0, 0, 0, 0.05);
+        padding: 48px;
+        width: 100%;
+        max-width: 900px;
+        border: 1px solid #e5e7eb;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .payment-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    }
+
+    /* Estilos del Navegador */
+    .tab-navigator {
+        display: flex;
+        margin-bottom: 32px;
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 6px;
+        gap: 4px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .tab-button {
+        flex: 1;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .tab-button:not(.active) {
+        background: transparent;
+        color: #64748b;
+    }
+
+    .tab-button:not(.active):hover {
+        background: #e2e8f0;
+        color: #475569;
+        transform: translateY(-1px);
+    }
+
+    .tab-button.active {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .tab-button.active::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+
+    /* Contenido de las pestañas */
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .form-header h1 {
+        color: #1a1a1a;
+        font-size: 2.8em;
+        font-weight: 800;
+        margin-bottom: 12px;
+        background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -1px;
+    }
+
+    .form-header p {
+        color: #6b7280;
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .form-group.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .form-group.half-width {
+        grid-column: span 2;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        color: #374151;
+        font-weight: 600;
+        font-size: 0.95em;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        position: relative;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 16px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 16px;
+        font-size: 16px;
+        background: #ffffff;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+        font-weight: 500;
+        color: #1f2937;
+    }
+
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 
+            0 0 0 4px rgba(102, 126, 234, 0.12),
+            0 4px 12px rgba(102, 126, 234, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .form-control:hover:not(:focus) {
+        border-color: #d1d5db;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .select-wrapper {
+        position: relative;
+    }
+
+    .select-wrapper::after {
+        content: '▼';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #667eea;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    select.form-control {
+        appearance: none;
+        cursor: pointer;
+        padding-right: 50px;
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+        font-family: inherit;
+        line-height: 1.6;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-submit::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s;
+    }
+
+    .btn-submit:hover::before {
+        left: 100%;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-submit:active {
+        transform: translateY(-2px);
+    }
+
+    /* Estilos para el botón de PayPal */
+    .btn-paypal {
+        display: none;
+        width: 100%;
+        padding: 18px 24px;
+        background: linear-gradient(135deg, #0070ba 0%, #003087 100%);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 112, 186, 0.3);
+        text-decoration: none;
+        text-align: center;
+        margin-top: 16px;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .btn-paypal.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideInFade 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-paypal::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s;
+    }
+
+    .btn-paypal:hover::before {
+        left: 100%;
+    }
+
+    .btn-paypal:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(0, 112, 186, 0.5);
+        background: linear-gradient(135deg, #0079c1 0%, #003d8a 100%);
+    }
+
+    .btn-paypal:active {
+        transform: translateY(-1px);
+    }
+
+    @keyframes slideInFade {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .required {
+        color: #ef4444;
+        font-weight: 700;
+    }
+
+    /* Estilos para la sección de detalles de pago */
+    .payment-details-section {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 32px;
+        margin-bottom: 24px;
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+
+    .payment-details-section:hover {
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .details-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        color: #1e293b;
+    }
+
+    .details-header h3 {
+        font-size: 1.5em;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .detail-item {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        transition: transform 0.2s ease;
+    }
+
+    .detail-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail-label {
+        font-weight: 600;
+        color: #475569;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+    }
+
+    .detail-value {
+        font-size: 1.1em;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .payment-container {
+            padding: 32px 24px;
+            margin: 16px;
+            border-radius: 20px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .form-group.half-width,
+        .form-group.full-width {
+            grid-column: 1;
+        }
+
+        .form-header h1 {
+            font-size: 2.2em;
+        }
+
+        .btn-submit {
+            padding: 18px;
+            font-size: 16px;
+        }
+
+        .btn-paypal {
+            padding: 16px 20px;
+            font-size: 15px;
+        }
+
+        .tab-button {
+            padding: 14px 16px;
+            font-size: 14px;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+        .form-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .form-group.half-width {
+            grid-column: span 2;
+        }
+    }
+
+    /* Loading States */
+    .loading {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .loading .btn-submit {
+        background: linear-gradient(135deg, #9ca3af, #6b7280);
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+    /* Entrance Animation */
+    .payment-container {
+        animation: slideUpFade 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes slideUpFade {
+        from {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Input Focus Effects */
+    .form-group::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        border-radius: 1px;
+    }
+
+    .form-group:focus-within::after {
+        transform: scaleX(1);
+    }
+</style>
+
+<div class="payment-form-wrapper">
+    <div class="payment-container">
+        <div class="form-header">
+            <h1>✏️ Editar Pago</h1>
+            <p>Modifique los datos del pago y servicios adicionales</p>
+        </div>
+
+        <!-- Navegador de pestañas -->
+        <div class="tab-navigator">
+            <button type="button" class="tab-button active" data-tab="pago">
+                💳 Pago
+            </button>
+            <button type="button" class="tab-button" data-tab="detalles">
+                📋 Detalles de Pago
+            </button>
+        </div>
+
+        <!-- Contenido de la pestaña Pago -->
+        <div id="tab-pago" class="tab-content active">
+            <form id="pago-form">
+                <div class="form-grid">
+                    <!-- Primera fila: Nombre completo -->
+                    <div class="form-group full-width">
+                        <label for="nombre_pagador">👤 Nombre del Pagador <span class="required">*</span></label>
+                        <input type="text" id="nombre_pagador" name="nombre_pagador" class="form-control" required 
+                            placeholder="Ingrese el nombre completo" 
+                            value="{{ pago.nombre_pagador|default:'' }}">
+                    </div>
+
+                    <!-- Monto total -->
+                    <div class="form-group">
+                        <label for="monto_total">💰 Monto Total <span class="required">*</span></label>
+                        <input type="number" id="monto_total" name="monto_total" class="form-control" 
+                            step="0.01" min="0" required placeholder="0.00" 
+                            value="{{ pago.monto_total|default:'' }}">
+                    </div>
+
+                    <!-- Método de pago -->
+                    <div class="form-group">
+                        <label for="metodo_pago">💳 Método de Pago <span class="required">*</span></label>
+                        <div class="select-wrapper">
+                            <select id="metodo_pago" name="metodo_pago" class="form-control" required>
+                                <option value="">Seleccionar método</option>
+                                <option value="paypal" {% if pago.metodo_pago == 'paypal' %}selected{% endif %}>PayPal</option>
+                                <option value="transaccion" {% if pago.metodo_pago == 'transaccion' %}selected{% endif %}>Transacción</option>
+                            </select>
+                        </div>
+                        <a href="#" id="btn-paypal" class="btn-paypal">💰 Pagar con PayPal</a>
+                    </div>
+
+                    <!-- Fecha del pago -->
+                    <div class="form-group">
+                        <label for="fecha_pago">📅 Fecha del Pago <span class="required">*</span></label>
+                        <input type="date" id="fecha_pago" name="fecha_pago" class="form-control" required 
+                            value="{% if pago.fecha_pago %}{{ pago.fecha_pago|date:'Y-m-d' }}{% endif %}">
+                    </div>
+
+                    <!-- Referencia externa -->
+                    <div class="form-group">
+                        <label for="referencia_externa">🔗 Referencia Externa</label>
+                        <input type="text" id="referencia_externa" name="referencia_externa" class="form-control" 
+                            placeholder="Nº transacción, cheque, etc." 
+                            value="{{ pago.referencia_externa|default:'' }}">
+                    </div>
+
+                    <!-- Atención -->
+                    <div class="form-group">
+                        <label for="atencion">🏥 Atención</label>
+                        <div class="select-wrapper">
+                            <select id="atencion" name="atencion" class="form-control">
+                                <option value="">Seleccione atención</option>
+                                {% for a in atenciones %}
+                                    <option value="{{ a.id }}" 
+                                            {% if pago.atencion and pago.atencion.id == a.id %}selected{% endif %}>
+                                        {{ a }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Evidencia del pago -->
+                    <div class="form-group half-width">
+                        <label for="evidencia_pago">📎 Evidencia del Pago</label>
+                        <input type="file" id="evidencia_pago" name="evidencia_pago" class="form-control" 
+                            accept="image/*,application/pdf">
+                        {% if pago.evidencia_pago %}
+                            <div style="margin-top: 10px; color: #667eea; font-size: 0.9em;">
+                                📎 Archivo actual: 
+                                <a href="{{ pago.evidencia_pago.url }}" target="_blank">
+                                    {{ pago.evidencia_pago.name }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Observaciones -->
+                    <div class="form-group full-width">
+                        <label for="observaciones">📝 Observaciones</label>
+                        <textarea id="observaciones" name="observaciones" class="form-control" 
+                                placeholder="Comentarios adicionales sobre el pago...">{{ pago.observaciones|default:'' }}</textarea>
+                    </div>
+                </div>
+
+                <a href="{{back_url}}">
+                    <button type="submit" class="btn-submit">
+                        ✏️ Actualizar Pago
+                    </button>
+                </a>
+
+            </form>
+        </div>
+
+        <!-- Contenido de la pestaña Detalles de Pago -->
+        <div id="tab-detalles" class="tab-content">
+            <div class="payment-details-section">
+                <iframe src="{% url 'doctor:detalle_pago_update' pago.id %}" style="width:100%; height:600px; border:none;"></iframe>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    // Funcionalidad del navegador de pestañas
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+                
+                // Remover clase activa de todos los botones y contenidos
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Agregar clase activa al botón clickeado y su contenido correspondiente
+                this.classList.add('active');
+                document.getElementById(`tab-${targetTab}`).classList.add('active');
+            });
+        });
+
+        // Mostrar botón PayPal si el método es PayPal
+        const metodoSelect = document.getElementById('metodo_pago');
+        if (metodoSelect.value === 'paypal') {
+            updatePayPalLink();
+            document.getElementById('btn-paypal').classList.add('show');
+        }
+    });
+
+    // Función para actualizar detalles
+    function actualizarDetalles() {
+        // Aquí puedes agregar la lógica para actualizar los detalles
+        alert('Detalles actualizados correctamente');
+    }
+
+    // Resto del código JavaScript
+    document.getElementById('pago-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);  
+
+        // Mostrar carga
+        const container = document.querySelector('.payment-container');
+        const submitBtn = document.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+
+        container.classList.add('loading');
+        submitBtn.innerHTML = '⏳ Procesando...';
+
+        try {
+            const response = await fetch("{% url 'doctor:pago_update' pago.id %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken') 
+                },
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                submitBtn.innerHTML = '✅ ¡Pago Actualizado!';
+                submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                setTimeout(() => {
+                    alert(result.msg);
+                    window.location.href = "{{back_url}}"; 
+                }, 1500);
+            } else {
+                throw new Error(result.msg);
+            }
+
+        } catch (error) {
+            alert("Error: " + error.message);
+            container.classList.remove('loading');
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+        }
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let c of cookies) {
+                const cookie = c.trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Validación en tiempo real para el monto
+    document.getElementById('monto_total').addEventListener('input', function(e) {
+        const value = parseFloat(e.target.value);
+        if (value < 0) {
+            e.target.setCustomValidity('El monto debe ser positivo');
+        } else {
+            e.target.setCustomValidity('');
+        }
+    });
+
+    // Formatear el nombre del pagador
+    document.getElementById('nombre_pagador').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\b\w/g, l => l.toUpperCase());
+    });
+
+    function updatePayPalLink() {
+        const monto = document.getElementById('monto_total').value || '0';
+        const atencionSelect = document.getElementById('atencion');
+        const atencionId = atencionSelect.value || '1';
+
+        const btnPaypal = document.getElementById('btn-paypal');
+        const baseUrl = "/doctor/pagos/paypal/";
+
+        const newHref = baseUrl + monto + "/" + atencionId + "/";
+        btnPaypal.href = newHref;
+    }
+
+    // Mostrar/Ocultar botón PayPal según método de pago seleccionado
+    document.getElementById('metodo_pago').addEventListener('change', function() {
+        const btnPaypal = document.getElementById('btn-paypal');
+        if (this.value === 'paypal') {
+            updatePayPalLink();
+            btnPaypal.classList.add('show');
+        } else {
+            btnPaypal.classList.remove('show');
+        }
+    });
+
+    // Actualizar enlace cuando cambie el monto
+    document.getElementById('monto_total').addEventListener('input', function() {
+        if (document.getElementById('metodo_pago').value === 'paypal') {
+            updatePayPalLink();
+        }
+    });
+
+    // Actualizar enlace cuando cambie la atención seleccionada
+    document.getElementById('atencion').addEventListener('change', function() {
+        if (document.getElementById('metodo_pago').value === 'paypal') {
+            updatePayPalLink();
+        }
+    });
+
+    // Efectos de hover mejorados para inputs
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.closest('.form-group').style.transform = 'translateY(-2px)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.closest('.form-group').style.transform = 'translateY(0)';
+        });
+    });
+</script>
+
+{% endblock %}

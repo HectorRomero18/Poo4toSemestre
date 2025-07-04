@@ -1,0 +1,1186 @@
+{% extends 'home.html' %}
+<title>{% block title %}Servicios Adicionales{% endblock %}</title>
+
+{% block content %}
+    {% load static %}
+    {% include 'fragments/messages.html' %}
+
+<!-- Custom CSS -->
+<style>
+    /* Modern glassmorphism effects */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark .glass-card {
+        background: rgba(17, 24, 39, 0.95);
+        border: 1px solid rgba(75, 85, 99, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Enhanced gradients */
+    .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Modern search bar */
+    .search-container {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .search-input {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(102, 126, 234, 0.2);
+        border-radius: 50px;
+        padding: 16px 60px 16px 50px;
+        width: 100%;
+        font-size: 16px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    }
+    
+    .dark .search-input {
+        background: rgba(17, 24, 39, 0.9);
+        color: #e5e7eb;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #667eea;
+        font-size: 18px;
+    }
+    
+    .search-clear {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .search-clear:hover {
+        background: #5a67d8;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Enhanced table styles */
+    .modern-table {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .dark .modern-table {
+        background: rgba(17, 24, 39, 0.9);
+        border: 1px solid rgba(75, 85, 99, 0.3);
+    }
+    
+    .table-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .table-header th {
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 20px;
+        font-size: 14px;
+    }
+    
+    .table-row {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    }
+    
+    .dark .table-row {
+        border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+    }
+    
+    .table-row:hover {
+        background: rgba(102, 126, 234, 0.05);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark .table-row:hover {
+        background: rgba(102, 126, 234, 0.1);
+    }
+    
+    .table-cell {
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    /* Status badges */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .status-active {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+    
+    .status-inactive {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    /* Cost styling */
+    .cost-display {
+        font-size: 18px;
+        font-weight: 700;
+        color: #059669;
+        display: flex;
+        align-items: center;
+    }
+    
+    .dark .cost-display {
+        color: #10b981;
+    }
+    
+    .cost-currency {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-right: 2px;
+    }
+
+    /* Service icon styling */
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-right: 16px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    /* Action buttons */
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin: 0 4px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .action-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: currentColor;
+        opacity: 0.1;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .action-btn:hover::before {
+        transform: scale(1);
+    }
+    
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .edit-btn {
+        color: #3b82f6;
+        background: rgba(59, 130, 246, 0.1);
+    }
+    
+    .delete-btn {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+    }
+    
+    .toggle-btn {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+    }
+
+    /* Modern pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 30px;
+    }
+    
+    .pagination-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 40px;
+        padding: 0 12px;
+        border-radius: 50%;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(229, 231, 235, 0.5);
+        color: #6b7280;
+    }
+    
+    .dark .pagination-item {
+        background: rgba(17, 24, 39, 0.8);
+        border-color: rgba(75, 85, 99, 0.3);
+        color: #9ca3af;
+    }
+    
+    .pagination-item:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    
+    .pagination-item.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-color: transparent;
+    }
+
+    /* Enhanced buttons */
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 50px;
+        padding: 14px 28px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Loading and empty states */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6b7280;
+    }
+    
+    .dark .empty-state {
+        color: #9ca3af;
+    }
+    
+    .empty-icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .modal-overlay.show {
+        display: flex;
+        opacity: 1;
+    }
+    
+    .modal-content {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        margin: 20px;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .dark .modal-content {
+        background: #1f2937;
+        color: #e5e7eb;
+    }
+    
+    .modal-overlay.show .modal-content {
+        transform: scale(1);
+    }
+    
+    .modal-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .modal-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 24px;
+    }
+    
+    .modal-icon.danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+    }
+    
+    .modal-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    .modal-description {
+        color: #6b7280;
+        font-size: 14px;
+    }
+    
+    .dark .modal-description {
+        color: #9ca3af;
+    }
+    
+    .modal-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+    }
+    
+    .btn-secondary {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .dark .btn-secondary {
+        background: #374151;
+        color: #e5e7eb;
+        border-color: #4b5563;
+    }
+    
+    .btn-secondary:hover {
+        background: #e5e7eb;
+        transform: translateY(-1px);
+    }
+    
+    .dark .btn-secondary:hover {
+        background: #4b5563;
+    }
+    
+    .btn-danger {
+        background: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        flex: 1;
+        cursor: pointer;
+    }
+    
+    .btn-danger:hover {
+        background: #dc2626;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .fade-in-up-delay {
+        animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+    }
+
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+        .table-cell {
+            padding: 12px 8px;
+            font-size: 14px;
+        }
+        
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            margin: 0 2px;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            margin-right: 12px;
+        }
+        
+        .cost-display {
+            font-size: 16px;
+        }
+        
+        .modal-content {
+            padding: 20px;
+            margin: 10px;
+        }
+    }
+
+    /* Description tooltip */
+    .description-tooltip {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .description-tooltip:hover .tooltip-content {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+    
+    .tooltip-content {
+        visibility: hidden;
+        position: absolute;
+        z-index: 1000;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(17, 24, 39, 0.95);
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        white-space: nowrap;
+        max-width: 250px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .tooltip-content::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: rgba(17, 24, 39, 0.95);
+    }
+</style>
+
+<section class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900 py-8">
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in-up">
+            <div class="inline-block">
+                <h1 class="gradient-text text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+                    Servicios Adicionales
+                </h1>
+                <div class="w-24 h-1 gradient-bg mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">
+                    Gestiona los servicios adicionales del sistema médico
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Content Card -->
+        <div class="glass-card rounded-3xl p-8 fade-in-up-delay">
+            <!-- Search Bar -->
+            <div class="search-container mb-8">
+                <form method="GET" class="relative">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" 
+                           name="q" 
+                           id="table-search"
+                           class="search-input"
+                           placeholder="Buscar servicios por nombre o descripción..."
+                           value="{{ request.GET.q }}"
+                           autocomplete="off">
+                    <button type="button" class="search-clear" id="clearSearch">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Counter -->
+            {% if servicios %}
+            <div class="text-center mb-6">
+                <p class="text-gray-600 dark:text-gray-400">
+                    {% if request.GET.q %}
+                        Mostrando {{ servicios|length }} resultado{{ servicios|length|pluralize }} para "{{ request.GET.q }}"
+                    {% else %}
+                        {{ servicios|length }} servicio{{ servicios|length|pluralize }} encontrado{{ servicios|length|pluralize }}
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+
+            <!-- Services Table -->
+            <div class="modern-table mb-8">
+                <table class="w-full">
+                    <thead class="table-header">
+                        <tr>
+                            <th class="text-left">Servicio</th>
+                            <th class="text-center">Costo</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for servicio in servicios %}
+                            <tr class="table-row">
+                                <td class="table-cell">
+                                    <div class="flex items-center">
+                                        <div class="service-icon">
+                                            <i class="fa-solid fa-stethoscope"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-semibold text-gray-900 dark:text-black text-lg">
+                                                {{ servicio.nombre_servicio }}
+                                            </h3>
+                                            {% if servicio.descripcion %}
+                                                <div class="description-tooltip">
+                                                    <p class="text-gray-500 dark:text-gray-400 text-sm cursor-help">
+                                                        {{ servicio.descripcion|truncatechars:50 }}
+                                                        {% if servicio.descripcion|length > 50 %}
+                                                            <i class="fa-solid fa-info-circle ml-1"></i>
+                                                        {% endif %}
+                                                    </p>
+                                                    {% if servicio.descripcion|length > 50 %}
+                                                        <div class="tooltip-content">
+                                                            {{ servicio.descripcion }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <p class="text-gray-400 dark:text-gray-500 text-sm italic">
+                                                    Sin descripción
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="table-cell text-center">
+                                    <div class="cost-display justify-center">
+                                        <span class="cost-currency">$</span>
+                                        {{ servicio.costo_servicio|floatformat:2 }}
+                                    </div>
+                                </td>
+                                <td class="table-cell text-center">
+                                    {% if servicio.activo %}
+                                        <span class="status-badge status-active">
+                                            <i class="fa-solid fa-check mr-1"></i>
+                                            Activo
+                                        </span>
+                                    {% else %}
+                                        <span class="status-badge status-inactive">
+                                            <i class="fa-solid fa-times mr-1"></i>
+                                            Inactivo
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td class="table-cell text-center">
+                                    <div class="flex items-center justify-center">
+                                        <a href="{% url 'doctor:servicio_update' servicio.id %}" 
+                                           class="action-btn edit-btn" 
+                                           title="Editar servicio">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </a>
+                                        
+                                        <button type="button"
+                                                class="action-btn delete-btn"
+                                                title="Eliminar servicio"
+                                                onclick="openDeleteModal('{{ servicio.id }}', '{{ servicio.nombre_servicio }}', '{% url 'doctor:servicio_delete' servicio.id %}')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="table-cell">
+                                    <div class="empty-state">
+                                        <div class="empty-icon">
+                                            {% if request.GET.q %}
+                                                <i class="fa-solid fa-search"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-stethoscope"></i>
+                                            {% endif %}
+                                        </div>
+                                        <h3 class="text-xl font-semibold mb-2">
+                                            {% if request.GET.q %}
+                                                No se encontraron resultados
+                                            {% else %}
+                                                No hay servicios registrados
+                                            {% endif %}
+                                        </h3>
+                                        <p class="mb-4">
+                                            {% if request.GET.q %}
+                                                Intenta con otros términos de búsqueda
+                                            {% else %}
+                                                Comienza creando tu primer servicio adicional
+                                            {% endif %}
+                                        </p>
+                                        {% if request.GET.q %}
+                                            <button onclick="clearSearch()" class="btn-primary">
+                                                <i class="fa-solid fa-times mr-2"></i>
+                                                Limpiar búsqueda
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.paginator.num_pages > 1 %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                       class="pagination-item">
+                        <i class="fa-solid fa-angles-left"></i>
+                    </a>
+                    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                       class="pagination-item">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </a>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <span class="pagination-item active">{{ num }}</span>
+                    {% elif num == page_obj.number|add:'-2' or num == page_obj.number|add:'-1' or num == page_obj.number|add:'1' or num == page_obj.number|add:'2' %}
+                        <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                           class="pagination-item">{{ num }}</a>
+                    {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                        <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                           class="pagination-item">{{ num }}</a>
+                    {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+                        <span class="pagination-item">...</span>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                       class="pagination-item">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+                       class="pagination-item">
+                        <i class="fa-solid fa-angles-right"></i>
+                    </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col md:flex-row justify-center items-center mt-8 space-y-4 md:space-y-0 md:space-x-6">
+                <a href="{{ create_url }}" class="btn-primary">
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    Nuevo Servicio
+                </a>
+                <a href="{% url 'home' %}" class="btn-primary">
+                    <i class="fa-solid fa-home mr-2"></i>
+                    Inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Delete Modal -->
+<div id="deleteModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-icon danger">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+            <h3 class="modal-title">Eliminar Servicio</h3>
+            <div class="modal-description" id="deleteDescription">
+                ¿Estás seguro de que deseas eliminar este servicio?
+            </div>
+        </div>
+        
+        <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="closeDeleteModal()">
+                Cancelar
+            </button>
+            <form id="deleteForm" method="POST" style="flex: 1;">
+                {% csrf_token %}
+                <button type="submit" class="btn-danger" style="width: 100%;">
+                    Eliminar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Enhanced JavaScript functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('table-search');
+    const clearButton = document.getElementById('clearSearch');
+    const searchForm = searchInput.closest('form');
+    
+    // Show/hide clear button
+    function toggleClearButton() {
+        if (searchInput.value.trim() !== '') {
+            clearButton.style.display = 'flex';
+        } else {
+            clearButton.style.display = 'none';
+        }
+    }
+    
+    // Initialize clear button state
+    toggleClearButton();
+    
+    // Search input event listeners
+    searchInput.addEventListener('input', function() {
+        toggleClearButton();
+        
+        // Auto-submit after 500ms of no typing (debounce)
+        clearTimeout(this.searchTimeout);
+        this.searchTimeout = setTimeout(() => {
+            if (this.value.trim() !== this.previousValue) {
+                searchForm.submit();
+            }
+        }, 500);
+        
+        this.previousValue = this.value.trim();
+    });
+    
+    // Clear search functionality
+    clearButton.addEventListener('click', function() {
+        searchInput.value = '';
+        toggleClearButton();
+        searchForm.submit();
+    });
+    
+    // Enter key submit
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchForm.submit();
+        }
+    });
+    
+    // Escape key to clear search
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (this.value.trim() !== '') {
+                this.value = '';
+                toggleClearButton();
+                searchForm.submit();
+            }
+        }
+    });
+});
+
+// Modal functionality
+function openDeleteModal(serviceId, serviceName, deleteUrl) {
+    const modal = document.getElementById('deleteModal');
+    const description = document.getElementById('deleteDescription');
+    const form = document.getElementById('deleteForm');
+    
+    // Update modal content
+    description.innerHTML = `
+        ¿Estás seguro de que deseas eliminar el servicio <strong>"${serviceName}"</strong>?
+        <br><br>
+        <small class="text-red-600">Esta acción no se puede deshacer.</small>
+    `;
+    
+    // Set form action
+    form.action = deleteUrl;
+    
+    // Show modal with animation
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus on cancel button for accessibility
+    setTimeout(() => {
+        modal.querySelector('.btn-secondary').focus();
+    }, 100);
+}
+
+function closeDeleteModal() {
+    const modal = document.getElementById('deleteModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.getElementById('deleteModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeDeleteModal();
+    }
+});
+
+// Keyboard navigation for modal
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('deleteModal');
+    if (modal.classList.contains('show')) {
+        if (e.key === 'Escape') {
+            closeDeleteModal();
+        } else if (e.key === 'Tab') {
+            // Trap focus within modal
+            const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    }
+});
+
+// Clear search function (for empty state button)
+function clearSearch() {
+    const searchInput = document.getElementById('table-search');
+    const searchForm = searchInput.closest('form');
+    
+    searchInput.value = '';
+    searchForm.submit();
+}
+
+// Enhanced table interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add loading state to action buttons
+    const actionButtons = document.querySelectorAll('.action-btn');
+    
+    actionButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Don't add loading state to delete buttons (they open modal)
+            if (!this.classList.contains('delete-btn')) {
+                this.style.pointerEvents = 'none';
+                this.style.opacity = '0.7';
+                
+                // Add loading spinner
+                const icon = this.querySelector('i');
+                const originalClass = icon.className;
+                icon.className = 'fa-solid fa-spinner fa-spin';
+                
+                // Restore original state after navigation
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    this.style.pointerEvents = 'auto';
+                    this.style.opacity = '1';
+                }, 1000);
+            }
+        });
+    });
+    
+    // Table row hover effects
+    const tableRows = document.querySelectorAll('.table-row');
+    
+    tableRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Tooltip interactions
+    const tooltips = document.querySelectorAll('.description-tooltip');
+    
+    tooltips.forEach(tooltip => {
+        const tooltipContent = tooltip.querySelector('.tooltip-content');
+        
+        if (tooltipContent) {
+            tooltip.addEventListener('mouseenter', function() {
+                // Position tooltip to avoid going off-screen
+                const rect = this.getBoundingClientRect();
+                const tooltipRect = tooltipContent.getBoundingClientRect();
+                
+                if (rect.left + tooltipRect.width > window.innerWidth) {
+                    tooltipContent.style.left = 'auto';
+                    tooltipContent.style.right = '0';
+                } else if (rect.left < tooltipRect.width / 2) {
+                    tooltipContent.style.left = '0';
+                    tooltipContent.style.transform = 'translateX(0)';
+                }
+            });
+        }
+    });
+    
+    // Smooth scroll for pagination
+    const paginationLinks = document.querySelectorAll('.pagination-item[href]');
+    
+    paginationLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Add loading state
+            this.style.pointerEvents = 'none';
+            this.style.opacity = '0.7';
+            
+            // Scroll to top smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+
+// Add fade-in animation to new content
+function animateNewContent() {
+    const elements = document.querySelectorAll('.fade-in-up, .fade-in-up-delay');
+    
+    elements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    animateNewContent();
+});
+
+// Handle search form submission with loading state
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.querySelector('form[method="GET"]');
+    const searchInput = document.getElementById('table-search');
+    
+    if (searchForm) {
+        searchForm.addEventListener('submit', function() {
+            // Add loading state to search input
+            searchInput.style.pointerEvents = 'none';
+            searchInput.style.opacity = '0.7';
+            
+            // Change search icon to loading spinner
+            const searchIcon = document.querySelector('.search-icon');
+            if (searchIcon) {
+                searchIcon.className = 'fa-solid fa-spinner fa-spin search-icon';
+            }
+        });
+    }
+});
+
+// Add success message auto-hide
+document.addEventListener('DOMContentLoaded', function() {
+    const messages = document.querySelectorAll('.alert, .message');
+    
+    messages.forEach(message => {
+        if (message.classList.contains('alert-success') || message.textContent.includes('éxito')) {
+            setTimeout(() => {
+                message.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                message.style.opacity = '0';
+                message.style.color = 'white';
+                message.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 500);
+            }, 3000);
+        }
+    });
+});
+
+// Add keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + K to focus search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        const searchInput = document.getElementById('table-search');
+        if (searchInput) {
+            searchInput.focus();
+            searchInput.select();
+        }
+    }
+    
+    // Ctrl/Cmd + N to create new service
+    if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+        e.preventDefault();
+        const createLink = document.querySelector('a[href*="create"]');
+        if (createLink) {
+            createLink.click();
+        }
+    }
+});
+
+// Add visual feedback for button interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-danger');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mousedown', function(e) {
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+});
+
+// Add ripple animation CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    
+    .btn-primary, .btn-secondary, .btn-danger {
+        position: relative;
+        overflow: hidden;
+    }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock %}

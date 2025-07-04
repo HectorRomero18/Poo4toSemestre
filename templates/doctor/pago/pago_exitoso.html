@@ -1,0 +1,16 @@
+<!-- templates/doctor/pago/pago_exitoso.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pago Exitoso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-md text-center">
+        <h1 class="text-3xl font-bold text-green-600 mb-4">✅ ¡Pago Exitoso!</h1>
+        <p class="text-lg text-gray-700">Tu pago ha sido procesado correctamente.</p>
+        <a href="{% url 'doctor:pago_list' %}" class="mt-6 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Volver al listado</a>
+    </div>
+</body>
+</html>
