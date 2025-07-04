@@ -12,6 +12,8 @@ class EstadoCitaChoices(models.TextChoices):
     ATENDIDO = 'atendido', 'Atendido'
 
 
+# from applications.doctor.models import CitaMedica, HorarioAtencion
+
 
 # def generar_calendario_disponibilidad_json(doctor, anio, mes):
 #     """
@@ -22,40 +24,40 @@ class EstadoCitaChoices(models.TextChoices):
 #     dias_mes = monthrange(anio, mes)[1]
 #     primer_dia = date(anio, mes, 1)
 #     ultimo_dia = date(anio, mes, dias_mes)
-#
+
 #     citas = CitaMedica.objects.filter(
 #         doctor=doctor,
 #         fecha__range=(primer_dia, ultimo_dia)
 #     )
 #     citas_map = {(cita.fecha, cita.hora_cita): cita.estado for cita in citas}
 #     horarios = HorarioAtencion.objects.filter(doctor=doctor, activo=True)
-#
+
 #     for dia in range(1, dias_mes + 1):
 #         fecha_actual = date(anio, mes, dia)
 #         dia_semana = fecha_actual.strftime("%A").lower()
-#
+
 #         for horario in horarios:
 #             if horario.dia_semana.lower() == dia_semana:
 #                 hora = horario.hora_inicio
 #                 while hora < horario.hora_fin:
 #                     if horario.intervalo_desde and horario.intervalo_hasta:
 #                         if horario.intervalo_desde <= hora < horario.intervalo_hasta:
-#                             hora = (datetime.combine(date.today(), horario.intervalo_hasta) + timedelta(minutes=doctor.duracion_cita)).time()
+#                             hora = (datetime.combine(date.today(), horario.intervalo_hasta) + timedelta(minutes=doctor.doctor.duracion_atencion)).time()
 #                             continue
-#
+
 #                     estado = "disponible"
 #                     cita_estado = citas_map.get((fecha_actual, hora))
 #                     if cita_estado == 'A':
 #                         estado = "atendida"
 #                     elif cita_estado:
 #                         estado = "ocupada"
-#
+
 #                     calendario[str(fecha_actual)].append({
 #                         "hora": hora.strftime("%H:%M"),
 #                         "estado": estado,
 #                     })
-#
+
 #                     dt = datetime.combine(fecha_actual, hora) + timedelta(minutes=doctor.duracion_cita)
 #                     hora = dt.time()
-#
+
 #     return dict(calendario)

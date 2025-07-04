@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+{% block title %}Calendario de Citas{% endblock %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<div class="max-w-4xl mx-auto mt-10">
+    <h2 class="text-2xl font-bold mb-6">Calendario de Citas</h2>
+    <div id="calendar"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        events: function(fetchInfo, successCallback, failureCallback) {
+            // Cambia el ID del doctor según corresponda
+            fetch("{% url 'doctor:cita_calendario_json' %}?doctor=1&anio=" + fetchInfo.start.getFullYear() + "&mes=" + (fetchInfo.start.getMonth() + 1))
+                .then(response => response.json())
+                .then(data => {
+                    let events = [];
+                    for (let fecha in data) {
+                        data[fecha].forEach(slot => {
+                            let color = slot.estado === 'disponible' ? '#22c55e' : (slot.estado === 'ocupado' ? '#f59e42' : '#64748b');
+                            events.push({
+                                title: slot.estado.charAt(0).toUpperCase() + slot.estado.slice(1) + " " + slot.hora,
+                                start: fecha + "T" + slot.hora,
+                                color: color
+                            });
+                        });
+                    }
+                    successCallback(events);
+                });
+        }
+    });
+    calendar.render();
+});
+</script>
+{% endblock %}

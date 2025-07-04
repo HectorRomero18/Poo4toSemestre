@@ -1,5 +1,5 @@
 from django.urls import path
-from applications.core.views.paciente import paciente_find, PacienteCreateView, PacienteListView, PacienteUpdateView, PacienteDeleteView
+from applications.core.views.paciente import paciente_find, PacienteCreateView
 
 app_name='core' # define un espacio de nombre para la aplicacion
 urlpatterns = [
@@ -10,5 +10,10 @@ urlpatterns = [
     path('paciente_update/<int:pk>/', PacienteUpdateView.as_view(), name="paciente_update"),
     path('paciente_delete/<int:pk>/', PacienteDeleteView.as_view(), name="paciente_delete"),
     # ... otras rutas ...
+    # Rutas  para vistas relacionadas con Diagnostico
+    path('diagnosticos/', DiagnosticoListView.as_view(), name='diagnostico_list'),
+    path('diagnosticos/nuevo/', DiagnosticoCreateView.as_view(), name='diagnostico_create'),
+    path('diagnosticos/<int:pk>/editar/', DiagnosticoUpdateView.as_view(), name='diagnostico_edit'),
+    path('diagnosticos/<int:pk>/eliminar/', DiagnosticoDeleteView.as_view(), name='diagnostico_delete'),
 
 ]
