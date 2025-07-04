@@ -1,0 +1,405 @@
+{% extends 'home.html' %}
+<title>{% block title %}{{title}}{% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
+
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .glass-card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.floating-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 1rem;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 0.75rem 0.5rem 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.dark .form-input {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: #374151;
+    color: white;
+}
+
+.form-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-input:focus + .floating-label,
+.form-input:not(:placeholder-shown) + .floating-label {
+    top: 0.25rem;
+    font-size: 0.75rem;
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+.error-input {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-input + .floating-label {
+    color: #ef4444 !important;
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.error-message {
+    background: linear-gradient(135deg, #fef2f2 0%, #fde8e8 100%);
+    border-left: 4px solid #ef4444;
+    animation: shake 0.5s ease-in-out;
+}
+
+.dark .error-message {
+    background: linear-gradient(135deg, rgba(127, 29, 29, 0.2) 0%, rgba(153, 27, 27, 0.1) 100%);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.success-button {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 10px 25px -3px rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+}
+
+.success-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 35px -3px rgba(16, 185, 129, 0.4);
+}
+
+.avatar-preview {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 3px solid white;
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dark .avatar-preview {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    border-color: #4b5563;
+}
+
+.avatar-preview.active {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    transform: scale(1.05);
+}
+
+.blood-type-icon {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border: 3px solid white;
+    box-shadow: 0 10px 25px -3px rgba(220, 38, 38, 0.3);
+    transition: all 0.3s ease;
+}
+
+.dark .blood-type-icon {
+    border-color: #4b5563;
+}
+
+.blood-type-icon.active {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    transform: scale(1.05);
+}
+</style>
+
+<section class="min-h-screen gradient-bg dark:bg-gradient-to-br dark:from-gray-900 dark:via-purple-900 dark:to-violet-900 py-12 px-4 font-inter">
+    <!-- Header con animación -->
+    <div class="text-center mb-12 slide-in">
+        <div class="inline-block">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 font-poppins">
+                <span class="bg-gradient-to-r from-red-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                    Tipos de Sangre
+                </span>
+            </h1>
+            <div class="w-32 h-1 bg-gradient-to-r from-red-400 to-pink-500 mx-auto rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- Mensajes de error globales -->
+    {% if form.non_field_errors %}
+    <div class="max-w-4xl mx-auto mb-8 slide-in">
+        <div class="error-message p-6 rounded-2xl shadow-lg">
+            <div class="flex items-start">
+                <div class="flex-shrink-0 mr-4">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-exclamation text-white text-sm"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-red-800 dark:text-red-200 font-semibold text-lg mb-2">
+                        Errores encontrados
+                    </h3>
+                    <ul class="space-y-1 text-red-700 dark:text-red-300">
+                        {% for error in form.non_field_errors %}
+                        <li class="flex items-center">
+                            <i class="fas fa-circle text-xs mr-2"></i>
+                            {{ error }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Formulario principal -->
+    <form method="post" class="max-w-4xl mx-auto">
+        <div class="glass-card rounded-3xl p-8 md:p-12 hover-scale slide-in">
+            {% csrf_token %}
+
+            <!-- Vista previa del tipo de sangre -->
+            <div class="text-center mb-12">
+                <div class="blood-type-icon rounded-full w-24 h-24 md:w-32 md:h-32 mx-auto flex items-center justify-center mb-6 float-animation" id="bloodTypePreview">
+                    <i id="iconPreview" class="fas fa-tint text-4xl md:text-5xl text-white"></i>
+                </div>
+                <h2 class="text-white font-poppins text-2xl md:text-3xl font-semibold mb-2">Vista Previa del Tipo de Sangre</h2>
+                <p class="text-gray-300 text-lg" id="previewText">Complete los campos para ver los cambios</p>
+            </div>
+
+            <!-- Grid principal de campos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Columna 1: Tipo -->
+                <div class="space-y-6">
+                    <!-- Tipo de Sangre -->
+                    <div class="input-group">
+                        <input type="text" 
+                               name="{{ form.tipo.name }}" 
+                               id="{{ form.tipo.id_for_label }}"
+                               class="form-input {% if form.tipo.errors %}error-input{% endif %}"
+                               placeholder=" "
+                               value="{{ form.tipo.value|default:'' }}"
+                               maxlength="10">
+                        <label class="floating-label {% if form.tipo.errors %}text-red-500{% endif %}">
+                            <i class="fas fa-tint mr-2"></i>{{ form.tipo.label }}
+                            {% if form.tipo.field.required %}<span class="text-red-400 ml-1">*</span>{% endif %}
+                        </label>
+                        {% if form.tipo.errors %}
+                        <div class="mt-2 text-red-400 text-sm space-y-1">
+                            {% for error in form.tipo.errors %}
+                            <div class="flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="mt-1 text-xs text-gray-400">
+                            Ejemplo: A+, B-, O+, AB-, etc.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Columna 2: Descripción -->
+                <div class="space-y-6">
+                    <!-- Descripción -->
+                    <div class="input-group">
+                        <textarea 
+                               name="{{ form.descripcion.name }}" 
+                               id="{{ form.descripcion.id_for_label }}"
+                               class="form-input {% if form.descripcion.errors %}error-input{% endif %} resize-none"
+                               placeholder=" "
+                               rows="4"
+                               maxlength="100">{{ form.descripcion.value|default:'' }}</textarea>
+                        <label class="floating-label {% if form.descripcion.errors %}text-red-500{% endif %}">
+                            <i class="fas fa-file-alt mr-2"></i>{{ form.descripcion.label }}
+                            {% if form.descripcion.field.required %}<span class="text-red-400 ml-1">*</span>{% endif %}
+                        </label>
+                        {% if form.descripcion.errors %}
+                        <div class="mt-2 text-red-400 text-sm space-y-1">
+                            {% for error in form.descripcion.errors %}
+                            <div class="flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="mt-1 text-xs text-gray-400">
+                            Descripción detallada del tipo de sangre
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <!-- Botón de guardar -->
+                <button type="submit" class="success-button px-12 py-4 rounded-2xl text-white font-bold text-lg uppercase tracking-wider inline-flex items-center justify-center" style='cursor: pointer;'>
+                    <i class="fas fa-save mr-3"></i>
+                    {{ grabar }}
+                    <i class="fas fa-arrow-right ml-3"></i>
+                </button>
+
+                <!-- Botón de cancelar -->
+                <a href="{% url 'core:tipoSangre_list' %}" 
+                   class="bg-yellow-500 hover:bg-yellow-600 px-12 py-4 rounded-2xl text-white font-bold text-lg uppercase tracking-wider inline-flex items-center justify-center transition-colors duration-200">
+                    <i class="fas fa-undo-alt mr-3"></i>
+                    {{ cancelar }}
+                    <i class="fas fa-arrow-left ml-3"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const iconPreview = document.getElementById('iconPreview');
+    const bloodTypePreview = document.getElementById('bloodTypePreview');
+    const previewText = document.getElementById('previewText');
+    const tipoInput = document.getElementById('{{ form.tipo.id_for_label }}');
+    const descripcionInput = document.getElementById('{{ form.descripcion.id_for_label }}');
+    
+    // Función para actualizar la vista previa
+    function updatePreview() {
+        const tipoValue = tipoInput.value.trim();
+        const descripcionValue = descripcionInput.value.trim();
+        
+        if (tipoValue && descripcionValue) {
+            iconPreview.className = 'fas fa-tint text-4xl md:text-5xl text-white';
+            bloodTypePreview.classList.add('active');
+            previewText.textContent = `${tipoValue} - ${descripcionValue}`;
+        } else if (tipoValue) {
+            iconPreview.className = 'fas fa-tint text-4xl md:text-5xl text-white';
+            bloodTypePreview.classList.remove('active');
+            previewText.textContent = `Tipo: ${tipoValue}`;
+        } else {
+            iconPreview.className = 'fas fa-tint text-4xl md:text-5xl text-white opacity-50';
+            bloodTypePreview.classList.remove('active');
+            previewText.textContent = 'Complete los campos para ver los cambios';
+        }
+    }
+    
+    // Event listeners para actualizar la vista previa
+    if (tipoInput) {
+        tipoInput.addEventListener('input', updatePreview);
+    }
+    
+    if (descripcionInput) {
+        descripcionInput.addEventListener('input', updatePreview);
+    }
+    
+    // Inicializar la vista previa
+    updatePreview();
+    
+    // Animaciones de entrada escalonadas
+    const elements = document.querySelectorAll('.slide-in');
+    elements.forEach((el, index) => {
+        setTimeout(() => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        }, 100);
+    });
+    
+    // Efecto de focus en los inputs
+    const inputs = document.querySelectorAll('.form-input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    });
+    
+    // Validación en tiempo real para el campo tipo
+    if (tipoInput) {
+        tipoInput.addEventListener('input', function() {
+            const value = this.value.trim();
+            const validTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+            
+            if (value && !validTypes.includes(value.toUpperCase())) {
+                this.style.borderColor = '#f59e0b';
+                this.style.boxShadow = '0 0 0 3px rgba(245, 158, 11, 0.1)';
+            } else {
+                this.style.borderColor = '';
+                this.style.boxShadow = '';
+            }
+        });
+    }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,542 @@
+{% extends "base.html" %}
+{% block title %}Formulario de Empleado{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --warning-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow-primary: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-hover: 0 20px 35px -3px rgba(16, 185, 129, 0.4);
+}
+
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
+
+body {
+    background: var(--primary-gradient);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.dark body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-primary);
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+.dark .glass-card {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.35);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.floating-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    font-size: 1rem;
+    color: #9ca3af;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 10;
+    background: transparent;
+    padding: 0 0.5rem;
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    backdrop-filter: blur(10px);
+}
+
+.dark .form-input, .dark .form-select, .dark .form-textarea {
+    background: rgba(31, 41, 55, 0.9);
+    border-color: #374151;
+    color: white;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.dark .form-input:focus, .dark .form-select:focus, .dark .form-textarea:focus {
+    background: rgba(31, 41, 55, 0.95);
+}
+
+.form-input:focus + .floating-label,
+.form-input:not(:placeholder-shown) + .floating-label,
+.form-select:focus + .floating-label,
+.form-select:not([value=""]) + .floating-label,
+.form-textarea:focus + .floating-label,
+.form-textarea:not(:placeholder-shown) + .floating-label {
+    top: -0.5rem;
+    font-size: 0.875rem;
+    color: #3b82f6;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+}
+
+.dark .form-input:focus + .floating-label,
+.dark .form-input:not(:placeholder-shown) + .floating-label,
+.dark .form-select:focus + .floating-label,
+.dark .form-select:not([value=""]) + .floating-label,
+.dark .form-textarea:focus + .floating-label,
+.dark .form-textarea:not(:placeholder-shown) + .floating-label {
+    background: rgba(31, 41, 55, 0.9);
+}
+
+.error-input {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+.error-input + .floating-label {
+    color: #ef4444 !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0) translateY(-2px); }
+    25% { transform: translateX(-5px) translateY(-2px); }
+    75% { transform: translateX(5px) translateY(-2px); }
+}
+
+.error-message {
+    background: linear-gradient(135deg, #fef2f2 0%, #fde8e8 100%);
+    border-left: 4px solid #ef4444;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+.dark .error-message {
+    background: linear-gradient(135deg, rgba(127, 29, 29, 0.2) 0%, rgba(153, 27, 27, 0.1) 100%);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-button {
+    background: var(--success-gradient);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 10px 25px -3px rgba(16, 185, 129, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.success-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.warning-button {
+    background: var(--warning-gradient);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 10px 25px -3px rgba(245, 158, 11, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.warning-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 35px -3px rgba(245, 158, 11, 0.4);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    text-decoration: none;
+    color: white;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 25%, #ec4899 50%, #8b5cf6 75%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+.employee-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 4px solid white;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.dark .employee-avatar {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    border-color: #4b5563;
+}
+
+.employee-avatar.active {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2), 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-section {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.field-icon {
+    color: #6b7280;
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.input-group:focus-within .field-icon {
+    color: #3b82f6;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .glass-card {
+        padding: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+.divider {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #fbbf24 0%, #ec4899 100%);
+    margin: 0 auto 2rem;
+    border-radius: 2px;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.required-asterisk {
+    color: #ef4444;
+    font-weight: bold;
+    margin-left: 0.25rem;
+}
+</style>
+
+<div class="min-h-screen py-8 px-4">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">👤 {{ grabar }}</h1>
+        <div class="divider"></div>
+        <p class="hero-subtitle">Complete la información del empleado</p>
+    </div>
+
+    <!-- Error Messages -->
+    {% if form.non_field_errors %}
+    <div class="max-w-4xl mx-auto mb-8">
+        <div class="error-message">
+            <div class="flex items-start">
+                <div class="flex-shrink-0 mr-3">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-exclamation text-white text-sm"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-red-800 dark:text-red-200 font-semibold text-lg mb-2">
+                        Se encontraron errores
+                    </h3>
+                    <div class="text-red-700 dark:text-red-300">
+                        {{ form.non_field_errors }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Main Form -->
+    <div class="max-w-6xl mx-auto">
+        <form method="post" class="form-section">
+            <div class="glass-card p-8">
+                {% csrf_token %}
+
+                <!-- Employee Avatar Preview -->
+                <div class="text-center mb-8">
+                    <div class="employee-avatar" id="employeeAvatar">
+                        <i id="avatarIcon" class="fas fa-user text-4xl text-gray-400"></i>
+                    </div>
+                    <h2 class="text-white font-poppins text-2xl font-semibold mb-2">Vista Previa del Empleado</h2>
+                    <p class="text-gray-300">Complete los campos para ver los cambios</p>
+                </div>
+
+                <!-- Form Fields Grid -->
+                <div class="form-grid">
+                    {% for field in form %}
+                    <div class="input-group">
+                        {% if field.field.widget.input_type == 'textarea' %}
+                            <textarea 
+                                name="{{ field.name }}" 
+                                id="{{ field.id_for_label }}"
+                                class="form-textarea {% if field.errors %}error-input{% endif %}"
+                                placeholder=" "
+                                {% if field.field.required %}required{% endif %}>{{ field.value|default:'' }}</textarea>
+                        {% elif field.field.widget.input_type == 'select' %}
+                            <select 
+                                name="{{ field.name }}" 
+                                id="{{ field.id_for_label }}"
+                                class="form-select {% if field.errors %}error-input{% endif %}"
+                                {% if field.field.required %}required{% endif %}>
+                                {{ field }}
+                            </select>
+                        {% else %}
+                            <input 
+                                type="{{ field.field.widget.input_type|default:'text' }}" 
+                                name="{{ field.name }}" 
+                                id="{{ field.id_for_label }}"
+                                class="form-input {% if field.errors %}error-input{% endif %}"
+                                placeholder=" "
+                                value="{{ field.value|default:'' }}"
+                                {% if field.field.required %}required{% endif %}>
+                        {% endif %}
+                        
+                        <label class="floating-label {% if field.errors %}text-red-500{% endif %}">
+                            <i class="field-icon fas fa-{% if 'nombre' in field.name %}user{% elif 'email' in field.name %}envelope{% elif 'telefono' in field.name %}phone{% elif 'cedula' in field.name %}id-card{% elif 'cargo' in field.name %}briefcase{% elif 'salario' in field.name %}dollar-sign{% elif 'fecha' in field.name %}calendar{% elif 'direccion' in field.name %}map-marker-alt{% else %}info-circle{% endif %}"></i>
+                            {{ field.label }}
+                            {% if field.field.required %}<span class="required-asterisk">*</span>{% endif %}
+                        </label>
+                        
+                        {% if field.errors %}
+                        <div class="mt-2 text-red-400 text-sm space-y-1">
+                            {% for error in field.errors %}
+                            <div class="flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ error|striptags }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="success-button">
+                        <i class="fas fa-save"></i>
+                        {{ grabar }}
+                    </button>
+                    <a href="{% url 'core:empleado_list' %}" class="warning-button">
+                        <i class="fas fa-times"></i>
+                        {{ cancelar }}
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const avatarIcon = document.getElementById('avatarIcon');
+    const employeeAvatar = document.getElementById('employeeAvatar');
+    const nameInputs = document.querySelectorAll('input[name*="nombre"], input[name*="apellido"]');
+    const emailInputs = document.querySelectorAll('input[name*="email"]');
+    const allInputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+    
+    // Function to update avatar based on form completion
+    function updateAvatar() {
+        const hasName = Array.from(nameInputs).some(input => input.value.trim() !== '');
+        const hasEmail = Array.from(emailInputs).some(input => input.value.trim() !== '');
+        const totalFilled = Array.from(allInputs).filter(input => input.value.trim() !== '').length;
+        const totalFields = allInputs.length;
+        const completionPercentage = (totalFilled / totalFields) * 100;
+        
+        if (completionPercentage >= 70) {
+            avatarIcon.className = 'fas fa-user-check text-4xl text-green-400';
+            employeeAvatar.classList.add('active');
+        } else if (completionPercentage >= 40) {
+            avatarIcon.className = 'fas fa-user-edit text-4xl text-blue-400';
+            employeeAvatar.classList.remove('active');
+        } else if (hasName) {
+            avatarIcon.className = 'fas fa-user-plus text-4xl text-yellow-400';
+            employeeAvatar.classList.remove('active');
+        } else {
+            avatarIcon.className = 'fas fa-user text-4xl text-gray-400';
+            employeeAvatar.classList.remove('active');
+        }
+    }
+    
+    // Add event listeners to all form inputs
+    allInputs.forEach(input => {
+        input.addEventListener('input', updateAvatar);
+        input.addEventListener('change', updateAvatar);
+        
+        // Enhanced focus effects
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Initialize avatar state
+    updateAvatar();
+    
+    // Form validation enhancement
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        const requiredFields = document.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('error-input');
+                isValid = false;
+            } else {
+                field.classList.remove('error-input');
+            }
+        });
+        
+        if (!isValid) {
+            e.preventDefault();
+            // Scroll to first error
+            const firstError = document.querySelector('.error-input');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstError.focus();
+            }
+        }
+    });
+    
+    // Remove error styling on input
+    allInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('error-input');
+        });
+    });
+});
+</script>
+
+{% endblock %}
