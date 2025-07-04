@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <style>
+        @page {
+            size: 21cm 29.7cm;
+            margin: 1.5cm;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .contenedor-receta {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .encabezado {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-clinica {
+            max-height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .titulo-clinica {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .subtitulo-clinica {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+        
+        .datos-paciente {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .dato {
+            flex: 1 0 50%;
+            margin-bottom: 8px;
+        }
+        
+        .etiqueta {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .medicamentos {
+            margin-top: 30px;
+        }
+        
+        .medicamento {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .medicamento:last-child {
+            border-bottom: none;
+        }
+        
+        .nombre-medicamento {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .prescripcion {
+            margin-left: 15px;
+        }
+        
+        .firma {
+            margin-top: 50px;
+            text-align: center;
+        }
+        
+        .linea-firma {
+            width: 60%;
+            margin: 0 auto;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+        
+        .datos-doctor {
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .pie-pagina {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .botones-accion {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .btn-imprimir {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-imprimir:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-volver {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-volver:hover {
+            background-color: #7f8c8d;
+        }
+        
+        @media print {
+            .botones-accion {
+                display: none;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: white;
+            }
+            
+            .contenedor-receta {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-receta">
+        <div class="encabezado">
+            <!-- Si hay logo disponible -->
+            <!-- <img src="/static/img/logo.png" alt="Logo Clínica" class="logo-clinica"> -->
+            <h1 class="titulo-clinica">Clínica Médica Universitaria</h1>
+            <p class="subtitulo-clinica">Atención médica de calidad</p>
+        </div>
+        
+        <h2 style="text-align: center; color: #3498db;">RECETA MÉDICA</h2>
+        
+        <div class="datos-paciente">
+            <div class="dato">
+                <span class="etiqueta">Paciente:</span> 
+                {{ atencion.paciente.nombre_completo }}
+            </div>
+            <div class="dato">
+                <span class="etiqueta">Edad:</span> 
+                {{ atencion.paciente.edad }} años
+            </div>
+            <div class="dato">
+                <span class="etiqueta">Fecha:</span> 
+                {{ atencion.fecha_atencion|date:"d/m/Y" }}
+            </div>
+            <div class="dato">
+                <span class="etiqueta">Hora:</span> 
+                {{ atencion.fecha_atencion|date:"H:i" }}
+            </div>
+            {% if atencion.paciente.tipo_sangre %}
+            <div class="dato">
+                <span class="etiqueta">Tipo de sangre:</span> 
+                {{ atencion.paciente.tipo_sangre }}
+            </div>
+            {% endif %}
+            {% if atencion.diagnostico.all %}
+            <div class="dato" style="flex: 1 0 100%;">
+                <span class="etiqueta">Diagnóstico:</span> 
+                {{ atencion.get_diagnosticos }}
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="medicamentos">
+            <h3 style="color: #2c3e50;">Medicamentos prescritos:</h3>
+            
+            {% for detalle in detalles %}
+            <div class="medicamento">
+                <div class="nombre-medicamento">
+                    {{ detalle.medicamento.nombre }}
+                    {% if detalle.medicamento.marca %}
+                    <span style="font-size: 14px; font-weight: normal; color: #7f8c8d;">
+                        ({{ detalle.medicamento.marca }})
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <div class="prescripcion">
+                    <p><span class="etiqueta">Cantidad:</span> {{ detalle.cantidad }}</p>
+                    <p><span class="etiqueta">Prescripción:</span> {{ detalle.prescripcion }}</p>
+                    
+                    {% if detalle.frecuencia_diaria %}
+                    <p><span class="etiqueta">Frecuencia:</span> {{ detalle.frecuencia_diaria }} veces al día</p>
+                    {% endif %}
+                    
+                    {% if detalle.duracion_tratamiento %}
+                    <p><span class="etiqueta">Duración:</span> {{ detalle.duracion_tratamiento }} días</p>
+                    {% endif %}
+                    
+                    {% if detalle.medicamento.via_administracion %}
+                    <p><span class="etiqueta">Vía de administración:</span> {{ detalle.medicamento.get_via_administracion_display }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if atencion.comentario_adicional %}
+        <div style="margin-top: 20px;">
+            <h4 style="color: #2c3e50;">Observaciones adicionales:</h4>
+            <p>{{ atencion.comentario_adicional }}</p>
+        </div>
+        {% endif %}
+        
+        <div class="firma">
+            <div class="linea-firma"></div>
+            <div class="datos-doctor">
+                {% if doctor %}
+                <p><strong>{{ doctor.nombre_completo }}</strong></p>
+                {% if doctor.especialidad %}
+                <p>{{ doctor.especialidad }}</p>
+                {% endif %}
+                {% else %}
+                <p><strong>Médico tratante</strong></p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="pie-pagina">
+            <p>Esta receta tiene validez de 30 días a partir de su emisión.</p>
+            <p>Documento generado el {{ atencion.fecha_atencion|date:"d/m/Y H:i" }}</p>
+        </div>
+        
+        <div class="botones-accion">
+            <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir Receta</button>
+            <a href="javascript:history.back()" class="btn-volver">Volver</a>
+        </div>
+    </div>
+    
+    <script>
+        // Auto imprimir después de cargar la página (opcional)
+        // window.onload = function() {
+        //     setTimeout(function() {
+        //         window.print();
+        //     }, 1000);
+        // }
+    </script>
+</body>
+</html>

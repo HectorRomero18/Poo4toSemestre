@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendario de Citas</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+</head>
+<body>
+  <h2>Calendario de Citas</h2>
+
+  <label>Año:</label>
+  <input type="number" id="anio" value="2025">
+  <label>Mes:</label>
+  <input type="number" id="mes" value="7" min="1" max="12">
+  <button onclick="cargarCalendario()">Aceptar</button>
+
+  <div id='calendar'></div>
+
+  <script>
+    let calendar;
+
+    function cargarCalendario() {
+      const anio = document.getElementById('anio').value;
+      const mes = document.getElementById('mes').value;
+
+      if (calendar) calendar.destroy();
+
+      calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+        initialView: 'dayGridMonth',
+        editable: true,
+        events: `/api/citas/?anio=${anio}&mes=${mes}`,
+
+        dateClick: function(info) {
+          const fecha = prompt("Fecha y hora (YYYY-MM-DDTHH:MM):", info.dateStr + "T09:00");
+          const cedula = prompt("Cédula del paciente:");
+          const nombre = prompt("Nombre del paciente:");
+          const telefono = prompt("Teléfono:");
+          const doctor_id = 1; // cambia esto si usas ID dinámico
+
+          fetch(`/api/disponible/?doctor_id=${doctor_id}&fecha=${fecha}`)
+            .then(r => r.json())
+            .then(res => {
+              if (res.disponible) {
+                fetch('/api/cita/nueva/', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                  },
+                  body: JSON.stringify({fecha, cedula, nombre, telefono, doctor_id})
+                }).then(() => cargarCalendario());
+              } else {
+                alert("Horario ocupado o no disponible");
+              }
+            });
+        },
+
+        eventDrop: function(info) {
+          fetch(`/api/cita/${info.event.id}/mover/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({nueva_fecha: info.event.startStr})
+          }).then(r => r.json()).then(res => {
+            if (res.error) alert(res.error);
+          });
+        }
+      });
+
+      calendar.render();
+    }
+
+    cargarCalendario();
+  </script>
+</body>
+</html>

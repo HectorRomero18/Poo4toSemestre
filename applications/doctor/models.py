@@ -12,7 +12,9 @@ from applications.doctor.utils.pago import MetodoPagoChoices, EstadoPagoChoices
 """
 
 class HorarioAtencion(models.Model):
-
+    doctor = models.ForeignKey('core.Doctor', on_delete=models.CASCADE, related_name='horarios', verbose_name="Doctor", null=True,
+        blank=True,
+)
     # Día de la semana (ej: lunes, martes...)
     dia_semana = models.CharField(
         max_length=10,
@@ -40,6 +42,8 @@ class HorarioAtencion(models.Model):
 
 class CitaMedica(models.Model):
     paciente = models.ForeignKey('core.Paciente', on_delete=models.CASCADE, verbose_name="Paciente", related_name="citas")
+    doctor = models.ForeignKey('core.Doctor', on_delete=models.CASCADE, related_name='citas', verbose_name="Doctor",null=True,
+    blank=True)
     fecha = models.DateField(verbose_name="Fecha de la Cita")
     hora_cita = models.TimeField(verbose_name="Hora de la Cita")
 
@@ -61,7 +65,7 @@ class CitaMedica(models.Model):
         ]
         verbose_name = "Cita Médica"
         verbose_name_plural = "Citas Médicas"
-        unique_together = ('fecha', 'hora_cita')  # Previene duplicidad
+        unique_together = ('doctor', 'fecha', 'hora_cita')  # Previene duplicidad
 
 class Atencion(models.Model):
     # Paciente que recibe esta atención médica

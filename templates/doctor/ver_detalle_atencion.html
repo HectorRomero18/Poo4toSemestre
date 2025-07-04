@@ -1,0 +1,43 @@
+<!-- Añadir este bloque donde sea apropiado en la plantilla existente -->
+
+{% if atencion.detalles.exists %}
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Recetas médicas</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Cantidad</th>
+                        <th>Prescripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in atencion.detalles.all %}
+                    <tr>
+                        <td>{{ detalle.medicamento.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>{{ detalle.prescripcion|truncatechars:50 }}</td>
+                        <td>
+                            <a href="{% url 'doctor:receta_imprimir' detalle.id %}" class="btn btn-sm btn-info" target="_blank">
+                                <i class="fas fa-print"></i> Imprimir receta
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-3">
+            <a href="{% url 'doctor:receta_atencion_imprimir' atencion.id %}" class="btn btn-primary" target="_blank">
+                <i class="fas fa-print"></i> Imprimir todas las recetas
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
