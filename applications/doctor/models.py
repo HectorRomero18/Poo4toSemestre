@@ -51,7 +51,7 @@ class CitaMedica(models.Model):
         max_length=10,
         choices=EstadoCitaChoices.choices,
         verbose_name="Estado de la Cita"
-    )
+    ) 
 
     observaciones = models.TextField(verbose_name="Observaciones", blank=True, null=True)
 

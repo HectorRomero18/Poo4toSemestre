@@ -120,14 +120,14 @@
 
                     <!-- Acciones -->
                     <div class="flex items-center space-x-4">
-                        <a href="{% url 'doctor:horario_edit' horario.pk %}" 
-                           class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
+                        <a href="{% url 'doctor:horario_update' horario.pk %}" 
+                           class="bg-blue-600 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
                             <i class="fas fa-edit text-lg"></i>
                             <span>Editar</span>
                         </a>
                         
                         <button onclick="openDeleteModal('{{ horario.id }}', '{{ horario.get_dia_semana_display }}')"
-                                class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
+                                class="bg-red-600 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-2">
                             <i class="fas fa-trash text-lg"></i>
                             <span>Eliminar</span>
                         </button>

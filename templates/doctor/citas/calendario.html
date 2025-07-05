@@ -1,41 +1,58 @@
-{% extends 'home.html' %}
-{% block title %}Calendario de Citas{% endblock %}
-{% block content %}
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<!-- Ruta: templates/doctor/citas/calendario.html -->
 
-<div class="max-w-4xl mx-auto mt-10">
-    <h2 class="text-2xl font-bold mb-6">Calendario de Citas</h2>
-    <div id="calendar"></div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Citas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Otros estilos y scripts -->
+</head>
+<body>
+    <!-- Contenido del calendario -->
+    <div class="calendar">
+        <!-- Días del mes -->
+        <ol class="calendar__days">
+            <li class="calendar__day" data-day="1">
+                <div class="day__info"><h5>1</h5></div>
+            </li>
+            <!-- Más días... -->
+        </ol>
+    </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'es',
-        events: function(fetchInfo, successCallback, failureCallback) {
-            // Cambia el ID del doctor según corresponda
-            fetch("{% url 'doctor:cita_calendario_json' %}?doctor=1&anio=" + fetchInfo.start.getFullYear() + "&mes=" + (fetchInfo.start.getMonth() + 1))
-                .then(response => response.json())
-                .then(data => {
-                    let events = [];
-                    for (let fecha in data) {
-                        data[fecha].forEach(slot => {
-                            let color = slot.estado === 'disponible' ? '#22c55e' : (slot.estado === 'ocupado' ? '#f59e42' : '#64748b');
-                            events.push({
-                                title: slot.estado.charAt(0).toUpperCase() + slot.estado.slice(1) + " " + slot.hora,
-                                start: fecha + "T" + slot.hora,
-                                color: color
-                            });
-                        });
-                    }
-                    successCallback(events);
+    <!-- Modal y otros elementos -->
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Script para manejar eventos de calendario -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarDays = document.querySelectorAll('.calendar__day');
+
+            calendarDays.forEach(day => {
+                day.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
                 });
-        }
-    });
-    calendar.render();
-});
-</script>
-{% endblock %}
+
+                day.addEventListener('dragleave', function() {
+                    this.classList.remove('drag-over');
+                });
+
+                day.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    // Lógica para manejar el cambio de fecha
+                });
+            });
+        });
+    </script>
+
+    <!-- Otros scripts -->
+    <script src="/js/main.js" type="module"></script>
+</body>
+</html>

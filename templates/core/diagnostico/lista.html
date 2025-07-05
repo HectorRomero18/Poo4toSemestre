@@ -4,8 +4,8 @@
     <!-- Título y botón -->
     <div class="flex items-center justify-between mb-8">
         <h2 class="text-4xl font-bold text-gray-800">Diagnósticos</h2>
-        <a href="{% url 'core:diagnostico_create' %}" 
-           class="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all duration-300 shadow-lg font-semibold">
+        <a href="{% url 'core:diagnostico_create' %}" style="background-color: #10b981; color: white;" 
+           class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-all duration-300 shadow-lg font-semibold !text-white !bg-emerald-600">
             <i class="fas fa-plus mr-2"></i> Nuevo Diagnóstico
         </a>
     </div>
@@ -14,7 +14,7 @@
     <div class="bg-white border border-gray-200 shadow-2xl rounded-2xl overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full text-sm text-left text-gray-700">
-                <thead class="bg-emerald-600 text-white text-sm uppercase tracking-wider">
+                <thead class="bg-emerald-600 text-white text-sm uppercase tracking-wider" style="background-color: #0caddd; color: white;" >
                     <tr>
                         <th class="px-6 py-5">Código</th>
                         <th class="px-6 py-5">Descripción</th>
@@ -34,10 +34,11 @@
                             <form action="{% url 'core:diagnostico_delete' diagnostico.id %}" method="post" style="display:inline;">
     {% csrf_token %}
     <button type="submit"
-        class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow"
+        style="background-color: #dc2626; color: white;"
+        class="px-4 py-2 rounded-lg text-sm font-semibold shadow"
         onclick="return confirm('¿Seguro que deseas eliminar este diagnóstico?');">
-        <i class="fas fa-trash mr-1"></i> Eliminar
-    </button>
+    <i class="fas fa-trash mr-1"></i> Eliminar
+</button>
 </form>
                         </td>
                     </tr>

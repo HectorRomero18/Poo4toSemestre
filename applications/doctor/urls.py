@@ -6,11 +6,19 @@ from applications.doctor.views.pago import PagoListView, PagoCreateView, PagoDel
 from applications.doctor.views.detalles_pago import DetallePagoCreateView, DetallePagoUpdateView
 from applications.doctor.views.servicios_adicionales import ServiciosAdicionalesListView, ServiciosAdicionalesCreateView, ServiciosAdicionalesUpdateView, ServiciosAdicionalesDeleteView
 from applications.doctor.views.paypal import pago_paypal, pago_cancelado, pago_exitoso
+from applications.doctor.views.calendario import calendario
 
 from applications.doctor.views.horario import HorarioAtencionCreateView, HorarioAtencionDeleteView, HorarioAtencionListView, HorarioAtencionUpdateView
 from applications.doctor.views import cita
+from applications.doctor.views.cita import CitaMedicaListView, CitaMedicaCreateView, CitaMedicaUpdateView, CitaMedicaDeleteView
+
 from applications.doctor.views.atencion import ver_detalle_atencion
 from applications.doctor.views.receta import receta_imprimir
+from applications.doctor.views.detalle_atencion_views import (
+    DetalleAtencionListView, DetalleAtencionCreateView, DetalleAtencionUpdateView, DetalleAtencionDeleteView,
+    guardar_detalle_atencion  # Import the view here
+)
+from applications.doctor.views.cita import CitaMedicaListView, CitaMedicaCreateView
 
 
 app_name='doctor' # define un espacio de nombre para la aplicacion
@@ -54,5 +62,19 @@ urlpatterns = [
     path('atencion/<int:atencion_id>/detalle/', ver_detalle_atencion, name='detalle_atencion'),
     path('receta/<int:detalle_id>/imprimir/', receta_imprimir, name='receta_imprimir'),
     path('receta/atencion/<int:atencion_id>/imprimir/', receta_imprimir, name='receta_atencion_imprimir'),
+    path('detalles/', DetalleAtencionListView.as_view(), name='detalle_atencion_list'),
+    path('detalles/create/', DetalleAtencionCreateView.as_view(), name='detalle_atencion_create'),
+    path('detalles/<int:pk>/update/', DetalleAtencionUpdateView.as_view(), name='detalle_atencion_update'),
+    path('detalles/<int:pk>/delete/', DetalleAtencionDeleteView.as_view(), name='detalle_atencion_delete'),
+    path('calendario/', calendario, name='calendario'),
+    path('citas/', CitaMedicaListView.as_view(), name='cita_list'),
+    # path('citas/form/', CitaMedicaCreateView.as_view(), name='cita_create'),
 
+    path('citas/', CitaMedicaListView.as_view(), name='cita_list'),
+    path('citas/nueva/', CitaMedicaCreateView.as_view(), name='cita_create'),
+    path('citas/<int:pk>/editar/', CitaMedicaUpdateView.as_view(), name='cita_update'),
+    path('citas/<int:pk>/eliminar/', CitaMedicaDeleteView.as_view(), name='cita_delete'),
 ]
+
+
+
