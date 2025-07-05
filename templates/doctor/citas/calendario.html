@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         locale: 'es',
         events: function(fetchInfo, successCallback, failureCallback) {
             // Cambia el ID del doctor según corresponda
-            fetch("{% url 'doctor:cita_calendario_json' %}?doctor=1&anio=" + fetchInfo.start.getFullYear() + "&mes=" + (fetchInfo.start.getMonth() + 1))
+            fetch("{% url 'core:cita_calendario_json' %}?doctor=1&anio=" + fetchInfo.start.getFullYear() + "&mes=" + (fetchInfo.start.getMonth() + 1))
                 .then(response => response.json())
                 .then(data => {
                     let events = [];

@@ -11,97 +11,67 @@
                 </h1>
             </div>
 
-            <div class="lg:p-2 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+            <div class="lg:p-6 rounded-3xl bg-white dark:bg-principal shadow-xl" data-aos="fade-up" data-aos-delay="200">
                 <!-- Search Bar -->
-                <div class="p-4 flex justify-center">
-                    <label for="table-search" class="sr-only">Buscar Atenciones</label>
-                    <div class="relative mt-1">
-                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                            </svg>
-                        </div>
-                        <form method="GET">
+                <div class="flex justify-center mb-6">
+                    <form method="GET" class="w-full max-w-2xl relative">
+                        <label for="table-search" class="sr-only">Buscar Atenciones</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 dark:text-gray-400">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
                             <input type="text" name="q" id="table-search"
-                                class="text-center pl-10 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2.5 pr-12 dark:bg-principal dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-emerald-500 dark:focus:border-emerald-500 dark:shadow-sm-light"
+                                class="w-full pl-10 pr-4 py-3 text-sm rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-secundario text-gray-800 dark:text-gray-200 placeholder-gray-400 focus:ring-emerald-500 focus:border-emerald-500 shadow-md"
                                 placeholder="Buscar por paciente, diagnóstico o motivo..." value="{{ request.GET.q }}">
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
 
-                <!-- Medical Attentions Table -->
-                <div class="overflow-x-auto shadow-lg rounded-lg">
-                    <table class="w-full text-center text-sm">
-                        <thead class="uppercase font-Tiny5 bg-emerald-50 dark:bg-secundario dark:text-emerald-300 text-emerald-800">
+                <!-- Table -->
+                <div class="overflow-x-auto rounded-xl shadow-lg">
+                    <table class="w-full min-w-[1024px] text-sm text-center border-separate border-spacing-y-2">
+                        <thead class="bg-emerald-100 dark:bg-[#163e35] text-emerald-900 dark:text-emerald-300 uppercase font-semibold text-xs tracking-widest">
                             <tr>
-                                <th scope="col" class="px-4 py-4">ID</th>
-                                <th scope="col" class="px-4 py-4">Paciente</th>
-                                <th scope="col" class="px-4 py-4">Fecha de Atención</th>
-                                <th scope="col" class="px-4 py-4">Motivo de Consulta</th>
-                                <th scope="col" class="px-4 py-4">Síntomas</th>
-                                <th scope="col" class="px-4 py-4">Diagnósticos</th>
-                                <th scope="col" class="px-4 py-4">Tratamiento</th>
-                                <th scope="col" class="px-4 py-4">Acciones</th>
+                                <th class="px-4 py-3 rounded-l-xl">ID</th>
+                                <th class="px-4 py-3">Paciente</th>
+                                <th class="px-4 py-3">Fecha</th>
+                                <th class="px-4 py-3">Motivo</th>
+                                <th class="px-4 py-3">Síntomas</th>
+                                <th class="px-4 py-3">Diagnóstico</th>
+                                <th class="px-4 py-3">Tratamiento</th>
+                                <th class="px-4 py-3 rounded-r-xl">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for atencion in atenciones %}
-                            <tr class="dark:text-gray-300 bg-white border-b dark:bg-[#0b1121] dark:border-secundario hover:bg-emerald-50 dark:hover:bg-[#121c33] transition-colors duration-200">
-                                <td class="px-4 py-4 font-medium text-emerald-600 dark:text-emerald-400">
-                                    #{{ atencion.id }}
-                                </td>
-
-                                <td class="px-4 py-4">
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-gray-900 dark:text-gray-100">
-                                            {{ atencion.paciente.nombres }} {{ atencion.paciente.apellidos }}
-                                        </span>
-                                        <span class="text-xs text-gray-500 dark:text-gray-400">
-                                            {{ atencion.paciente.numero_identificacion }}
-                                        </span>
+                            <tr class="bg-white dark:bg-[#0e172b] shadow-sm hover:shadow-md transition-shadow duration-300 rounded-xl text-gray-700 dark:text-gray-300">
+                                <td class="px-4 py-3 font-bold text-emerald-600 dark:text-emerald-400">#{{ atencion.id }}</td>
+                                <td class="px-4 py-3 text-left">
+                                    <div>
+                                        <p class="font-medium">{{ atencion.paciente.nombres }} {{ atencion.paciente.apellidos }}</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ atencion.paciente.numero_identificacion }}</p>
                                     </div>
                                 </td>
-
-                                <td class="px-4 py-4">
-                                    <div class="flex flex-col">
-                                        <span class="font-medium text-gray-900 dark:text-gray-100">
-                                            {{ atencion.fecha_atencion|date:"d/m/Y" }}
-                                        </span>
-                                        <span class="text-xs text-gray-500 dark:text-gray-400">
-                                            {{ atencion.fecha_atencion|time:"H:i" }}
-                                        </span>
-                                    </div>
+                                <td class="px-4 py-3 text-left">
+                                    <p>{{ atencion.fecha_atencion|date:"d/m/Y" }}</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">{{ atencion.fecha_atencion|time:"H:i" }}</p>
                                 </td>
-
-                                <td class="px-4 py-4">
-                                    <div class="max-w-xs">
-                                        {% if atencion.motivo_consulta %}
-                                            <p class="text-sm text-gray-700 dark:text-gray-300 text-left">
-                                                {{ atencion.motivo_consulta|truncatechars:80 }}
-                                            </p>
-                                        {% else %}
-                                            <span class="text-gray-400 italic text-xs">Sin especificar</span>
-                                        {% endif %}
-                                    </div>
+                                <td class="px-4 py-3 text-left">
+                                    {% if atencion.motivo_consulta %}
+                                        <p class="text-sm">{{ atencion.motivo_consulta|truncatechars:70 }}</p>
+                                    {% else %}
+                                        <span class="text-gray-400 italic text-xs">Sin especificar</span>
+                                    {% endif %}
                                 </td>
-
-                                <td class="px-4 py-4">
-                                    <div class="max-w-xs">
-                                        {% if atencion.sintomas %}
-                                            <p class="text-sm text-gray-700 dark:text-gray-300 text-left">
-                                                {{ atencion.sintomas|truncatechars:60 }}
-                                            </p>
-                                        {% else %}
-                                            <span class="text-gray-400 italic text-xs">Sin registrar</span>
-                                        {% endif %}
-                                    </div>
+                                <td class="px-4 py-3 text-left">
+                                    {% if atencion.sintomas %}
+                                        <p class="text-sm">{{ atencion.sintomas|truncatechars:60 }}</p>
+                                    {% else %}
+                                        <span class="text-gray-400 italic text-xs">Sin registrar</span>
+                                    {% endif %}
                                 </td>
-
-                                <td class="px-4 py-4">
-                                    <div class="flex flex-wrap gap-1 justify-center">
+                                <td class="px-4 py-3">
+                                    <div class="flex flex-wrap justify-center gap-1">
                                         {% for diagnostico in atencion.diagnostico.all %}
                                             <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs">
                                                 {{ diagnostico.codigo }}
@@ -111,42 +81,31 @@
                                         {% endfor %}
                                     </div>
                                 </td>
-
-                                <td class="px-4 py-4">
-                                    <div class="max-w-xs">
-                                        {% if atencion.tratamiento %}
-                                            <p class="text-sm text-gray-700 dark:text-gray-300 text-left">
-                                                {{ atencion.tratamiento|truncatechars:60 }}
-                                            </p>
-                                        {% else %}
-                                            <span class="text-gray-400 italic text-xs">Sin tratamiento</span>
-                                        {% endif %}
-                                    </div>
+                                <td class="px-4 py-3 text-left">
+                                    {% if atencion.tratamiento %}
+                                        <p class="text-sm">{{ atencion.tratamiento|truncatechars:60 }}</p>
+                                    {% else %}
+                                        <span class="text-gray-400 italic text-xs">Sin tratamiento</span>
+                                    {% endif %}
                                 </td>
-
-                                <td class="px-4 py-4">
+                                <td class="px-4 py-3">
                                     <div class="flex justify-center space-x-2">
                                         {% if permissions.view_atencion %}
-                                        <a href="#"
-                                            class="text-emerald-600 dark:text-emerald-500 hover:text-emerald-800 p-1 rounded transition-colors"
-                                            title="Ver Detalle">
+                                        <a href="#" title="Ver"
+                                            class="text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300 transition-colors">
                                             <i class="fa-solid fa-eye text-lg"></i>
                                         </a>
                                         {% endif %}
-
                                         {% if permissions.change_atencion %}
-                                        <a href="{% url 'doctor:atencion_update' atencion.id %}"
-                                            class="text-blue-600 dark:text-blue-500 hover:text-blue-800 p-1 rounded transition-colors"
-                                            title="Editar">
+                                        <a href="{% url 'doctor:atencion_update' atencion.id %}" title="Editar"
+                                            class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
                                             <i class="fa-solid fa-edit text-lg"></i>
                                         </a>
                                         {% endif %}
-
                                         {% if permissions.delete_atencion %}
-                                        <a href="#"
-                                            class="text-red-600 dark:text-red-500 hover:text-red-800 p-1 rounded transition-colors"
+                                        <a href="#" title="Eliminar"
                                             onclick="openDeleteModal('{{ atencion.id }}', '{{ atencion.paciente.nombres }} {{ atencion.paciente.apellidos }}')"
-                                            title="Eliminar">
+                                            class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors">
                                             <i class="fa-solid fa-trash text-lg"></i>
                                         </a>
                                         {% endif %}
@@ -155,10 +114,10 @@
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="8" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                                <td colspan="8" class="text-center py-10 text-gray-500 dark:text-gray-400">
                                     <div class="flex flex-col items-center">
                                         <i class="fa-solid fa-stethoscope text-4xl mb-2 text-gray-300"></i>
-                                        <p class="text-lg">No se encontraron atenciones médicas</p>
+                                        <p class="text-lg font-medium">No se encontraron atenciones médicas</p>
                                         <p class="text-sm">Intenta con otros términos de búsqueda</p>
                                     </div>
                                 </td>
@@ -167,6 +126,8 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+
 
                 <!-- Pagination -->
                 {% if page_obj.paginator.num_pages > 1 %}

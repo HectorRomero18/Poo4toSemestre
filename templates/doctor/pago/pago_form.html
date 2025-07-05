@@ -514,9 +514,6 @@
             <button type="button" class="tab-button active" data-tab="pago">
                 💳 Pago
             </button>
-            <button type="button" class="tab-button" data-tab="detalles">
-                📋 Detalles de Pago
-            </button>
         </div>
 
         <!-- Contenido de la pestaña Pago -->
@@ -670,7 +667,7 @@
                 submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 setTimeout(() => {
                     alert(result.msg);
-                    window.location.href = "{{back_url}}"; 
+                    window.location.href = `/doctor/detalle_pago_create/?pago_id=${result.id}`; 
                 }, 1500);
             } else {
                 throw new Error(result.msg);

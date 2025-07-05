@@ -1,0 +1,685 @@
+{% extends 'home.html' %}
+
+<title>{% block title %}Marcas de Medicamentos{% endblock %}</title>
+
+{% block content %}
+{% load static %}
+{% include 'fragments/messages.html' %}
+
+<style>
+.gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 16px 24px 16px 56px;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 18px;
+}
+
+.results-info {
+    margin-bottom: 1.5rem;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 12px;
+    color: #374151;
+    font-weight: 500;
+    border-left: 4px solid #667eea;
+}
+
+.table-container {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    margin-bottom: 2rem;
+}
+
+.table-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 80px 200px 1fr 100px 120px;
+    gap: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 80px 200px 1fr 100px 120px;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+    align-items: center;
+}
+
+.table-row:hover {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    transform: translateX(4px);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-cell {
+    display: flex;
+    align-items: center;
+}
+
+.table-cell.center {
+    justify-content: center;
+}
+
+.id-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+}
+
+.marca-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 16px;
+}
+
+.description-text {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.description-text.empty {
+    font-style: italic;
+    color: #9ca3af;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-active {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+}
+
+.status-inactive {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.view-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(239, 68, 68, 0.3);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: #6b7280;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.empty-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.empty-subtext {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 16px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 16px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(107, 114, 128, 0.3);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.page-subtitle {
+    color: #6b7280;
+    font-size: 18px;
+    margin-top: 12px;
+    font-weight: 400;
+}
+
+.actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 2rem;
+}
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .table-header,
+    .table-row {
+        grid-template-columns: 60px 150px 1fr 80px 100px;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .description-text {
+        font-size: 13px;
+        -webkit-line-clamp: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
+    }
+
+    .table-header {
+        display: none;
+    }
+
+    .table-row {
+        display: block;
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-cell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .table-cell:last-child {
+        border-bottom: none;
+        justify-content: center;
+        margin-top: 12px;
+    }
+
+    .table-cell::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #374151;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .search-input {
+        padding: 14px 20px 14px 48px;
+    }
+
+    .gradient-text {
+        font-size: 2.5rem;
+    }
+
+    .action-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .actions-container {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+</style>
+
+<div class="page-header fade-in">
+    <h1 class="gradient-text text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+        Marcas de Medicamentos
+    </h1>
+    <p class="page-subtitle">
+        Gestiona y organiza las marcas comerciales de medicamentos del sistema
+    </p>
+</div>
+
+<div class="search-container slide-in">
+    <div class="search-icon">
+        <i class="fa-solid fa-search"></i>
+    </div>
+    <input type="text"
+           name="q"
+           id="table-search"
+           class="search-input"
+           placeholder="Buscar marcas de medicamentos..."
+           value="{{ request.GET.q }}">
+</div>
+
+{% if marcas %}
+<div class="results-info fade-in">
+    <i class="fa-solid fa-info-circle mr-2"></i>
+    Mostrando {{ marcas|length }} resultado{{ marcas|length|pluralize }}
+</div>
+{% endif %}
+
+<div class="table-container fade-in">
+    <div class="table-header">
+        <div>ID</div>
+        <div>Nombre de la Marca</div>
+        <div>Descripción</div>
+        <div class="center">Estado</div>
+        <div class="center">Acciones</div>
+    </div>
+
+    {% for marca in marcas %}
+    <div class="table-row slide-in" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s">
+        <div class="table-cell" data-label="ID">
+            <span class="id-badge">{{ marca.id }}</span>
+        </div>
+        <div class="table-cell" data-label="Nombre">
+            <span class="marca-name">{{ marca.nombre }}</span>
+        </div>
+        <div class="table-cell" data-label="Descripción">
+            {% if marca.descripcion %}
+            <span class="description-text tooltip" data-tooltip="{{ marca.descripcion }}">
+                {{ marca.descripcion }}
+            </span>
+            {% else %}
+            <span class="description-text empty">
+                Sin descripción
+            </span>
+            {% endif %}
+        </div>
+        <div class="table-cell center" data-label="Estado">
+            {% if marca.activo %}
+            <span class="status-badge status-active">
+                <i class="fa-solid fa-check-circle mr-1"></i>
+                Activo
+            </span>
+            {% else %}
+            <span class="status-badge status-inactive">
+                <i class="fa-solid fa-times-circle mr-1"></i>
+                Inactivo
+            </span>
+            {% endif %}
+        </div>
+        <div class="table-cell center" data-label="Acciones">
+            <div class="action-buttons">
+                <a href="#"
+                   class="action-btn view-btn"
+                   title="Ver detalles de {{ marca.nombre }}"
+                   onclick="showDetails('{{ marca.id }}', '{{ marca.nombre }}', '{{ marca.descripcion|default:"Sin descripción" }}', {{ marca.activo|yesno:"true,false" }})">
+                    <i class="fa-solid fa-eye"></i>
+                </a>
+                {% if permissions.change_marcamedicamento %}
+                <a href="{% url 'core:marcamedicamento_update' marca.id %}"
+                   class="action-btn edit-btn"
+                   title="Editar {{ marca.nombre }}">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+                {% endif %}
+                {% if permissions.delete_marcamedicamento %}
+                <a href="#"
+                   class="action-btn delete-btn"
+                   title="Eliminar {{ marca.nombre }}"
+                   onclick="openDeleteModal('{{ marca.id }}', '{{ marca.nombre }}', '{% url 'core:marcamedicamento_delete' marca.id %}')">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <div class="empty-icon">
+            <i class="fa-solid fa-tags"></i>
+        </div>
+        <div class="empty-text">
+            {% if request.GET.q %}
+            No se encontraron resultados para "{{ request.GET.q }}"
+            {% else %}
+            No hay marcas de medicamentos registradas
+            {% endif %}
+        </div>
+        <div class="empty-subtext">
+            {% if request.GET.q %}
+            Intenta con otros términos de búsqueda
+            {% else %}
+            Comienza agregando la primera marca de medicamento
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="actions-container fade-in">
+    {% if permissions.add_marcamedicamento %}
+    <a href="{{ create_url }}" class="btn-primary">
+        <i class="fa-solid fa-plus"></i>
+        Nueva Marca
+    </a>
+    {% endif %}
+    <a href="{% url 'home' %}" class="btn-secondary">
+        <i class="fa-solid fa-home"></i>
+        Inicio
+    </a>
+</div>
+
+{% include 'fragments/delete.html' %}
+
+<!-- Modal para mostrar detalles -->
+<div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+     onclick="closeDetailsModal()">
+    <div class="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold gradient-text">Detalles de la Marca</h2>
+            <button onclick="closeDetailsModal()" class="text-gray-500 hover:text-gray-700">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex justify-between items-center pb-4 border-b">
+                <span class="font-semibold text-gray-600">ID:</span>
+                <span id="modal-id" class="id-badge"></span>
+            </div>
+            <div class="pb-4 border-b">
+                <span class="font-semibold text-gray-600 block mb-2">Nombre:</span>
+                <span id="modal-nombre" class="text-lg font-medium"></span>
+            </div>
+            <div class="pb-4 border-b">
+                <span class="font-semibold text-gray-600 block mb-2">Descripción:</span>
+                <p id="modal-descripcion" class="text-gray-700 leading-relaxed"></p>
+            </div>
+            <div class="pb-4">
+                <span class="font-semibold text-gray-600 block mb-2">Estado:</span>
+                <span id="modal-estado" class="status-badge"></span>
+            </div>
+        </div>
+
+        <div class="flex justify-end mt-6">
+            <button onclick="closeDetailsModal()" class="btn-secondary">
+                <i class="fa-solid fa-times"></i>
+                Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Funcionalidad del buscador
+document.getElementById('table-search').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll('.table-row:not(.empty-state)');
+    
+    rows.forEach(row => {
+        const nombre = row.querySelector('.marca-name').textContent.toLowerCase();
+        const id = row.querySelector('.id-badge').textContent.toLowerCase();
+        const descripcion = row.querySelector('.description-text').textContent.toLowerCase();
+        
+        if (nombre.includes(searchTerm) || id.includes(searchTerm) || descripcion.includes(searchTerm)) {
+            row.style.display = 'grid';
+            row.style.animation = 'slideIn 0.3s ease-out';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+// Función para mostrar detalles en modal
+function showDetails(id, nombre, descripcion, activo) {
+    document.getElementById('modal-id').textContent = id;
+    document.getElementById('modal-nombre').textContent = nombre;
+    document.getElementById('modal-descripcion').textContent = descripcion;
+    
+    const estadoElement = document.getElementById('modal-estado');
+    if (activo) {
+        estadoElement.className = 'status-badge status-active';
+        estadoElement.innerHTML = '<i class="fa-solid fa-check-circle mr-1"></i>Activo';
+    } else {
+        estadoElement.className = 'status-badge status-inactive';
+        estadoElement.innerHTML = '<i class="fa-solid fa-times-circle mr-1"></i>Inactivo';
+    }
+    
+    document.getElementById('detailsModal').classList.remove('hidden');
+    document.getElementById('detailsModal').classList.add('flex');
+}
+
+// Función para cerrar modal de detalles
+function closeDetailsModal() {
+    document.getElementById('detailsModal').classList.add('hidden');
+    document.getElementById('detailsModal').classList.remove('flex');
+}
+
+// Animación de entrada escalonada
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('.table-row');
+    rows.forEach((row, index) => {
+        row.style.animationDelay = `${index * 0.1}s`;
+    });
+});
+
+// Función para el modal de eliminación
+function openDeleteModal(id, nombre, url) {
+    // Mostrar el modal
+    const modal = document.getElementById('deleteModal');
+    modal.classList.remove('hidden');
+    
+    document.getElementById('Description').textContent = `¿Eliminar "${nombre}"?`;
+    
+    const form = document.getElementById('deleteForm');
+    form.action = url;
+}
+
+function closeModal() {
+    const modal = document.getElementById('deleteModal');
+    modal.classList.add('hidden');
+}
+
+// Efecto de hover mejorado
+document.querySelectorAll('.table-row').forEach(row => {
+    row.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateX(8px)';
+    });
+    
+    row.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateX(0)';
+    });
+});
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeDetailsModal();
+    }
+});
+</script>
+
+{% endblock %}

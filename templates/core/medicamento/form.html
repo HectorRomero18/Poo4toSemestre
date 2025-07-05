@@ -1,0 +1,815 @@
+{% extends 'home.html' %}
+
+<title>{% block title %}{{ grabar }}{% endblock %}</title>
+
+{% load static %}
+
+{% block content %}
+
+<style>
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.form-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+}
+
+.error-alert {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 1px solid #f87171;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.error-alert::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.error-icon {
+    color: #dc2626;
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-grid-full {
+    grid-column: 1 / -1;
+}
+
+.field-group {
+    margin-bottom: 2rem;
+}
+
+.field-label {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.field-label.required::after {
+    content: '*';
+    color: #ef4444;
+    margin-left: 0.25rem;
+}
+
+.field-input, .field-select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #374151;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.field-input:focus, .field-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
+}
+
+.field-textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #374151;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.field-textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover {
+    border-color: #667eea;
+    transform: translateY(-1px);
+}
+
+.checkbox-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    position: relative;
+}
+
+.checkbox-input:checked {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+}
+
+.checkbox-input:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.checkbox-label {
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.field-error {
+    border-color: #ef4444 !important;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+.field-error:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.error-icon-small {
+    font-size: 0.75rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(107, 114, 128, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 1.25rem;
+    color: #667eea;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.field-input:focus + .floating-icon,
+.field-textarea:focus + .floating-icon,
+.field-select:focus + .floating-icon {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-input-wrapper input[type=file] {
+    position: absolute;
+    left: -9999px;
+}
+
+.file-input-display {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px dashed #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #6b7280;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-input-display:hover {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.file-input-display.has-file {
+    border-style: solid;
+    border-color: #10b981;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    color: #059669;
+}
+
+.price-input {
+    position: relative;
+}
+
+.price-input::before {
+    content: '$';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    color: #6b7280;
+    z-index: 1;
+}
+
+.price-input .field-input {
+    padding-left: 2.5rem;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+    20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-card {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .form-title {
+        font-size: 2rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+</style>
+
+<section class="gradient-bg">
+    <div class="form-container">
+        <div class="form-card">
+            <h1 class="form-title">{{ grabar }}</h1>
+
+            {% if form.non_field_errors %}
+            <div class="error-alert">
+                <div class="flex items-start">
+                    <i class="fa-solid fa-exclamation-triangle error-icon"></i>
+                    <div>
+                        <h3 class="font-semibold text-red-800 mb-2">Se encontraron errores en el formulario:</h3>
+                        <ul class="space-y-1 text-red-700">
+                            {% for error in form.non_field_errors %}
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+
+                <div class="form-grid">
+                    <!-- Nombre del Medicamento -->
+                    <div class="field-group">
+                        <label for="id_nombre" class="field-label {% if form.nombre.field.required %}required{% endif %}">
+                            {{ form.nombre.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text"
+                                   name="nombre"
+                                   id="id_nombre"
+                                   value="{{ form.nombre.value|default:'' }}"
+                                   class="field-input {% if form.nombre.errors %}field-error{% endif %}"
+                                   placeholder="Ingrese el nombre del medicamento"
+                                   {% if form.nombre.field.required %}required{% endif %}>
+                            <i class="fa-solid fa-pills floating-icon"></i>
+                        </div>
+                        {% if form.nombre.errors %}
+                            {% for error in form.nombre.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Tipo de Medicamento -->
+                    <div class="field-group">
+                        <label for="id_tipo" class="field-label {% if form.tipo.field.required %}required{% endif %}">
+                            {{ form.tipo.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <select name="tipo"
+                                    id="id_tipo"
+                                    class="field-select {% if form.tipo.errors %}field-error{% endif %}"
+                                    {% if form.tipo.field.required %}required{% endif %}>
+                                <option value="">Seleccione un tipo</option>
+                                {% for choice in form.tipo.field.queryset %}
+                                <option value="{{ choice.pk }}" {% if form.tipo.value == choice.pk|stringformat:"s" %}selected{% endif %}>
+                                    {{ choice }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <i class="fa-solid fa-list floating-icon"></i>
+                        </div>
+                        {% if form.tipo.errors %}
+                            {% for error in form.tipo.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Marca del Medicamento -->
+                    <div class="field-group">
+                        <label for="id_marca_medicamento" class="field-label">
+                            {{ form.marca_medicamento.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <select name="marca_medicamento"
+                                    id="id_marca_medicamento"
+                                    class="field-select {% if form.marca_medicamento.errors %}field-error{% endif %}">
+                                <option value="">Seleccione una marca (opcional)</option>
+                                {% for choice in form.marca_medicamento.field.queryset %}
+                                <option value="{{ choice.pk }}" {% if form.marca_medicamento.value == choice.pk|stringformat:"s" %}selected{% endif %}>
+                                    {{ choice }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <i class="fa-solid fa-tag floating-icon"></i>
+                        </div>
+                        {% if form.marca_medicamento.errors %}
+                            {% for error in form.marca_medicamento.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Concentración -->
+                    <div class="field-group">
+                        <label for="id_concentracion" class="field-label">
+                            {{ form.concentracion.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text"
+                                   name="concentracion"
+                                   id="id_concentracion"
+                                   value="{{ form.concentracion.value|default:'' }}"
+                                   class="field-input {% if form.concentracion.errors %}field-error{% endif %}"
+                                   placeholder="Ej: 500mg, 1g, 5%">
+                            <i class="fa-solid fa-flask floating-icon"></i>
+                        </div>
+                        {% if form.concentracion.errors %}
+                            {% for error in form.concentracion.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Vía de Administración -->
+                    <div class="field-group">
+                        <label for="id_via_administracion" class="field-label {% if form.via_administracion.field.required %}required{% endif %}">
+                            {{ form.via_administracion.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <select name="via_administracion"
+                                    id="id_via_administracion"
+                                    class="field-select {% if form.via_administracion.errors %}field-error{% endif %}"
+                                    {% if form.via_administracion.field.required %}required{% endif %}>
+                                <option value="">Seleccione una vía</option>
+                                {% for choice in form.via_administracion.field.choices %}
+                                <option value="{{ choice.0 }}" {% if form.via_administracion.value == choice.0 %}selected{% endif %}>
+                                    {{ choice.1 }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <i class="fa-solid fa-syringe floating-icon"></i>
+                        </div>
+                        {% if form.via_administracion.errors %}
+                            {% for error in form.via_administracion.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Cantidad (Stock) -->
+                    <div class="field-group">
+                        <label for="id_cantidad" class="field-label {% if form.cantidad.field.required %}required{% endif %}">
+                            {{ form.cantidad.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number"
+                                   name="cantidad"
+                                   id="id_cantidad"
+                                   value="{{ form.cantidad.value|default:'' }}"
+                                   class="field-input {% if form.cantidad.errors %}field-error{% endif %}"
+                                   placeholder="Cantidad en stock"
+                                   min="0"
+                                   {% if form.cantidad.field.required %}required{% endif %}>
+                            <i class="fa-solid fa-boxes floating-icon"></i>
+                        </div>
+                        {% if form.cantidad.errors %}
+                            {% for error in form.cantidad.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="field-group">
+                        <label for="id_precio" class="field-label {% if form.precio.field.required %}required{% endif %}">
+                            {{ form.precio.label }}
+                        </label>
+                        <div class="input-wrapper price-input">
+                            <input type="number"
+                                   name="precio"
+                                   id="id_precio"
+                                   value="{{ form.precio.value|default:'' }}"
+                                   class="field-input {% if form.precio.errors %}field-error{% endif %}"
+                                   placeholder="0.00"
+                                   step="0.01"
+                                   min="0"
+                                   {% if form.precio.field.required %}required{% endif %}>
+                            <i class="fa-solid fa-dollar-sign floating-icon"></i>
+                        </div>
+                        {% if form.precio.errors %}
+                            {% for error in form.precio.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="field-group form-grid-full">
+                        <label for="id_descripcion" class="field-label">
+                            {{ form.descripcion.label }}
+                        </label>
+                        <div class="input-wrapper">
+                            <textarea name="descripcion"
+                                      id="id_descripcion"
+                                      class="field-textarea {% if form.descripcion.errors %}field-error{% endif %}"
+                                      placeholder="Ingrese la descripción del medicamento">{{ form.descripcion.value|default:'' }}</textarea>
+                            <i class="fa-solid fa-file-text floating-icon"></i>
+                        </div>
+                        {% if form.descripcion.errors %}
+                            {% for error in form.descripcion.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Comercial -->
+                    <div class="field-group">
+                        <label class="field-label">
+                            {{ form.comercial.label }}
+                        </label>
+                        <div class="checkbox-container {% if form.comercial.errors %}field-error{% endif %}">
+                            <input type="checkbox"
+                                   name="comercial"
+                                   id="id_comercial"
+                                   class="checkbox-input"
+                                   {% if form.comercial.value %}checked{% endif %}>
+                            <label for="id_comercial" class="checkbox-label">
+                                Medicamento comercial
+                            </label>
+                        </div>
+                        {% if form.comercial.errors %}
+                            {% for error in form.comercial.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Activo -->
+                    <div class="field-group">
+                        <label class="field-label">
+                            {{ form.activo.label }}
+                        </label>
+                        <div class="checkbox-container {% if form.activo.errors %}field-error{% endif %}">
+                            <input type="checkbox"
+                                   name="activo"
+                                   id="id_activo"
+                                   class="checkbox-input"
+                                   {% if form.activo.value %}checked{% endif %}>
+                            <label for="id_activo" class="checkbox-label">
+                                Estado activo del medicamento
+                            </label>
+                        </div>
+                        {% if form.activo.errors %}
+                            {% for error in form.activo.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Foto -->
+                    <div class="field-group form-grid-full">
+                        <label for="id_foto" class="field-label">
+                            {{ form.foto.label }}
+                        </label>
+                        <div class="file-input-wrapper">
+                            <input type="file"
+                                   name="foto"
+                                   id="id_foto"
+                                   accept="image/*"
+                                   class="{% if form.foto.errors %}field-error{% endif %}">
+                            <div class="file-input-display" id="file-display">
+                                <i class="fa-solid fa-cloud-upload-alt text-2xl"></i>
+                                <span>Haga clic para seleccionar una foto del medicamento</span>
+                                <small>Formatos: JPG, PNG, GIF (máx. 5MB)</small>
+                            </div>
+                        </div>
+                        {% if form.foto.errors %}
+                            {% for error in form.foto.errors %}
+                            <div class="error-message">
+                                <i class="fa-solid fa-circle-exclamation error-icon-small"></i>
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-save"></i>
+                        Guardar
+                    </button>
+                    <a href="{{ back_url }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animación de entrada para los campos
+    const fields = document.querySelectorAll('.field-group');
+    fields.forEach((field, index) => {
+        field.style.opacity = '0';
+        field.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            field.style.transition = 'all 0.5s ease';
+            field.style.opacity = '1';
+            field.style.transform = 'translateY(0)';
+        }, index * 50);
+    });
+
+    // Efecto de focus mejorado
+    const inputs = document.querySelectorAll('.field-input, .field-textarea, .field-select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Manejo del archivo de foto
+    const fileInput = document.getElementById('id_foto');
+    const fileDisplay = document.getElementById('file-display');
+    
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            fileDisplay.classList.add('has-file');
+            fileDisplay.innerHTML = `
+                <i class="fa-solid fa-check-circle text-2xl"></i>
+                <span>Archivo seleccionado: ${file.name}</span>
+                <small>Tamaño: ${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+            `;
+        } else {
+            fileDisplay.classList.remove('has-file');
+            fileDisplay.innerHTML = `
+                <i class="fa-solid fa-cloud-upload-alt text-2xl"></i>
+                <span>Haga clic para seleccionar una foto del medicamento</span>
+                <small>Formatos: JPG, PNG, GIF (máx. 5MB)</small>
+            `;
+        }
+    });
+
+    // Hacer clic en el área de archivo
+    fileDisplay.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    // Validación en tiempo real
+    const form = document.querySelector('form');
+    const submitBtn = document.querySelector('.btn-primary');
+    
+    form.addEventListener('submit', function(e) {
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando...';
+        submitBtn.disabled = true;
+    });
+
+    // Efecto de checkbox personalizado
+    const checkboxes = document.querySelectorAll('.checkbox-input');
+    checkboxes.forEach(checkbox => {
+        const container = checkbox.closest('.checkbox-container');
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                container.style.background = 'linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%)';
+                container.style.borderColor = '#667eea';
+            } else {
+                container.style.background = 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)';
+                container.style.borderColor = '#e5e7eb';
+            }
+        });
+    });
+
+    // Formateo automático del precio
+    const priceInput = document.getElementById('id_precio');
+    priceInput.addEventListener('input', function() {
+        let value = this.value.replace(/[^\d.]/g, '');
+        if (value.includes('.')) {
+            const parts = value.split('.');
+            if (parts[1] && parts[1].length > 2) {
+                parts[1] = parts[1].substring(0, 2);
+            }
+            value = parts.join('.');
+        }
+        this.value = value;
+    });
+});
+</script>
+
+{% endblock %}

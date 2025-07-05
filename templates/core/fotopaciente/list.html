@@ -1,0 +1,807 @@
+{% extends 'home.html' %}
+
+<title>{% block title %}Fotos de Pacientes{% endblock %}</title>
+
+{% block content %}
+{% load static %}
+
+{% include 'fragments/messages.html' %}
+
+<style>
+.gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 16px 24px 16px 56px;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 18px;
+}
+
+.results-info {
+    margin-bottom: 1.5rem;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 12px;
+    color: #374151;
+    font-weight: 500;
+    border-left: 4px solid #667eea;
+}
+
+.table-container {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    margin-bottom: 2rem;
+}
+
+.table-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 80px 150px 200px 120px 180px 120px;
+    gap: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 80px 150px 200px 120px 180px 120px;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+    align-items: center;
+}
+
+.table-row:hover {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    transform: translateX(4px);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-cell {
+    display: flex;
+    align-items: center;
+}
+
+.table-cell.center {
+    justify-content: center;
+}
+
+.id-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+}
+
+.patient-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 16px;
+}
+
+.image-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.image-thumbnail:hover {
+    transform: scale(1.1);
+    border-color: #667eea;
+}
+
+.description-text {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.description-text.empty {
+    font-style: italic;
+    color: #9ca3af;
+}
+
+.date-text {
+    color: #4b5563;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(239, 68, 68, 0.3);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: #6b7280;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.empty-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.empty-subtext {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 16px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 16px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(107, 114, 128, 0.3);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.page-subtitle {
+    color: #6b7280;
+    font-size: 18px;
+    margin-top: 12px;
+    font-weight: 400;
+}
+
+.actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 2rem;
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Estilos mejorados para el modal de imagen */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.modal-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.modal-btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+@media (max-width: 1024px) {
+    .table-header,
+    .table-row {
+        grid-template-columns: 60px 120px 150px 100px 150px 100px;
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .description-text {
+        font-size: 13px;
+        -webkit-line-clamp: 1;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+    
+    .modal-image {
+        max-height: 60vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
+    }
+    
+    .table-header {
+        display: none;
+    }
+    
+    .table-row {
+        display: block;
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .table-cell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .table-cell:last-child {
+        border-bottom: none;
+        justify-content: center;
+        margin-top: 12px;
+    }
+    
+    .table-cell::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #374151;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .search-input {
+        padding: 14px 20px 14px 48px;
+    }
+    
+    .gradient-text {
+        font-size: 2.5rem;
+    }
+    
+    .action-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+    
+    .actions-container {
+        flex-direction: column;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .modal-image {
+        max-height: 50vh;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-image {
+        max-height: 45vh;
+    }
+    
+    .modal-content {
+        padding: 12px;
+    }
+}
+</style>
+
+<div class="page-header fade-in">
+    <h1 class="gradient-text text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+        Fotos de Pacientes
+    </h1>
+    <p class="page-subtitle">
+        Gestiona las imágenes y archivos fotográficos de los pacientes
+    </p>
+</div>
+
+<div class="search-container slide-in">
+    <div class="search-icon">
+        <i class="fa-solid fa-search"></i>
+    </div>
+    <input type="text"
+           name="q"
+           id="table-search"
+           class="search-input"
+           placeholder="Buscar por paciente o descripción..."
+           value="{{ request.GET.q }}">
+</div>
+
+{% if fotos %}
+<div class="results-info fade-in">
+    <i class="fa-solid fa-info-circle mr-2"></i>
+    Mostrando {{ fotos|length }} resultado{{ fotos|length|pluralize }}
+</div>
+{% endif %}
+
+<div class="table-container fade-in">
+    <div class="table-header">
+        <div>ID</div>
+        <div>Imagen</div>
+        <div>Paciente</div>
+        <div>Fecha</div>
+        <div>Descripción</div>
+        <div class="center">Acciones</div>
+    </div>
+    
+    {% for foto in fotos %}
+    <div class="table-row slide-in" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s">
+        <div class="table-cell" data-label="ID">
+            <span class="id-badge">{{ foto.id }}</span>
+        </div>
+        
+        <div class="table-cell" data-label="Imagen">
+            {% if foto.imagen %}
+                <img src="{{ foto.imagen.url }}" 
+                     alt="Foto de {{ foto.paciente }}" 
+                     class="image-thumbnail"
+                     onclick="openImageModal('{{ foto.imagen.url }}', '{{ foto.paciente }}')">
+            {% else %}
+                <div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-image text-gray-400"></i>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="table-cell" data-label="Paciente">
+            <span class="patient-name">{{ foto.paciente }}</span>
+        </div>
+        
+        <div class="table-cell" data-label="Fecha">
+            <span class="date-text">{{ foto.fecha_subida|date:"d/m/Y H:i" }}</span>
+        </div>
+        
+        <div class="table-cell" data-label="Descripción">
+            {% if foto.descripcion %}
+                <span class="description-text">{{ foto.descripcion }}</span>
+            {% else %}
+                <span class="description-text empty">Sin descripción</span>
+            {% endif %}
+        </div>
+        
+        <div class="table-cell center" data-label="Acciones">
+            <div class="action-buttons">
+                {% if permissions.change_fotopaciente %}
+                <a href="{% url 'core:fotopaciente_update' foto.id %}"
+                   class="action-btn edit-btn"
+                   title="Editar foto de {{ foto.paciente }}">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+                {% endif %}
+                
+                {% if permissions.delete_fotopaciente %}
+                <a href="#"
+                   class="action-btn delete-btn"
+                   title="Eliminar foto de {{ foto.paciente }}"
+                   onclick="openDeleteModal('{{ foto.id }}', '{{ foto.paciente }}', '{% url 'core:fotopaciente_delete' foto.id %}')">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <div class="empty-icon">
+            <i class="fa-solid fa-camera"></i>
+        </div>
+        <div class="empty-text">
+            {% if request.GET.q %}
+                No se encontraron resultados para "{{ request.GET.q }}"
+            {% else %}
+                No hay fotos de pacientes registradas
+            {% endif %}
+        </div>
+        <div class="empty-subtext">
+            {% if request.GET.q %}
+                Intenta con otros términos de búsqueda
+            {% else %}
+                Comienza agregando la primera foto
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="actions-container fade-in">
+    {% if permissions.add_fotopaciente %}
+    <a href="{{ create_url }}" class="btn-primary">
+        <i class="fa-solid fa-plus"></i>
+        Nueva Foto
+    </a>
+    {% endif %}
+    
+    <a href="{% url 'home' %}" class="btn-secondary">
+        <i class="fa-solid fa-home"></i>
+        Inicio
+    </a>
+</div>
+
+{% include 'fragments/delete.html' %}
+
+<!-- Modal mejorado para mostrar imagen -->
+<div id="imageModal" class="image-modal hidden" onclick="closeImageModal()" style="display: none;">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 class="modal-title gradient-text" id="modal-title">Imagen del Paciente</h3>
+            <button class="modal-close" onclick="closeImageModal()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-image-container">
+            <img id="modal-image" src="" alt="" class="modal-image">
+        </div>
+        
+        <div class="modal-footer">
+            <button class="modal-btn modal-btn-secondary" onclick="closeImageModal()">
+                <i class="fa-solid fa-times"></i>
+                Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Funcionalidad del buscador
+document.getElementById('table-search').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll('.table-row:not(.empty-state)');
+    
+    rows.forEach(row => {
+        const paciente = row.querySelector('.patient-name').textContent.toLowerCase();
+        const id = row.querySelector('.id-badge').textContent.toLowerCase();
+        const descripcion = row.querySelector('.description-text').textContent.toLowerCase();
+        
+        if (paciente.includes(searchTerm) || id.includes(searchTerm) || descripcion.includes(searchTerm)) {
+            row.style.display = 'grid';
+            row.style.animation = 'slideIn 0.3s ease-out';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+// Función mejorada para mostrar imagen en modal
+function openImageModal(imageUrl, patientName) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    
+    if (modal && modalImage && modalTitle) {
+        modalImage.src = imageUrl;
+        modalTitle.textContent = 'Imagen de ' + patientName;
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+        
+        // Prevenir scroll del body cuando el modal está abierto
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Función mejorada para cerrar modal de imagen
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+        
+        // Restaurar scroll del body
+        document.body.style.overflow = '';
+    }
+}
+
+// Función para el modal de eliminación
+function openDeleteModal(id, pacienteName, url) {
+    const modal = document.getElementById('deleteModal');
+    modal.classList.remove('hidden');
+    document.getElementById('Description').textContent = `¿Eliminar la foto de "${pacienteName}"?`;
+    
+    const form = document.getElementById('deleteForm');
+    form.action = url;
+}
+
+function closeModal() {
+    const modal = document.getElementById('deleteModal');
+    modal.classList.add('hidden');
+}
+
+// Animación de entrada escalonada
+// (Código movido a DOMContentLoaded)
+
+// Efecto de hover mejorado
+document.addEventListener('DOMContentLoaded', function() {
+    // Código ya incluido arriba
+    
+    // Efecto de hover para las filas
+    const tableRows = document.querySelectorAll('.table-row');
+    tableRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(8px)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+});
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeImageModal();
+        closeModal();
+    }
+});
+
+// Asegurar que el modal esté cerrado al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+    }
+    
+    // Animación de entrada escalonada
+    const rows = document.querySelectorAll('.table-row');
+    rows.forEach((row, index) => {
+        row.style.animationDelay = `${index * 0.1}s`;
+    });
+    
+    // Mejorar la carga de imágenes
+    const images = document.querySelectorAll('.image-thumbnail');
+    
+    images.forEach(img => {
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        
+        img.addEventListener('error', function() {
+            this.style.opacity = '0.5';
+            this.title = 'Error al cargar la imagen';
+        });
+    });
+});
+</script>
+
+{% endblock %}
