@@ -8,6 +8,7 @@ from applications.core.views.especialidad import EspecialidadListView, Especiali
 from applications.core.views.doctor import DoctorListView, DoctorCreateView, DoctorUpdateView, DoctorDeleteView
 from applications.core.views.empleado import EmpleadoListView, EmpleadoCreateView, EmpleadoUpdateView, EmpleadoDeleteView
 from applications.core.views.cargo import CargoListView, CargoCreateView, CargoUpdateView, CargoDeleteView
+from applications.core.views.views import citas_json, vista_calendario, verificar_disponibilidad, crear_cita, verificar_paciente
 
 
 app_name='core' # define un espacio de nombre para la aplicacion
@@ -56,4 +57,6 @@ urlpatterns = [
     path('cargos/crear/', CargoCreateView.as_view(), name='cargo_create'),
     path('cargos/<int:pk>/editar/', CargoUpdateView.as_view(), name='cargo_update'),
     path('cargos/<int:pk>/eliminar/', CargoDeleteView.as_view(), name='cargo_delete'),
+
+    path('citas/calendario/json/', vista_calendario, name='cita_calendario_json'),
 ]

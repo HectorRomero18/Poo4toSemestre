@@ -32,7 +32,7 @@ class DetallePagoForm(forms.ModelForm):
             'descripcion_seguro',
         ]
         widgets = {
-            'pago': forms.Select(attrs={'class': 'form-control'}),
+            'pago': forms.Select(attrs={'class': 'form-control', 'disabled': 'disabled'}),
             'servicio_adicional': forms.Select(attrs={'class': 'form-control'}),
             'cantidad': forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
             'precio_unitario': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
@@ -43,9 +43,23 @@ class DetallePagoForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        pago_instance = kwargs.pop('pago_instance', None)
         super().__init__(*args, **kwargs)
 
-        # Campo oculto o manejado internamente si se desea (por ejemplo, si el pago ya está creado)
-        # self.fields['pago'].widget = forms.HiddenInput()
+        # 🔒 Desactiva validación en campo deshabilitado
+        self.fields['pago'].required = False
+        self.fields['pago'].disabled = True
 
-        # Puedes agregar validaciones o configuraciones condicionales aquí si lo necesitas.
+        # Campo oculto que sí se envía
+        self.fields['pago_hidden'] = forms.ModelChoiceField(
+            queryset=self.fields['pago'].queryset,
+            widget=forms.HiddenInput(),
+            required=True
+        )
+
+        if pago_instance:
+            self.fields['pago'].initial = pago_instance
+            self.fields['pago_hidden'].initial = pago_instance
+        elif self.instance and self.instance.pago_id:
+            self.fields['pago'].initial = self.instance.pago_id
+            self.fields['pago_hidden'].initial = self.instance.pago_id

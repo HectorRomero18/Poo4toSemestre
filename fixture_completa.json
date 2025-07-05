@@ -1,6 +1,45 @@
 [
 {
   "model": "admin.logentry",
+  "pk": 114,
+  "fields": {
+    "action_time": "2025-07-04T19:18:56.871Z",
+    "user": 3,
+    "content_type": 19,
+    "object_id": "1",
+    "object_repr": "Paracetamol (anestesico)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 113,
+  "fields": {
+    "action_time": "2025-07-04T19:18:25.809Z",
+    "user": 3,
+    "content_type": 14,
+    "object_id": "1",
+    "object_repr": "la sante",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2025-07-04T19:18:11.238Z",
+    "user": 3,
+    "content_type": 15,
+    "object_id": "1",
+    "object_repr": "anestesico",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
   "pk": 111,
   "fields": {
     "action_time": "2025-07-04T15:50:15.820Z",
@@ -885,13 +924,13 @@
 },
 {
   "model": "admin.logentry",
-  "pk": 41,
+  "pk": 42,
   "fields": {
     "action_time": "2025-06-21T20:00:56.464Z",
     "user": 3,
     "content_type": 7,
-    "object_id": "7",
-    "object_repr": "fulanito1@gmail.com",
+    "object_id": "6",
+    "object_repr": "fulanito@gmail.com",
     "action_flag": 3,
     "change_message": ""
   }
@@ -911,13 +950,13 @@
 },
 {
   "model": "admin.logentry",
-  "pk": 42,
+  "pk": 41,
   "fields": {
     "action_time": "2025-06-21T20:00:56.464Z",
     "user": 3,
     "content_type": 7,
-    "object_id": "6",
-    "object_repr": "fulanito@gmail.com",
+    "object_id": "7",
+    "object_repr": "fulanito1@gmail.com",
     "action_flag": 3,
     "change_message": ""
   }
@@ -3084,8 +3123,8 @@
   "model": "sessions.session",
   "pk": "ps8mrawejkazn5wesubhrvk7ho55jnon",
   "fields": {
-    "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uXjp0:Y3qitE7IXUz-it_1_j33LxBdklp4dgbyoEREIrhx_No",
-    "expire_date": "2025-07-18T17:03:34.652Z"
+    "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uXn9y:XEkYCO2A7Le9qu3GqHftak8FCKCsLtS_4H1qV8uiW2w",
+    "expire_date": "2025-07-18T20:37:26.932Z"
   }
 },
 {
@@ -4414,6 +4453,58 @@
   }
 },
 {
+  "model": "security.audituser",
+  "pk": 1,
+  "fields": {
+    "usuario": 3,
+    "tabla": "Atencion",
+    "registroid": 3,
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:19:41.603",
+    "estacion": "157.100.64.50"
+  }
+},
+{
+  "model": "security.audituser",
+  "pk": 2,
+  "fields": {
+    "usuario": 3,
+    "tabla": "Atencion",
+    "registroid": 3,
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:40:48.216",
+    "estacion": "157.100.64.50"
+  }
+},
+{
+  "model": "security.audituser",
+  "pk": 3,
+  "fields": {
+    "usuario": 3,
+    "tabla": "Atencion",
+    "registroid": 3,
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:43:59.667",
+    "estacion": "157.100.64.50"
+  }
+},
+{
+  "model": "security.audituser",
+  "pk": 4,
+  "fields": {
+    "usuario": 3,
+    "tabla": "Atencion",
+    "registroid": 1,
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:44:37.567",
+    "estacion": "157.100.64.50"
+  }
+},
+{
   "model": "core.tiposangre",
   "pk": 1,
   "fields": {
@@ -4583,6 +4674,41 @@
   }
 },
 {
+  "model": "core.tipomedicamento",
+  "pk": 1,
+  "fields": {
+    "nombre": "anestesico",
+    "descripcion": "anestesico",
+    "activo": true
+  }
+},
+{
+  "model": "core.marcamedicamento",
+  "pk": 1,
+  "fields": {
+    "nombre": "la sante",
+    "descripcion": "la sante",
+    "activo": true
+  }
+},
+{
+  "model": "core.medicamento",
+  "pk": 1,
+  "fields": {
+    "tipo": 1,
+    "marca_medicamento": 1,
+    "nombre": "Paracetamol",
+    "descripcion": "Paracetamol",
+    "concentracion": "500",
+    "via_administracion": "oral",
+    "cantidad": 500,
+    "precio": "2.00",
+    "comercial": true,
+    "foto": "",
+    "activo": true
+  }
+},
+{
   "model": "core.diagnostico",
   "pk": 1,
   "fields": {
@@ -4635,7 +4761,7 @@
     "tratamiento": "nada",
     "examen_fisico": "",
     "examenes_enviados": "",
-    "comentario_adicional": "",
+    "comentario_adicional": "{}",
     "es_control": false,
     "diagnostico": [
       1
@@ -4685,7 +4811,7 @@
     "tratamiento": "paracetamol",
     "examen_fisico": "",
     "examenes_enviados": "",
-    "comentario_adicional": "",
+    "comentario_adicional": "{}",
     "es_control": false,
     "diagnostico": [
       1

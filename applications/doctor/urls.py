@@ -3,12 +3,12 @@ from django.urls import path
 from applications.doctor.views.atencion_medica import AtencionListView, AtencionCreateView, AtencionUpdateView, \
     AtencionDeleteView
 from applications.doctor.views.pago import PagoListView, PagoCreateView, PagoDeleteView, PagoUpdateView
-from applications.doctor.views.detalles_pago import DetallePagoCreateView, DetallePagoUpdateView
+from applications.doctor.views.detalles_pago import DetallePagoCreateView, DetallePagoUpdateView, DetallePagoDetailView
 from applications.doctor.views.servicios_adicionales import ServiciosAdicionalesListView, ServiciosAdicionalesCreateView, ServiciosAdicionalesUpdateView, ServiciosAdicionalesDeleteView
 from applications.doctor.views.paypal import pago_paypal, pago_cancelado, pago_exitoso
 
 from applications.doctor.views.horario import HorarioAtencionCreateView, HorarioAtencionDeleteView, HorarioAtencionListView, HorarioAtencionUpdateView
-from applications.doctor.views import cita
+from applications.doctor.views.cita import CitaMedicaCreateView, CitaMedicaListView
 from applications.doctor.views.atencion import ver_detalle_atencion
 from applications.doctor.views.receta import receta_imprimir
 
@@ -30,6 +30,8 @@ urlpatterns = [
     # ruta para DetallePago
     path('detalle_pago_create/', DetallePagoCreateView.as_view(), name="detalle_pago_create"),
     path('detalle_pago_update/<int:pk>/', DetallePagoUpdateView.as_view(), name="detalle_pago_update"),
+    path('detalle_pago/<int:pk>/', DetallePagoDetailView.as_view(), name='detalle_pago_detail'),
+
 
     # Rutas para el Modelo de ServiciosAdicionales
     path('servicios_list/', ServiciosAdicionalesListView.as_view(), name="servicios_list"),
@@ -54,5 +56,9 @@ urlpatterns = [
     path('atencion/<int:atencion_id>/detalle/', ver_detalle_atencion, name='detalle_atencion'),
     path('receta/<int:detalle_id>/imprimir/', receta_imprimir, name='receta_imprimir'),
     path('receta/atencion/<int:atencion_id>/imprimir/', receta_imprimir, name='receta_atencion_imprimir'),
+
+    # Rutas para Cita Medica
+    path('citas/', CitaMedicaListView.as_view(), name="cita_list"),
+    path('cita_create/', CitaMedicaCreateView.as_view(), name="cita_create"),
 
 ]

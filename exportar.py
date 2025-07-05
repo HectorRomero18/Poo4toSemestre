@@ -1,23 +1,38 @@
-import os
-import django
-from django.apps import apps
-from django.core import serializers
+import json
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proy_clinico.settings')  # Ajusta aquí
-django.setup()
+# Cambia este nombre si tu archivo tiene otro
+with open("json_plano_completo.json", "r", encoding="utf-8") as f:
+    datos = json.load(f)
 
-all_objects = []
+inserts_por_tabla = {}
 
-for model in apps.get_models():
-    try:
-        objs = model.objects.all()
-        all_objects.extend(objs)
-    except Exception as e:
-        print(f"Error exportando modelo {model}: {e}")
+for registro in datos:
+    modelo = registro.pop("modelo")
+    app, tabla = modelo.lower().split(".")  # convierte app.Modelo a app_modelo
+    tabla_sql = f"{app}_{tabla}"
 
-data = serializers.serialize('json', all_objects, indent=2)
+    columnas = ", ".join(registro.keys())
+    valores = []
+    for val in registro.values():
+        if val is None:
+            valores.append("NULL")
+        elif isinstance(val, str):
+            valores.append(f"'{val.replace("'", "''")}'")
+        else:
+            valores.append(str(val))
+    valores_str = ", ".join(valores)
 
-with open('fixture_completa.json', 'w', encoding='utf-8') as f:
-    f.write(data)
+    insert = f"INSERT INTO {tabla_sql} ({columnas}) VALUES ({valores_str});"
 
-print("Fixture compatible con loaddata creado como fixture_completa.json")
+    if tabla_sql not in inserts_por_tabla:
+        inserts_por_tabla[tabla_sql] = []
+    inserts_por_tabla[tabla_sql].append(insert)
+
+# Guardar todos los inserts en un archivo SQL
+with open("datos_insertables.sql", "w", encoding="utf-8") as f:
+    for tabla, inserts in inserts_por_tabla.items():
+        f.write(f"-- Inserts para tabla {tabla}\n")
+        f.write("\n".join(inserts))
+        f.write("\n\n")
+
+print("✅ Archivo SQL generado como datos_insertables.sql")

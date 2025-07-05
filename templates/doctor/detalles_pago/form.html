@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Detalle de Pago</title>
     <style>
-        /* Estilos base inspirados en el segundo HTML */
+        /* Estilos base */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .services-section {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             border-radius: 20px;
@@ -14,7 +27,6 @@
             border: 2px solid #e2e8f0;
             position: relative;
             overflow: hidden;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .services-section::before {
@@ -49,7 +61,7 @@
             font-size: 0.9em;
         }
 
-        /* Contenedor del formulario con estilo de tarjeta */
+        /* Contenedor del formulario */
         .form-container {
             background: white;
             border-radius: 16px;
@@ -66,10 +78,10 @@
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);
         }
 
-        /* Grid para organizar campos en filas */
+        /* Grid para organizar campos */
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
             margin-bottom: 24px;
         }
@@ -77,6 +89,10 @@
         .form-group {
             position: relative;
             margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
         }
 
         .form-group label {
@@ -103,7 +119,6 @@
             color: #1f2937;
             box-sizing: border-box;
         }
-        
 
         .form-control:focus {
             border-color: #667eea;
@@ -116,6 +131,13 @@
         .form-control:hover:not(:focus) {
             border-color: #d1d5db;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-control:disabled {
+            background: #f3f4f6;
+            color: #6b7280;
+            cursor: not-allowed;
+            opacity: 0.7;
         }
 
         /* Estilos para select */
@@ -141,30 +163,36 @@
             padding-right: 50px;
         }
 
-        /* Estilos para textarea */
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
+        select.form-control:disabled + .select-wrapper::after {
+            color: #9ca3af;
         }
 
-        /* Estilos para checkbox y radio */
-        .checkbox-wrapper, .radio-wrapper {
+        /* Estilos para checkbox */
+        .checkbox-wrapper {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 16px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
         }
 
-        .checkbox-wrapper input[type="checkbox"],
-        .radio-wrapper input[type="radio"] {
+        .checkbox-wrapper:hover {
+            background: #f1f5f9;
+            border-color: #10b981;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
             width: 20px;
             height: 20px;
             accent-color: #10b981;
             cursor: pointer;
         }
 
-        .checkbox-wrapper label,
-        .radio-wrapper label {
+        .checkbox-wrapper label {
             margin: 0;
             font-weight: 500;
             color: #374151;
@@ -178,7 +206,14 @@
             font-weight: 700;
         }
 
-        /* Botón de envío mejorado */
+        /* Contenedor de botones */
+        .button-container {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        /* Botón de envío */
         .submit-btn {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
@@ -191,8 +226,7 @@
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            width: 100%;
-            margin-top: 24px;
+            flex: 1;
             position: relative;
             overflow: hidden;
         }
@@ -221,7 +255,7 @@
             transform: translateY(-1px);
         }
 
-        /* Estilo para botón cancelar */
+        /* Botón cancelar */
         .cancel-btn {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
@@ -234,13 +268,13 @@
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            width: 100%;
-            margin-top: 12px;
+            flex: 1;
             position: relative;
             overflow: hidden;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cancel-btn::before {
@@ -296,6 +330,18 @@
             border: 1px solid #fecaca;
         }
 
+        /* Mensaje de éxito */
+        .success-message {
+            color: #10b981;
+            font-size: 1em;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: #f0fdf4;
+            border-radius: 12px;
+            border: 2px solid #bbf7d0;
+            animation: slideIn 0.5s ease;
+        }
+
         /* Texto de ayuda */
         .help-text {
             color: #6b7280;
@@ -335,6 +381,10 @@
             .services-header h3 {
                 font-size: 1.5em;
             }
+
+            .button-container {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 480px) {
@@ -366,7 +416,8 @@
         .form-group[data-field-type="number"] label::before,
         .form-group[data-field-type="date"] label::before,
         .form-group[data-field-type="select"] label::before,
-        .form-group[data-field-type="textarea"] label::before {
+        .form-group[data-field-type="textarea"] label::before,
+        .form-group[data-field-type="checkbox"] label::before {
             margin-right: 8px;
             font-size: 0.9em;
         }
@@ -377,75 +428,313 @@
         .form-group[data-field-type="date"] label::before { content: '📅'; }
         .form-group[data-field-type="select"] label::before { content: '📋'; }
         .form-group[data-field-type="textarea"] label::before { content: '💬'; }
+        .form-group[data-field-type="checkbox"] label::before { content: '☑️'; }
+
+        /* Spinner de carga */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .loading .spinner {
+            display: inline-block;
+        }
+
+        /* Estilos para campos dependientes */
+        .dependent-field {
+            opacity: 0.5;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .dependent-field.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Cálculos automáticos */
+        .calculation-result {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            font-weight: 600;
+            color: #059669;
+        }
     </style>
 </head>
 <body>
-    <div class="services-section">
-        <div class="services-header">
-            <h3>Detalle de Pago</h3>
-        </div>
-        
-        <div class="form-container">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                
-                <div class="form-grid">
-                    {% for field in det_form %}
-                        <div class="form-group" data-field-type="{{ field.field.widget.input_type|default:'text' }}">
-                            <label for="{{ field.id_for_label }}">
-                                {{ field.label }}
-                                {% if field.field.required %}<span class="required">*</span>{% endif %}
+    <div class="container">
+        <div class="services-section">
+            <div class="services-header">
+                <h3>Detalle de Pago</h3>
+            </div>
+            
+            <div class="form-container">
+                <form method="post" id="paymentForm">
+                    {% csrf_token %}
+                    
+                    <!-- Mostrar mensajes de error del formulario -->
+                    {% if form.non_field_errors %}
+                        <div class="error-message">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Campo pago deshabilitado (visible) -->
+                    <div class="form-group" data-field-type="select">
+                        <label for="{{ form.pago.id_for_label }}">
+                            {{ form.pago.label }}
+                            {% if form.pago.field.required %}<span class="required">*</span>{% endif %}
+                        </label>
+                        <div class="select-wrapper">
+                            {{ form.pago }}
+                        </div>
+                        {% if form.pago.help_text %}
+                            <div class="help-text">{{ form.pago.help_text }}</div>
+                        {% endif %}
+                        {% for error in form.pago.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Campo oculto para enviar el valor de pago real -->
+                    {{ form.pago_hidden }}
+
+                    <!-- Resto de campos del formulario -->
+                    <div class="form-grid">
+                        <!-- Servicio Adicional -->
+                        <div class="form-group" data-field-type="select">
+                            <label for="{{ form.servicio_adicional.id_for_label }}">
+                                {{ form.servicio_adicional.label }}
+                                {% if form.servicio_adicional.field.required %}<span class="required">*</span>{% endif %}
                             </label>
-                            
-                            {% if field.field.widget.input_type == 'select' %}
-                                <div class="select-wrapper">
-                                    {{ field }}
-                                </div>
-                            {% elif field.field.widget.input_type == 'checkbox' %}
-                                <div class="checkbox-wrapper">
-                                    {{ field }}
-                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                </div>
-                            {% elif field.field.widget.input_type == 'radio' %}
-                                <div class="radio-wrapper">
-                                    {{ field }}
-                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                </div>
-                            {% else %}
-                                {{ field }}
+                            <div class="select-wrapper">
+                                {{ form.servicio_adicional }}
+                            </div>
+                            {% if form.servicio_adicional.help_text %}
+                                <div class="help-text">{{ form.servicio_adicional.help_text }}</div>
                             {% endif %}
-                            
-                            {% if field.help_text %}
-                                <div class="help-text">{{ field.help_text }}</div>
-                            {% endif %}
-                            
-                            {% for error in field.errors %}
+                            {% for error in form.servicio_adicional.errors %}
                                 <div class="error-message">{{ error }}</div>
                             {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
-                
-                <div class="button-container">
-                    <button type="submit" class="submit-btn">
-                        💾 Guardar Detalle
-                    </button>
-                    
-                    <a href="#" onclick="window.location.href='/doctor/pago_list/'"  class="cancel-btn">✖️ Cancelar</a>
 
-                </div>
-            </form>
+                        <!-- Cantidad -->
+                        <div class="form-group" data-field-type="number">
+                            <label for="{{ form.cantidad.id_for_label }}">
+                                {{ form.cantidad.label }}
+                                {% if form.cantidad.field.required %}<span class="required">*</span>{% endif %}
+                            </label>
+                            {{ form.cantidad }}
+                            {% if form.cantidad.help_text %}
+                                <div class="help-text">{{ form.cantidad.help_text }}</div>
+                            {% else %}
+                                <div class="help-text">Cantidad de servicios</div>
+                            {% endif %}
+                            {% for error in form.cantidad.errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Precio Unitario -->
+                        <div class="form-group" data-field-type="number">
+                            <label for="{{ form.precio_unitario.id_for_label }}">
+                                {{ form.precio_unitario.label }}
+                                {% if form.precio_unitario.field.required %}<span class="required">*</span>{% endif %}
+                            </label>
+                            {{ form.precio_unitario }}
+                            {% if form.precio_unitario.help_text %}
+                                <div class="help-text">{{ form.precio_unitario.help_text }}</div>
+                            {% else %}
+                                <div class="help-text">Precio por unidad</div>
+                            {% endif %}
+                            {% for error in form.precio_unitario.errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Descuento Porcentaje -->
+                        <div class="form-group" data-field-type="number">
+                            <label for="{{ form.descuento_porcentaje.id_for_label }}">
+                                {{ form.descuento_porcentaje.label }}
+                                {% if form.descuento_porcentaje.field.required %}<span class="required">*</span>{% endif %}
+                            </label>
+                            {{ form.descuento_porcentaje }}
+                            {% if form.descuento_porcentaje.help_text %}
+                                <div class="help-text">{{ form.descuento_porcentaje.help_text }}</div>
+                            {% else %}
+                                <div class="help-text">Descuento aplicado (0-100%)</div>
+                            {% endif %}
+                            {% for error in form.descuento_porcentaje.errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Valor Seguro -->
+                        <div class="form-group dependent-field" data-field-type="number" id="valor_seguro_group">
+                            <label for="{{ form.valor_seguro.id_for_label }}">
+                                {{ form.valor_seguro.label }}
+                                {% if form.valor_seguro.field.required %}<span class="required">*</span>{% endif %}
+                            </label>
+                            {{ form.valor_seguro }}
+                            {% if form.valor_seguro.help_text %}
+                                <div class="help-text">{{ form.valor_seguro.help_text }}</div>
+                            {% else %}
+                                <div class="help-text">Valor del seguro aplicado</div>
+                            {% endif %}
+                            {% for error in form.valor_seguro.errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Aplica Seguro (checkbox) -->
+                    <div class="form-group" data-field-type="checkbox">
+                        <div class="checkbox-wrapper">
+                            {{ form.aplica_seguro }}
+                            <label for="{{ form.aplica_seguro.id_for_label }}">
+                                {{ form.aplica_seguro.label }}
+                                {% if form.aplica_seguro.field.required %}<span class="required">*</span>{% endif %}
+                            </label>
+                        </div>
+                        {% if form.aplica_seguro.help_text %}
+                            <div class="help-text">{{ form.aplica_seguro.help_text }}</div>
+                        {% endif %}
+                        {% for error in form.aplica_seguro.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Descripción Seguro -->
+                    <div class="form-group full-width dependent-field" data-field-type="text" id="descripcion_seguro_group">
+                        <label for="{{ form.descripcion_seguro.id_for_label }}">
+                            {{ form.descripcion_seguro.label }}
+                            {% if form.descripcion_seguro.field.required %}<span class="required">*</span>{% endif %}
+                        </label>
+                        {{ form.descripcion_seguro }}
+                        {% if form.descripcion_seguro.help_text %}
+                            <div class="help-text">{{ form.descripcion_seguro.help_text }}</div>
+                        {% else %}
+                            <div class="help-text">Descripción del seguro aplicado</div>
+                        {% endif %}
+                        {% for error in form.descripcion_seguro.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Cálculo automático del total -->
+                    <div class="calculation-result" id="total_calculation" style="display: none;">
+                        <strong>Total Calculado: $<span id="total_amount">0.00</span></strong>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" class="submit-btn">
+                            💾 Guardar Detalle
+                            <div class="spinner"></div>
+                        </button>
+                        <a href="{% url 'doctor:pago_list' %}" class="cancel-btn">
+                            ❌ Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
-        // Efectos de hover mejorados para inputs
         document.addEventListener('DOMContentLoaded', function() {
             // Agregar clase form-control a todos los inputs del formulario Django
-            const formInputs = document.querySelectorAll('input, select, textarea');
+            const formInputs = document.querySelectorAll('input:not([type="hidden"]), select, textarea');
             formInputs.forEach(input => {
                 if (!input.classList.contains('form-control')) {
                     input.classList.add('form-control');
+                }
+            });
+            
+            // Elementos del formulario
+            const aplicaSeguroCheckbox = document.getElementById('{{ form.aplica_seguro.id_for_label }}');
+            const valorSeguroGroup = document.getElementById('valor_seguro_group');
+            const descripcionSeguroGroup = document.getElementById('descripcion_seguro_group');
+            const cantidadInput = document.getElementById('{{ form.cantidad.id_for_label }}');
+            const precioUnitarioInput = document.getElementById('{{ form.precio_unitario.id_for_label }}');
+            const descuentoInput = document.getElementById('{{ form.descuento_porcentaje.id_for_label }}');
+            const valorSeguroInput = document.getElementById('{{ form.valor_seguro.id_for_label }}');
+            const totalCalculation = document.getElementById('total_calculation');
+            const totalAmount = document.getElementById('total_amount');
+            
+            // Función para manejar la visibilidad de campos de seguro
+            function toggleSeguroFields() {
+                const isChecked = aplicaSeguroCheckbox.checked;
+                
+                if (isChecked) {
+                    valorSeguroGroup.classList.add('active');
+                    descripcionSeguroGroup.classList.add('active');
+                } else {
+                    valorSeguroGroup.classList.remove('active');
+                    descripcionSeguroGroup.classList.remove('active');
+                    // Limpiar los campos cuando se desactiva el seguro
+                    valorSeguroInput.value = '';
+                    document.getElementById('{{ form.descripcion_seguro.id_for_label }}').value = '';
+                }
+                
+                calculateTotal();
+            }
+            
+            // Función para calcular el total
+            function calculateTotal() {
+                const cantidad = parseFloat(cantidadInput.value) || 0;
+                const precioUnitario = parseFloat(precioUnitarioInput.value) || 0;
+                const descuento = parseFloat(descuentoInput.value) || 0;
+                const valorSeguro = parseFloat(valorSeguroInput.value) || 0;
+                
+                // Calcular subtotal
+                const subtotal = cantidad * precioUnitario;
+                
+                // Aplicar descuento
+                const montoDescuento = subtotal * (descuento / 100);
+                const totalConDescuento = subtotal - montoDescuento;
+                
+                // Añadir seguro si aplica
+                const totalFinal = totalConDescuento + (aplicaSeguroCheckbox.checked ? valorSeguro : 0);
+                
+                // Mostrar el resultado
+                if (subtotal > 0) {
+                    totalAmount.textContent = totalFinal.toFixed(2);
+                    totalCalculation.style.display = 'block';
+                } else {
+                    totalCalculation.style.display = 'none';
+                }
+            }
+            
+            // Event listeners
+            if (aplicaSeguroCheckbox) {
+                aplicaSeguroCheckbox.addEventListener('change', toggleSeguroFields);
+                // Inicializar estado
+                toggleSeguroFields();
+            }
+            
+            // Event listeners para cálculos automáticos
+            [cantidadInput, precioUnitarioInput, descuentoInput, valorSeguroInput].forEach(input => {
+                if (input) {
+                    input.addEventListener('input', calculateTotal);
                 }
             });
             
@@ -480,47 +769,366 @@
                     formContainer.style.transform = 'translateY(0)';
                 }, 100);
             }
-
-            // Efectos de ripple en el botón
-            const submitBtn = document.querySelector('.submit-btn');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.style.position = 'absolute';
-                    ripple.style.borderRadius = '50%';
-                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-                    ripple.style.transform = 'scale(0)';
-                    ripple.style.animation = 'ripple 0.6s linear';
-                    ripple.style.pointerEvents = 'none';
-                    
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            }
         });
 
-        // Animación de ripple
+        // Función para manejar el envío del formulario
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Mostrar estado de carga
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // En un entorno real, Django manejará la validación y el envío
+            // Este código es solo para la demostración visual
+            
+            // Opcional: Validaciones adicionales del lado del cliente
+            const cantidadInput = document.getElementById('{{ form.cantidad.id_for_label }}');
+            const precioUnitarioInput = document.getElementById('{{ form.precio_unitario.id_for_label }}');
+            
+            if (cantidadInput && cantidadInput.value && parseFloat(cantidadInput.value) <= 0) {
+                e.preventDefault();
+                alert('La cantidad debe ser mayor a 0');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            if (precioUnitarioInput && precioUnitarioInput.value && parseFloat(precioUnitarioInput.value) <= 0) {
+                e.preventDefault();
+                alert('El precio unitario debe ser mayor a 0');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Si todo está bien, el formulario se enviará normalmente
+            // Django manejará el resto del proceso
+        });
+
+        // Efectos de ripple en el botón
+        document.querySelectorAll('.submit-btn, .cancel-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out forwards';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Añadir animación de ripple CSS
         const style = document.createElement('style');
         style.textContent = `
             @keyframes ripple {
                 to {
                     transform: scale(4);
-                    opacity: 0;>
+                    opacity: 0;
                 }
             }
         `;
         document.head.appendChild(style);
-    </script>
-</body>
-</html>
+
+        // Validación en tiempo real
+        function addRealTimeValidation() {
+            const inputs = document.querySelectorAll('.form-control');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    clearFieldError(this);
+                });
+            });
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldType = field.type;
+            let isValid = true;
+            let errorMessage = '';
+
+            // Validaciones específicas por tipo de campo
+            if (field.required && !value) {
+                isValid = false;
+                errorMessage = 'Este campo es obligatorio';
+            } else if (fieldType === 'number' && value && isNaN(value)) {
+                isValid = false;
+                errorMessage = 'Debe ser un número válido';
+            } else if (fieldType === 'email' && value && !isValidEmail(value)) {
+                isValid = false;
+                errorMessage = 'Email no válido';
+            } else if (field.id.includes('cantidad') && value && parseFloat(value) <= 0) {
+                isValid = false;
+                errorMessage = 'La cantidad debe ser mayor a 0';
+            } else if (field.id.includes('precio') && value && parseFloat(value) <= 0) {
+                isValid = false;
+                errorMessage = 'El precio debe ser mayor a 0';
+            } else if (field.id.includes('descuento') && value && (parseFloat(value) < 0 || parseFloat(value) > 100)) {
+                isValid = false;
+                errorMessage = 'El descuento debe estar entre 0 y 100';
+            }
+
+            if (!isValid) {
+                showFieldError(field, errorMessage);
+            } else {
+                clearFieldError(field);
+            }
+
+            return isValid;
+        }
+
+        function showFieldError(field, message) {
+            clearFieldError(field);
+            
+            const formGroup = field.closest('.form-group');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message validation-error';
+            errorDiv.textContent = message;
+            
+            formGroup.appendChild(errorDiv);
+            field.style.borderColor = '#ef4444';
+        }
+
+        function clearFieldError(field) {
+            const formGroup = field.closest('.form-group');
+            const existingError = formGroup.querySelector('.validation-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            field.style.borderColor = '';
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Inicializar validación en tiempo real
+        addRealTimeValidation();
+
+        // Autoguardado (simulado)
+        let autoSaveTimeout;
+        function setupAutoSave() {
+            const formInputs = document.querySelectorAll('.form-control');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    clearTimeout(autoSaveTimeout);
+                    autoSaveTimeout = setTimeout(() => {
+                        // Simular autoguardado
+                        console.log('Autoguardando datos...');
+                        showAutoSaveIndicator();
+                    }, 2000);
+                });
+            });
+        }
+
+        function showAutoSaveIndicator() {
+            const indicator = document.createElement('div');
+            indicator.className = 'auto-save-indicator';
+            indicator.innerHTML = '💾 Guardado automático';
+            indicator.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 8px;
+                font-size: 14px;
+                z-index: 1000;
+                animation: slideInRight 0.3s ease;
+            `;
+            
+            document.body.appendChild(indicator);
+            
+            setTimeout(() => {
+                indicator.style.animation = 'slideOutRight 0.3s ease forwards';
+                setTimeout(() => indicator.remove(), 300);
+            }, 2000);
+        }
+
+        // Añadir animaciones para el autoguardado
+        const autoSaveStyle = document.createElement('style');
+        autoSaveStyle.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(autoSaveStyle);
+
+        // Inicializar autoguardado
+        setupAutoSave();
+
+        // Navegación con teclado mejorada
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
+                e.preventDefault();
+                const formInputs = Array.from(document.querySelectorAll('.form-control'));
+                const currentIndex = formInputs.indexOf(e.target);
+                const nextInput = formInputs[currentIndex + 1];
+                
+                if (nextInput) {
+                    nextInput.focus();
+                } else {
+                    document.querySelector('.submit-btn').focus();
+                }
+            }
+        });
+
+        // Función para formatear números con separadores de miles
+        function formatNumber(input) {
+            let value = input.value.replace(/,/g, '');
+            if (!isNaN(value) && value !== '') {
+                input.value = parseFloat(value).toLocaleString('es-ES');
+            }
+        }
+
+        // Aplicar formato a campos numéricos
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('blur', function() {
+                formatNumber(this);
+            });
+            
+            input.addEventListener('focus', function() {
+                this.value = this.value.replace(/,/g, '');
+            });
+        });
+
+        // Tema oscuro (opcional)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Cargar preferencia de tema
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Estilos para tema oscuro
+        const darkModeStyle = document.createElement('style');
+        darkModeStyle.textContent = `
+            .dark-mode {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2d2d2d;
+                --text-primary: #ffffff;
+                --text-secondary: #cccccc;
+                --border-color: #404040;
+            }
+            
+            .dark-mode body {
+                background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+                color: var(--text-primary);
+            }
+            
+            .dark-mode .form-container {
+                background: var(--bg-secondary);
+                border-color: var(--border-color);
+            }
+            
+            .dark-mode .form-control {
+                background: var(--bg-primary);
+                border-color: var(--border-color);
+                color: var(--text-primary);
+            }
+            
+            .dark-mode .form-control:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+            }
+        `;
+        document.head.appendChild(darkModeStyle);
+
+        // Función para mostrar confirmación antes de salir
+        window.addEventListener('beforeunload', function(e) {
+            const formData = new FormData(document.getElementById('paymentForm'));
+            let hasData = false;
+            
+            for (let [key, value] of formData.entries()) {
+                if (value.trim() !== '') {
+                    hasData = true;
+                    break;
+                }
+            }
+            
+            if (hasData) {
+                e.preventDefault();
+                e.returnValue = '';
+                return '';
+            }
+        });
+
+        // Función para mostrar tooltips en campos con errores
+        function showTooltip(element, message) {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = message;
+            tooltip.style.cssText = `
+                position: absolute;
+                background: #333;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 4px;
+                font-size: 12px;
+                z-index: 1000;
+                white-space: nowrap;
+                top: -40px;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            element.style.position = 'relative';
+            element.appendChild(tooltip);
+            
+            setTimeout(() => {
+                tooltip.style.opacity = '1';
+            }, 100);
+            
+            setTimeout(() => {
+                tooltip.remove();
+            }, 3000);
+        }
+
+        console.log('Formulario de Detalle de Pago inicializado correctamente');
+    });
+</script>

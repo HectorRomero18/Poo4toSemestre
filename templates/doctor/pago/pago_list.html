@@ -547,6 +547,20 @@
                                                 <i class="fa-solid fa-edit"></i>
                                             </a>
                                         {% endif %}
+                                           {% with primer_detalle=pago.detalles.first %}
+                                                {% if primer_detalle %}
+                                                    <a href="{% url 'doctor:detalle_pago_detail' primer_detalle.id %}" 
+                                                    class="action-btn edit-btn text-yellow-500 hover:text-yellow-600" 
+                                                    style="color: #facc15;" 
+                                                    title="detalles pago">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                {% else %}
+                                                    <span class="text-gray-500 italic">No hay detalles</span>
+                                                {% endif %}
+                                            {% endwith %}
+
+
                                         {% if permissions.delete_pago %}
                                             <a href="{% url 'doctor:pago_delete' pago.id %}" 
                                                class="action-btn delete-btn"

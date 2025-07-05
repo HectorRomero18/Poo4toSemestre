@@ -9,8 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 @csrf_exempt
 def pago_paypal(request, monto, atencion_id):
-    host = f"https://{get_current_site(request).domain}"
-    base_url = f"https://{host}"
+    base_url = f"https://{get_current_site(request).domain}"  # ✔️ solo esto
 
     if request.method != 'GET':
         return HttpResponseNotAllowed(['GET'])
@@ -31,7 +30,6 @@ def pago_paypal(request, monto, atencion_id):
 
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, "doctor/pago/paypal_form.html", {"form": form})
-
 
 def pago_exitoso(request):
     return render(request, 'doctor/pago/pago_exitoso.html')
