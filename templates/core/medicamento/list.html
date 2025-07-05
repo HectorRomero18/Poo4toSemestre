@@ -1,0 +1,754 @@
+{% extends 'home.html' %}
+
+<title>{% block title %}Medicamentos{% endblock %}</title>
+
+{% block content %}
+
+{% load static %}
+
+{% include 'fragments/messages.html' %}
+
+<style>
+
+.gradient-text {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.search-container {
+position: relative;
+margin-bottom: 2rem;
+}
+
+.search-input {
+width: 100%;
+padding: 16px 24px 16px 56px;
+border: 2px solid #e5e7eb;
+border-radius: 16px;
+font-size: 16px;
+transition: all 0.3s ease;
+background: white;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+outline: none;
+border-color: #667eea;
+box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+transform: translateY(-2px);
+}
+
+.search-icon {
+position: absolute;
+left: 20px;
+top: 50%;
+transform: translateY(-50%);
+color: #6b7280;
+font-size: 18px;
+}
+
+.results-info {
+margin-bottom: 1.5rem;
+padding: 12px 20px;
+background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+border-radius: 12px;
+color: #374151;
+font-weight: 500;
+border-left: 4px solid #667eea;
+}
+
+.table-container {
+background: white;
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+margin-bottom: 2rem;
+}
+
+.table-header {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+padding: 20px;
+display: grid;
+grid-template-columns: 60px 80px 180px 120px 150px 100px 80px 100px 80px 120px;
+gap: 15px;
+font-weight: 600;
+font-size: 14px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.table-row {
+display: grid;
+grid-template-columns: 60px 80px 180px 120px 150px 100px 80px 100px 80px 120px;
+gap: 15px;
+padding: 20px;
+border-bottom: 1px solid #f3f4f6;
+transition: all 0.3s ease;
+align-items: center;
+}
+
+.table-row:hover {
+background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+transform: translateX(4px);
+}
+
+.table-row:last-child {
+border-bottom: none;
+}
+
+.table-cell {
+display: flex;
+align-items: center;
+}
+
+.table-cell.center {
+justify-content: center;
+}
+
+.id-badge {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+padding: 6px 12px;
+border-radius: 20px;
+font-weight: 600;
+font-size: 12px;
+display: inline-block;
+min-width: 40px;
+text-align: center;
+}
+
+.medicamento-image {
+width: 60px;
+height: 60px;
+border-radius: 12px;
+object-fit: cover;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.medicamento-image:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.no-image {
+width: 60px;
+height: 60px;
+border-radius: 12px;
+background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #9ca3af;
+font-size: 24px;
+}
+
+.medicamento-name {
+font-weight: 600;
+color: #1f2937;
+font-size: 16px;
+}
+
+.medicamento-tipo {
+color: #6b7280;
+font-size: 14px;
+font-weight: 500;
+}
+
+.medicamento-concentracion {
+color: #374151;
+font-size: 14px;
+font-weight: 500;
+}
+
+.medicamento-via {
+background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+color: #3730a3;
+padding: 4px 8px;
+border-radius: 12px;
+font-size: 12px;
+font-weight: 600;
+}
+
+.medicamento-precio {
+color: #059669;
+font-weight: 600;
+font-size: 14px;
+}
+
+.medicamento-stock {
+color: #374151;
+font-weight: 600;
+font-size: 14px;
+}
+
+.stock-low {
+color: #dc2626;
+background: #fee2e2;
+padding: 4px 8px;
+border-radius: 12px;
+}
+
+.status-badge {
+padding: 4px 12px;
+border-radius: 20px;
+font-size: 12px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.status-active {
+background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+color: #065f46;
+}
+
+.status-inactive {
+background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+color: #991b1b;
+}
+
+.comercial-badge {
+padding: 4px 8px;
+border-radius: 12px;
+font-size: 12px;
+font-weight: 600;
+}
+
+.comercial-si {
+background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+color: #1e40af;
+}
+
+.comercial-no {
+background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+color: #92400e;
+}
+
+.action-buttons {
+display: flex;
+gap: 8px;
+justify-content: center;
+}
+
+.action-btn {
+width: 40px;
+height: 40px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+transition: all 0.3s ease;
+font-size: 14px;
+}
+
+.view-btn {
+background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+color: white;
+}
+
+.view-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
+}
+
+.edit-btn {
+background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+color: white;
+}
+
+.edit-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+}
+
+.delete-btn {
+background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+color: white;
+}
+
+.delete-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 15px rgba(239, 68, 68, 0.3);
+}
+
+.empty-state {
+text-align: center;
+padding: 80px 20px;
+color: #6b7280;
+}
+
+.empty-icon {
+font-size: 64px;
+margin-bottom: 20px;
+opacity: 0.3;
+}
+
+.empty-text {
+font-size: 18px;
+margin-bottom: 10px;
+}
+
+.empty-subtext {
+font-size: 14px;
+opacity: 0.7;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+padding: 16px 32px;
+border-radius: 12px;
+text-decoration: none;
+font-weight: 600;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+transition: all 0.3s ease;
+border: none;
+font-size: 16px;
+margin-right: 12px;
+margin-bottom: 12px;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+color: white;
+padding: 16px 32px;
+border-radius: 12px;
+text-decoration: none;
+font-weight: 600;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+transition: all 0.3s ease;
+border: none;
+font-size: 16px;
+margin-right: 12px;
+margin-bottom: 12px;
+}
+
+.btn-secondary:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 20px rgba(107, 114, 128, 0.3);
+}
+
+.page-header {
+text-align: center;
+margin-bottom: 3rem;
+padding: 2rem 0;
+}
+
+.page-subtitle {
+color: #6b7280;
+font-size: 18px;
+margin-top: 12px;
+font-weight: 400;
+}
+
+.actions-container {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+margin-top: 2rem;
+}
+
+.fade-in {
+animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+from { transform: translateX(-20px); opacity: 0; }
+to { transform: translateX(0); opacity: 1; }
+}
+
+/* Modal para imagen ampliada */
+.image-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1000;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+.image-modal.active {
+opacity: 1;
+visibility: visible;
+}
+
+.image-modal-content {
+max-width: 90%;
+max-height: 90%;
+border-radius: 12px;
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+transform: scale(0.8);
+transition: all 0.3s ease;
+}
+
+.image-modal.active .image-modal-content {
+transform: scale(1);
+}
+
+.image-modal-close {
+position: absolute;
+top: 20px;
+right: 20px;
+width: 40px;
+height: 40px;
+background: rgba(255, 255, 255, 0.9);
+border: none;
+border-radius: 50%;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 20px;
+color: #374151;
+transition: all 0.3s ease;
+}
+
+.image-modal-close:hover {
+background: white;
+transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+.table-header,
+.table-row {
+grid-template-columns: 1fr;
+gap: 8px;
+padding: 16px;
+}
+
+.table-header {
+display: none;
+}
+
+.table-row {
+display: block;
+background: white;
+border-radius: 12px;
+margin-bottom: 16px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.table-cell {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px 0;
+border-bottom: 1px solid #f3f4f6;
+}
+
+.table-cell:last-child {
+border-bottom: none;
+justify-content: center;
+margin-top: 12px;
+}
+
+.table-cell::before {
+content: attr(data-label);
+font-weight: 600;
+color: #374151;
+font-size: 14px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.search-input {
+padding: 14px 20px 14px 48px;
+}
+
+.gradient-text {
+font-size: 2.5rem;
+}
+
+.action-btn {
+width: 36px;
+height: 36px;
+font-size: 12px;
+}
+
+.medicamento-image,
+.no-image {
+width: 50px;
+height: 50px;
+}
+}
+
+</style>
+
+<div class="page-header fade-in">
+<h1 class="gradient-text text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+Medicamentos
+</h1>
+<p class="page-subtitle">
+Gestiona el inventario de medicamentos del sistema
+</p>
+</div>
+
+<div class="search-container slide-in">
+<div class="search-icon">
+<i class="fa-solid fa-search"></i>
+</div>
+<input type="text" name="q" id="table-search" class="search-input"
+placeholder="Buscar medicamentos..." value="{{ request.GET.q }}">
+</div>
+
+{% if medicamentos %}
+<div class="results-info fade-in">
+<i class="fa-solid fa-info-circle mr-2"></i>
+Mostrando {{ medicamentos|length }} resultado{{ medicamentos|length|pluralize }}
+</div>
+{% endif %}
+
+<div class="table-container fade-in">
+<div class="table-header">
+<div>ID</div>
+<div>Foto</div>
+<div>Nombre</div>
+<div>Tipo</div>
+<div>Concentración</div>
+<div>Vía</div>
+<div>Stock</div>
+<div>Precio</div>
+<div class="center">Estado</div>
+<div class="center">Acciones</div>
+</div>
+
+{% for medicamento in medicamentos %}
+<div class="table-row slide-in" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s">
+<div class="table-cell" data-label="ID">
+<span class="id-badge">{{ medicamento.id }}</span>
+</div>
+
+<div class="table-cell" data-label="Foto">
+{% if medicamento.foto %}
+<img src="{{ medicamento.foto.url }}" 
+     alt="{{ medicamento.nombre }}" 
+     class="medicamento-image"
+     onclick="openImageModal('{{ medicamento.foto.url }}', '{{ medicamento.nombre }}')">
+{% else %}
+<div class="no-image">
+<i class="fa-solid fa-pills"></i>
+</div>
+{% endif %}
+</div>
+
+<div class="table-cell" data-label="Nombre">
+<div>
+<div class="medicamento-name">{{ medicamento.nombre }}</div>
+{% if medicamento.marca_medicamento %}
+<div class="medicamento-tipo">{{ medicamento.marca_medicamento }}</div>
+{% endif %}
+</div>
+</div>
+
+<div class="table-cell" data-label="Tipo">
+<span class="medicamento-tipo">{{ medicamento.tipo }}</span>
+</div>
+
+<div class="table-cell" data-label="Concentración">
+<span class="medicamento-concentracion">
+{{ medicamento.concentracion|default:"Sin especificar" }}
+</span>
+</div>
+
+<div class="table-cell" data-label="Vía">
+<span class="medicamento-via">{{ medicamento.get_via_administracion_display }}</span>
+</div>
+
+<div class="table-cell" data-label="Stock">
+<span class="medicamento-stock {% if medicamento.cantidad <= 10 %}stock-low{% endif %}">
+{{ medicamento.cantidad }} unid.
+</span>
+</div>
+
+<div class="table-cell" data-label="Precio">
+<span class="medicamento-precio">${{ medicamento.precio }}</span>
+</div>
+
+<div class="table-cell center" data-label="Estado">
+{% if medicamento.activo %}
+<span class="status-badge status-active">
+<i class="fa-solid fa-check-circle mr-1"></i>
+Activo
+</span>
+{% else %}
+<span class="status-badge status-inactive">
+<i class="fa-solid fa-times-circle mr-1"></i>
+Inactivo
+</span>
+{% endif %}
+</div>
+
+<div class="table-cell center" data-label="Acciones">
+<div class="action-buttons">
+{% if permissions.change_medicamento %}
+<a href="{% url 'core:medicamento_update' medicamento.id %}"
+   class="action-btn edit-btn" title="Editar {{ medicamento.nombre }}">
+<i class="fa-solid fa-edit"></i>
+</a>
+{% endif %}
+
+{% if permissions.delete_medicamento %}
+<a href="#" class="action-btn delete-btn"
+   title="Eliminar {{ medicamento.nombre }}"
+   onclick="openDeleteModal('{{ medicamento.id }}', '{{ medicamento.nombre }}', '{% url 'core:medicamento_delete' medicamento.id %}')">
+<i class="fa-solid fa-trash"></i>
+</a>
+{% endif %}
+</div>
+</div>
+</div>
+
+{% empty %}
+<div class="empty-state">
+<div class="empty-icon">
+<i class="fa-solid fa-capsules"></i>
+</div>
+<div class="empty-text">
+{% if request.GET.q %}
+No se encontraron resultados para "{{ request.GET.q }}"
+{% else %}
+No hay medicamentos registrados
+{% endif %}
+</div>
+<div class="empty-subtext">
+{% if request.GET.q %}
+Intenta con otros términos de búsqueda
+{% else %}
+Comienza agregando el primer medicamento
+{% endif %}
+</div>
+</div>
+
+{% endfor %}
+</div>
+
+<div class="actions-container fade-in">
+{% if permissions.add_medicamento %}
+<a href="{{ create_url }}" class="btn-primary">
+<i class="fa-solid fa-plus"></i>
+Nuevo Medicamento
+</a>
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn-secondary">
+<i class="fa-solid fa-home"></i>
+Inicio
+</a>
+</div>
+
+<!-- Modal para imagen ampliada -->
+<div id="imageModal" class="image-modal" onclick="closeImageModal()">
+<button class="image-modal-close" onclick="closeImageModal()">
+<i class="fa-solid fa-times"></i>
+</button>
+<img id="modalImage" class="image-modal-content" src="" alt="">
+</div>
+
+{% include 'fragments/delete.html' %}
+
+<script>
+// Funcionalidad del buscador
+document.getElementById('table-search').addEventListener('input', function(e) {
+const searchTerm = e.target.value.toLowerCase();
+const rows = document.querySelectorAll('.table-row:not(.empty-state)');
+
+rows.forEach(row => {
+const nombre = row.querySelector('.medicamento-name').textContent.toLowerCase();
+const id = row.querySelector('.id-badge').textContent.toLowerCase();
+const tipo = row.querySelector('.medicamento-tipo').textContent.toLowerCase();
+
+if (nombre.includes(searchTerm) || id.includes(searchTerm) || tipo.includes(searchTerm)) {
+row.style.display = 'grid';
+row.style.animation = 'slideIn 0.3s ease-out';
+} else {
+row.style.display = 'none';
+}
+});
+});
+
+// Función para abrir modal de imagen
+function openImageModal(imageSrc, altText) {
+const modal = document.getElementById('imageModal');
+const modalImage = document.getElementById('modalImage');
+modalImage.src = imageSrc;
+modalImage.alt = altText;
+modal.classList.add('active');
+document.body.style.overflow = 'hidden';
+}
+
+// Función para cerrar modal de imagen
+function closeImageModal() {
+const modal = document.getElementById('imageModal');
+modal.classList.remove('active');
+document.body.style.overflow = 'auto';
+}
+
+// Función para cerrar modal de detalles
+function closeDetailsModal() {
+document.getElementById('detailsModal').classList.add('hidden');
+document.getElementById('detailsModal').classList.remove('flex');
+}
+
+// Función para el modal de eliminación
+function openDeleteModal(id, nombre, url) {
+const modal = document.getElementById('deleteModal');
+modal.classList.remove('hidden');
+document.getElementById('Description').textContent = `¿Eliminar "${nombre}"?`;
+const form = document.getElementById('deleteForm');
+form.action = url;
+}
+
+function closeModal() {
+const modal = document.getElementById('deleteModal');
+modal.classList.add('hidden');
+}
+
+// Animación de entrada escalonada
+document.addEventListener('DOMContentLoaded', function() {
+const rows = document.querySelectorAll('.table-row');
+rows.forEach((row, index) => {
+row.style.animationDelay = `${index * 0.1}s`;
+});
+});
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') {
+closeImageModal();
+closeDetailsModal();
+}
+});
+</script>
+
+{% endblock %}
