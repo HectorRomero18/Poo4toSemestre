@@ -64,6 +64,7 @@ LOCAL_APPS = [
     'applications.security.apps.SecurityConfig',
     'applications.core.apps.CoreConfig',
     'applications.doctor.apps.DoctorConfig',
+    'applications.chatbot.apps.ChatbotConfig',
 ]
 INSTALLED_APPS = INSTALLED_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -111,17 +112,17 @@ WSGI_APPLICATION = 'proy_clinico.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
+DEBUG = True
+SECRET_KEY = 'django-insecure-ic81eu1==6a3row$0apcex_-1%ozqnxqzut3pj!@lk*e3x%zxc'
 
 DATABASES = {
     'default': {
-        'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_medico',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT':'5432',
     }
 }
 
