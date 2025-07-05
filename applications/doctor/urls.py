@@ -3,15 +3,13 @@ from django.urls import path
 from applications.doctor.views.atencion_medica import AtencionListView, AtencionCreateView, AtencionUpdateView, \
     AtencionDeleteView
 from applications.doctor.views.pago import PagoListView, PagoCreateView, PagoDeleteView, PagoUpdateView
-from applications.doctor.views.detalles_pago import DetallePagoCreateView, DetallePagoUpdateView
+from applications.doctor.views.detalles_pago import DetallePagoCreateView, DetallePagoUpdateView, DetallePagoDetailView
 from applications.doctor.views.servicios_adicionales import ServiciosAdicionalesListView, ServiciosAdicionalesCreateView, ServiciosAdicionalesUpdateView, ServiciosAdicionalesDeleteView
 from applications.doctor.views.paypal import pago_paypal, pago_cancelado, pago_exitoso
 from applications.doctor.views.calendario import calendario
 
 from applications.doctor.views.horario import HorarioAtencionCreateView, HorarioAtencionDeleteView, HorarioAtencionListView, HorarioAtencionUpdateView
 from applications.doctor.views import cita
-from applications.doctor.views.cita import CitaMedicaListView, CitaMedicaCreateView, CitaMedicaUpdateView, CitaMedicaDeleteView
-
 from applications.doctor.views.atencion import ver_detalle_atencion
 from applications.doctor.views.receta import receta_imprimir
 from applications.doctor.views.detalle_atencion_views import (
@@ -38,6 +36,8 @@ urlpatterns = [
     # ruta para DetallePago
     path('detalle_pago_create/', DetallePagoCreateView.as_view(), name="detalle_pago_create"),
     path('detalle_pago_update/<int:pk>/', DetallePagoUpdateView.as_view(), name="detalle_pago_update"),
+    path('detalle_pago/<int:pk>/', DetallePagoDetailView.as_view(), name='detalle_pago_detail'),
+
 
     # Rutas para el Modelo de ServiciosAdicionales
     path('servicios_list/', ServiciosAdicionalesListView.as_view(), name="servicios_list"),
@@ -62,19 +62,11 @@ urlpatterns = [
     path('atencion/<int:atencion_id>/detalle/', ver_detalle_atencion, name='detalle_atencion'),
     path('receta/<int:detalle_id>/imprimir/', receta_imprimir, name='receta_imprimir'),
     path('receta/atencion/<int:atencion_id>/imprimir/', receta_imprimir, name='receta_atencion_imprimir'),
-    path('detalles/', DetalleAtencionListView.as_view(), name='detalle_atencion_list'),
-    path('detalles/create/', DetalleAtencionCreateView.as_view(), name='detalle_atencion_create'),
-    path('detalles/<int:pk>/update/', DetalleAtencionUpdateView.as_view(), name='detalle_atencion_update'),
-    path('detalles/<int:pk>/delete/', DetalleAtencionDeleteView.as_view(), name='detalle_atencion_delete'),
-    path('calendario/', calendario, name='calendario'),
-    path('citas/', CitaMedicaListView.as_view(), name='cita_list'),
-    # path('citas/form/', CitaMedicaCreateView.as_view(), name='cita_create'),
 
-    path('citas/', CitaMedicaListView.as_view(), name='cita_list'),
-    path('citas/nueva/', CitaMedicaCreateView.as_view(), name='cita_create'),
-    path('citas/<int:pk>/editar/', CitaMedicaUpdateView.as_view(), name='cita_update'),
-    path('citas/<int:pk>/eliminar/', CitaMedicaDeleteView.as_view(), name='cita_delete'),
+    path('detalle_atencion_list/', DetalleAtencionListView.as_view(), name="detalle_atencion_list"),
+    path('detalle_atencion_create/', DetalleAtencionCreateView.as_view(), name="detalle_atencion_create"),
+    path('detalle_atencion_update/<int:pk>/', DetalleAtencionUpdateView.as_view(), name="detalle_atencion_update"),
+    path('detalle_atencion_delete/<int:pk>/', DetalleAtencionDeleteView.as_view(), name="detalle_atencion_delete"),
+    path('cita_medica_list/', CitaMedicaListView.as_view(), name="cita_medica_list"),
+    path('cita_medica_create/', CitaMedicaCreateView.as_view(), name="cita_medica_create")
 ]
-
-
-

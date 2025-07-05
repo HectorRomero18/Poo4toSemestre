@@ -1,0 +1,3660 @@
+[
+  {
+    "modelo": "admin.LogEntry",
+    "id": "114",
+    "action_time": "2025-07-04T19:18:56.871346+00:00",
+    "user_id": "3",
+    "content_type_id": "19",
+    "object_id": "1",
+    "object_repr": "Paracetamol (anestesico)",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "113",
+    "action_time": "2025-07-04T19:18:25.809797+00:00",
+    "user_id": "3",
+    "content_type_id": "14",
+    "object_id": "1",
+    "object_repr": "la sante",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "112",
+    "action_time": "2025-07-04T19:18:11.238813+00:00",
+    "user_id": "3",
+    "content_type_id": "15",
+    "object_id": "1",
+    "object_repr": "anestesico",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "111",
+    "action_time": "2025-07-04T15:50:15.820292+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "10",
+    "object_repr": "Reportes [reportes/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Orden\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "110",
+    "action_time": "2025-07-04T15:50:08.712996+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "21",
+    "object_repr": "Horarios [doctor/horarios_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Orden\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "109",
+    "action_time": "2025-07-04T15:49:55.844602+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "19",
+    "object_repr": "Pagos [doctor/pago_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Orden\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "108",
+    "action_time": "2025-07-04T15:49:47.028849+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "7",
+    "object_repr": "Recetas [recetas/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Orden\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "107",
+    "action_time": "2025-07-04T15:48:30.104853+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "19",
+    "object_repr": "Pagos [doctor/pago_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Orden\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "106",
+    "action_time": "2025-07-04T01:39:25.982579+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "12",
+    "object_repr": "Pago 12 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 200.00",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Estado\", \"Evidencia de Pago\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "105",
+    "action_time": "2025-07-03T23:52:35.026619+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "3",
+    "object_repr": "hector1@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "104",
+    "action_time": "2025-07-03T22:34:16.335894+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "26",
+    "object_repr": "Pago 26 - Atención de Cortez, Cristian el 2025-07-03 21:50 - 40.00",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"M\\u00e9todo de Pago\", \"Observaciones\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "103",
+    "action_time": "2025-07-03T22:31:43.236934+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "25",
+    "object_repr": "Pago 25 - Atención de Cortez, Cristian el 2025-07-03 21:50 - 300.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "102",
+    "action_time": "2025-07-03T22:30:52.505334+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "25",
+    "object_repr": "Pago 25 - Atención de Cortez, Cristian el 2025-07-03 21:50 - 300.00",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"M\\u00e9todo de Pago\"]}}, {\"added\": {\"name\": \"Detalle de Pago\", \"object\": \"Radiografia - Cantidad: 1 - Subtotal: 100.00\"}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "101",
+    "action_time": "2025-07-03T21:50:18.818187+00:00",
+    "user_id": "3",
+    "content_type_id": "25",
+    "object_id": "4",
+    "object_repr": "Atención de Cortez, Cristian el 2025-07-03 21:50",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "100",
+    "action_time": "2025-07-03T21:49:20.010682+00:00",
+    "user_id": "3",
+    "content_type_id": "20",
+    "object_id": "3",
+    "object_repr": "Cortez, Cristian",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "99",
+    "action_time": "2025-07-03T19:57:34.332697+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "14",
+    "object_repr": "Pago 14 - None - 90.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "98",
+    "action_time": "2025-07-03T17:44:34.634667+00:00",
+    "user_id": "3",
+    "content_type_id": "28",
+    "object_id": "1",
+    "object_repr": "Radiografia - Cantidad: 1 - Subtotal: 45.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "97",
+    "action_time": "2025-07-03T02:26:00.559175+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "9",
+    "object_repr": "Pago 9 - Atención de Perez, Juan el 2025-07-03 02:14 - 10.00",
+    "action_flag": "2",
+    "change_message": "[{\"added\": {\"name\": \"Detalle de Pago\", \"object\": \"Radiografia - Cantidad: 1 - Subtotal: 45.00\"}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "96",
+    "action_time": "2025-07-03T02:23:26.581375+00:00",
+    "user_id": "3",
+    "content_type_id": "24",
+    "object_id": "1",
+    "object_repr": "Radiografia",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "95",
+    "action_time": "2025-07-03T02:14:30.535933+00:00",
+    "user_id": "3",
+    "content_type_id": "25",
+    "object_id": "3",
+    "object_repr": "Atención de Perez, Juan el 2025-07-03 02:14",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "94",
+    "action_time": "2025-07-03T02:07:02.311299+00:00",
+    "user_id": "3",
+    "content_type_id": "25",
+    "object_id": "2",
+    "object_repr": "Atención de Perez, Juan el 2025-07-03 02:07",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "93",
+    "action_time": "2025-07-03T02:05:32.974608+00:00",
+    "user_id": "3",
+    "content_type_id": "20",
+    "object_id": "2",
+    "object_repr": "Perez, Juan",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "92",
+    "action_time": "2025-07-03T01:36:32.926159+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "7",
+    "object_repr": "Pago 7 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2999.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "91",
+    "action_time": "2025-07-03T01:36:32.926069+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "8",
+    "object_repr": "Pago 8 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2222.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "90",
+    "action_time": "2025-07-03T01:12:57.432730+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "8",
+    "object_repr": "Pago 8 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2222",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "89",
+    "action_time": "2025-07-02T23:36:00.133239+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "6",
+    "object_repr": "Pago 6 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 1999.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "88",
+    "action_time": "2025-07-02T23:33:57.979252+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "5",
+    "object_repr": "Pago 5 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 1000.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "87",
+    "action_time": "2025-07-02T23:31:26.400362+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "4",
+    "object_repr": "Pago 4 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 10000.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "86",
+    "action_time": "2025-07-02T23:27:11.426505+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "2",
+    "object_repr": "Pago 2 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 100.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "85",
+    "action_time": "2025-07-02T23:27:11.426402+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "3",
+    "object_repr": "Pago 3 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 2000.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "84",
+    "action_time": "2025-07-02T22:36:58.152896+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "1",
+    "object_repr": "Pago 1 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 100.00",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "83",
+    "action_time": "2025-07-02T21:40:49.663012+00:00",
+    "user_id": "3",
+    "content_type_id": "27",
+    "object_id": "1",
+    "object_repr": "Pago 1 - Atención de Gonzalon, Raul el 2025-07-02 21:40 - 100",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "82",
+    "action_time": "2025-07-02T21:40:04.285301+00:00",
+    "user_id": "3",
+    "content_type_id": "25",
+    "object_id": "1",
+    "object_repr": "Atención de Gonzalon, Raul el 2025-07-02 21:40",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "81",
+    "action_time": "2025-07-02T21:39:59.235460+00:00",
+    "user_id": "3",
+    "content_type_id": "12",
+    "object_id": "1",
+    "object_repr": "A09 - Fiebre Severa",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "80",
+    "action_time": "2025-06-28T23:55:23.902465+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "9",
+    "object_repr": "mbappe1@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "79",
+    "action_time": "2025-06-28T23:42:23.922560+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "8",
+    "object_repr": "mbappe1@gmail.com",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "78",
+    "action_time": "2025-06-28T23:11:02.906703+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "6",
+    "object_repr": "",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "77",
+    "action_time": "2025-06-28T23:10:35.323130+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "6",
+    "object_repr": "",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "76",
+    "action_time": "2025-06-28T21:58:19.602342+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "21",
+    "object_repr": "Seguimiento - Asistentes",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "75",
+    "action_time": "2025-06-28T21:57:52.001404+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "4",
+    "object_repr": "Registro de Pacientes - Asistentes",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Permisos\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "74",
+    "action_time": "2025-06-28T21:56:23.270508+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "3",
+    "object_repr": "Diagnosticos - Medicos",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Permisos\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "73",
+    "action_time": "2025-06-28T21:55:06.546661+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "20",
+    "object_repr": "Recetas - Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "72",
+    "action_time": "2025-06-28T21:53:59.453166+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "19",
+    "object_repr": "Historial Medico - Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "71",
+    "action_time": "2025-06-28T21:53:08.878489+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "18",
+    "object_repr": "Seguimiento - Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "70",
+    "action_time": "2025-06-28T21:47:54.370261+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "9",
+    "object_repr": "Group module permission - Consultor",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "69",
+    "action_time": "2025-06-28T21:47:54.370230+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "8",
+    "object_repr": "Grupos - Consultor",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "68",
+    "action_time": "2025-06-28T21:47:54.370197+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "6",
+    "object_repr": "Menus - Consultor",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "67",
+    "action_time": "2025-06-28T21:47:54.370159+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "5",
+    "object_repr": "Modulos - Consultor",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "66",
+    "action_time": "2025-06-28T21:47:54.370088+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "1",
+    "object_repr": "Usuarios - Consultor",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "65",
+    "action_time": "2025-06-26T23:04:51.577633+00:00",
+    "user_id": "3",
+    "content_type_id": "20",
+    "object_id": "1",
+    "object_repr": "Gonzalon, Raul",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "64",
+    "action_time": "2025-06-26T23:04:29.410830+00:00",
+    "user_id": "3",
+    "content_type_id": "16",
+    "object_id": "1",
+    "object_repr": "O+",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "63",
+    "action_time": "2025-06-23T01:29:33.214000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "17",
+    "object_repr": "Group module permission - Administradores",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "62",
+    "action_time": "2025-06-23T01:29:17.591000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "16",
+    "object_repr": "Grupos - Administradores",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "61",
+    "action_time": "2025-06-23T01:29:02.703000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "15",
+    "object_repr": "Modulos - Administradores",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "60",
+    "action_time": "2025-06-23T01:28:47.416000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "14",
+    "object_repr": "Menus - Administradores",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "59",
+    "action_time": "2025-06-23T01:28:31.486000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "13",
+    "object_repr": "Usuarios - Administradores",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "58",
+    "action_time": "2025-06-23T01:28:00.904000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "12",
+    "object_repr": "Recetas - Administradores",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "57",
+    "action_time": "2025-06-23T00:31:13.050000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "15",
+    "object_repr": "Grupos [/security/group_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Nombre\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "56",
+    "action_time": "2025-06-23T00:31:04.742000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "4",
+    "object_repr": "Usuarios [/security/user_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Nombre\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "55",
+    "action_time": "2025-06-23T00:30:53.121000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "10",
+    "object_repr": "Reportes [reportes/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "54",
+    "action_time": "2025-06-23T00:30:42.460000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "9",
+    "object_repr": "Configuracion [configuracion/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "53",
+    "action_time": "2025-06-23T00:30:34.161000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "8",
+    "object_repr": "Usuarios [usuarios/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "52",
+    "action_time": "2025-06-23T00:30:26.116000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "7",
+    "object_repr": "Recetas [recetas/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "51",
+    "action_time": "2025-06-23T00:30:15.364000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "6",
+    "object_repr": "Diagnosticos [diagnosticos/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "50",
+    "action_time": "2025-06-23T00:30:05.216000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "5",
+    "object_repr": "Citas [citas/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "49",
+    "action_time": "2025-06-23T00:29:34.623000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "4",
+    "object_repr": "USUARIOS [/security/user_list]",
+    "action_flag": "2",
+    "change_message": "[]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "48",
+    "action_time": "2025-06-23T00:29:28.339000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "3",
+    "object_repr": "Seguimiento [seguimiento/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "47",
+    "action_time": "2025-06-23T00:29:17.856000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "2",
+    "object_repr": "Historial Medico [historial/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "46",
+    "action_time": "2025-06-23T00:29:05.991000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "1",
+    "object_repr": "Registro de Pacientes [pacientes/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Descripci\\u00f3n\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "45",
+    "action_time": "2025-06-22T20:45:30.373000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "9",
+    "object_repr": "Group module permission - Consultor",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "44",
+    "action_time": "2025-06-22T19:21:18.563000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "8",
+    "object_repr": "GRUPOS - Consultor",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "42",
+    "action_time": "2025-06-21T20:00:56.464000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "6",
+    "object_repr": "fulanito@gmail.com",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "43",
+    "action_time": "2025-06-21T20:00:56.464000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "8",
+    "object_repr": "fulano@gmail.com",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "41",
+    "action_time": "2025-06-21T20:00:56.464000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "7",
+    "object_repr": "fulanito1@gmail.com",
+    "action_flag": "3",
+    "change_message": ""
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "40",
+    "action_time": "2025-06-21T19:40:26.054000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "7",
+    "object_repr": "Configuraci¥n - Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "39",
+    "action_time": "2025-06-21T19:37:47.654000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "1",
+    "object_repr": "Registro de Pacientes [pacientes/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Menu\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "38",
+    "action_time": "2025-06-10T23:26:06.519000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "1",
+    "object_repr": "Registro de Pacientes [pacientes/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Menu\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "37",
+    "action_time": "2025-06-07T23:06:50.573000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "4",
+    "object_repr": "raulromerog002@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "36",
+    "action_time": "2025-06-07T23:02:57.287000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "4",
+    "object_repr": "USUARIOS [/security/user_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Url\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "35",
+    "action_time": "2025-06-07T23:01:55.202000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "4",
+    "object_repr": "USUARIOS [/security/users/list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Url\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "34",
+    "action_time": "2025-06-07T22:34:26.208000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "6",
+    "object_repr": "Menu - Consultor",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "33",
+    "action_time": "2025-06-07T22:33:56.628000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "12",
+    "object_repr": "Menu [security/menu_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "32",
+    "action_time": "2025-06-07T22:33:11.352000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "12",
+    "object_repr": "Menu [security/menu_list]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "31",
+    "action_time": "2025-06-07T22:33:01.404000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "12",
+    "object_repr": "Menu [security/menu_list]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "30",
+    "action_time": "2025-06-07T22:31:46.866000+00:00",
+    "user_id": "3",
+    "content_type_id": "9",
+    "object_id": "5",
+    "object_repr": "Modulos - Consultor",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "29",
+    "action_time": "2025-06-07T22:30:17.981000+00:00",
+    "user_id": "3",
+    "content_type_id": "8",
+    "object_id": "11",
+    "object_repr": "Modulos [security/module_list]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "28",
+    "action_time": "2025-06-07T18:43:52.250000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "3",
+    "object_repr": "hector1@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "27",
+    "action_time": "2025-06-07T18:41:01.778000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "3",
+    "object_repr": "hector1@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Groups\", \"User permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "26",
+    "action_time": "2025-06-07T18:32:19.535000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "4",
+    "object_repr": "raulromerog002@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Email\", \"Groups\", \"User permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "25",
+    "action_time": "2025-06-07T18:31:07.735000+00:00",
+    "user_id": "3",
+    "content_type_id": "7",
+    "object_id": "4",
+    "object_repr": "",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "24",
+    "action_time": "2025-05-27T00:02:37.216000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "6",
+    "object_repr": "Diagn¥sticos [diagnosticos/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "23",
+    "action_time": "2025-05-27T00:02:07.396000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "1",
+    "object_repr": "Registro de Pacientes [pacientes/]",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "22",
+    "action_time": "2025-05-27T00:01:37.687000+00:00",
+    "user_id": "1",
+    "content_type_id": "9",
+    "object_id": "4",
+    "object_repr": "Registro de Pacientes - Asistentes",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "21",
+    "action_time": "2025-05-27T00:01:08.174000+00:00",
+    "user_id": "1",
+    "content_type_id": "9",
+    "object_id": "3",
+    "object_repr": "Diagn¥sticos - Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "20",
+    "action_time": "2025-05-27T00:00:33.148000+00:00",
+    "user_id": "1",
+    "content_type_id": "9",
+    "object_id": "2",
+    "object_repr": "Registro de Pacientes - Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "19",
+    "action_time": "2025-05-26T23:53:07.250000+00:00",
+    "user_id": "1",
+    "content_type_id": "9",
+    "object_id": "1",
+    "object_repr": "Usuarios - Consultor",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "18",
+    "action_time": "2025-05-26T23:52:02.534000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "10",
+    "object_repr": "Reportes [reportes/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "17",
+    "action_time": "2025-05-26T23:51:14.323000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "9",
+    "object_repr": "Configuraci¥n [configuracion/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "16",
+    "action_time": "2025-05-26T23:50:19.592000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "8",
+    "object_repr": "Usuarios [usuarios/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "15",
+    "action_time": "2025-05-26T23:49:40.580000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "7",
+    "object_repr": "Recetas [recetas/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "14",
+    "action_time": "2025-05-26T23:48:47.962000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "6",
+    "object_repr": "Diagn¥sticos [diagnosticos/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "13",
+    "action_time": "2025-05-26T23:47:36.458000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "5",
+    "object_repr": "Citas [citas/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "12",
+    "action_time": "2025-05-26T23:46:43.888000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "4",
+    "object_repr": "Usuarios [/seguridad/users/list]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "11",
+    "action_time": "2025-05-26T23:45:22.139000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "3",
+    "object_repr": "Seguimiento [seguimiento/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "10",
+    "action_time": "2025-05-26T23:44:25.983000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "2",
+    "object_repr": "Historial Medico [historial/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "9",
+    "action_time": "2025-05-26T23:43:24.760000+00:00",
+    "user_id": "1",
+    "content_type_id": "8",
+    "object_id": "1",
+    "object_repr": "Registro de Pacientes [pacientes/]",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "8",
+    "action_time": "2025-05-26T23:42:06.777000+00:00",
+    "user_id": "1",
+    "content_type_id": "6",
+    "object_id": "4",
+    "object_repr": "Administraci¥n",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "7",
+    "action_time": "2025-05-26T23:41:43.642000+00:00",
+    "user_id": "1",
+    "content_type_id": "6",
+    "object_id": "3",
+    "object_repr": "Consultas",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "6",
+    "action_time": "2025-05-26T23:41:18.957000+00:00",
+    "user_id": "1",
+    "content_type_id": "6",
+    "object_id": "2",
+    "object_repr": "Seguridad",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "5",
+    "action_time": "2025-05-26T23:40:49.406000+00:00",
+    "user_id": "1",
+    "content_type_id": "6",
+    "object_id": "1",
+    "object_repr": "Pacientes",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "4",
+    "action_time": "2025-05-26T23:30:09.997000+00:00",
+    "user_id": "1",
+    "content_type_id": "3",
+    "object_id": "3",
+    "object_repr": "Medicos",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "3",
+    "action_time": "2025-05-26T23:28:47.323000+00:00",
+    "user_id": "1",
+    "content_type_id": "3",
+    "object_id": "2",
+    "object_repr": "Consultor",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "2",
+    "action_time": "2025-05-26T23:27:07.620000+00:00",
+    "user_id": "1",
+    "content_type_id": "3",
+    "object_id": "1",
+    "object_repr": "Asistentes",
+    "action_flag": "1",
+    "change_message": "[{\"added\": {}}]"
+  },
+  {
+    "modelo": "admin.LogEntry",
+    "id": "1",
+    "action_time": "2025-05-26T23:20:16.741000+00:00",
+    "user_id": "1",
+    "content_type_id": "7",
+    "object_id": "1",
+    "object_repr": "hector@gmail.com",
+    "action_flag": "2",
+    "change_message": "[{\"changed\": {\"fields\": [\"Imagen de perfil\"]}}]"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "1",
+    "name": "Can add log entry",
+    "content_type_id": "1",
+    "codename": "add_logentry"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "2",
+    "name": "Can change log entry",
+    "content_type_id": "1",
+    "codename": "change_logentry"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "3",
+    "name": "Can delete log entry",
+    "content_type_id": "1",
+    "codename": "delete_logentry"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "4",
+    "name": "Can view log entry",
+    "content_type_id": "1",
+    "codename": "view_logentry"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "9",
+    "name": "Can add group",
+    "content_type_id": "3",
+    "codename": "add_group"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "10",
+    "name": "Can change group",
+    "content_type_id": "3",
+    "codename": "change_group"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "11",
+    "name": "Can delete group",
+    "content_type_id": "3",
+    "codename": "delete_group"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "12",
+    "name": "Can view group",
+    "content_type_id": "3",
+    "codename": "view_group"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "5",
+    "name": "Can add permission",
+    "content_type_id": "2",
+    "codename": "add_permission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "6",
+    "name": "Can change permission",
+    "content_type_id": "2",
+    "codename": "change_permission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "7",
+    "name": "Can delete permission",
+    "content_type_id": "2",
+    "codename": "delete_permission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "8",
+    "name": "Can view permission",
+    "content_type_id": "2",
+    "codename": "view_permission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "13",
+    "name": "Can add content type",
+    "content_type_id": "4",
+    "codename": "add_contenttype"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "14",
+    "name": "Can change content type",
+    "content_type_id": "4",
+    "codename": "change_contenttype"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "15",
+    "name": "Can delete content type",
+    "content_type_id": "4",
+    "codename": "delete_contenttype"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "16",
+    "name": "Can view content type",
+    "content_type_id": "4",
+    "codename": "view_contenttype"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "127",
+    "name": "Can add Cargo",
+    "content_type_id": "32",
+    "codename": "add_cargo"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "128",
+    "name": "Can change Cargo",
+    "content_type_id": "32",
+    "codename": "change_cargo"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "129",
+    "name": "Can delete Cargo",
+    "content_type_id": "32",
+    "codename": "delete_cargo"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "130",
+    "name": "Can view Cargo",
+    "content_type_id": "32",
+    "codename": "view_cargo"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "47",
+    "name": "Can add Diagnóstico",
+    "content_type_id": "12",
+    "codename": "add_diagnostico"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "48",
+    "name": "Can change Diagnóstico",
+    "content_type_id": "12",
+    "codename": "change_diagnostico"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "49",
+    "name": "Can delete Diagnóstico",
+    "content_type_id": "12",
+    "codename": "delete_diagnostico"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "50",
+    "name": "Can view Diagnóstico",
+    "content_type_id": "12",
+    "codename": "view_diagnostico"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "71",
+    "name": "Can add Doctor",
+    "content_type_id": "18",
+    "codename": "add_doctor"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "72",
+    "name": "Can change Doctor",
+    "content_type_id": "18",
+    "codename": "change_doctor"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "73",
+    "name": "Can delete Doctor",
+    "content_type_id": "18",
+    "codename": "delete_doctor"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "74",
+    "name": "Can view Doctor",
+    "content_type_id": "18",
+    "codename": "view_doctor"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "67",
+    "name": "Can add Empleado",
+    "content_type_id": "17",
+    "codename": "add_empleado"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "68",
+    "name": "Can change Empleado",
+    "content_type_id": "17",
+    "codename": "change_empleado"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "69",
+    "name": "Can delete Empleado",
+    "content_type_id": "17",
+    "codename": "delete_empleado"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "70",
+    "name": "Can view Empleado",
+    "content_type_id": "17",
+    "codename": "view_empleado"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "51",
+    "name": "Can add Especialidad médica",
+    "content_type_id": "13",
+    "codename": "add_especialidad"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "52",
+    "name": "Can change Especialidad médica",
+    "content_type_id": "13",
+    "codename": "change_especialidad"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "53",
+    "name": "Can delete Especialidad médica",
+    "content_type_id": "13",
+    "codename": "delete_especialidad"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "54",
+    "name": "Can view Especialidad médica",
+    "content_type_id": "13",
+    "codename": "view_especialidad"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "87",
+    "name": "Can add Foto del Paciente",
+    "content_type_id": "22",
+    "codename": "add_fotopaciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "88",
+    "name": "Can change Foto del Paciente",
+    "content_type_id": "22",
+    "codename": "change_fotopaciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "89",
+    "name": "Can delete Foto del Paciente",
+    "content_type_id": "22",
+    "codename": "delete_fotopaciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "90",
+    "name": "Can view Foto del Paciente",
+    "content_type_id": "22",
+    "codename": "view_fotopaciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "91",
+    "name": "Can add Gasto Mensual",
+    "content_type_id": "23",
+    "codename": "add_gastomensual"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "92",
+    "name": "Can change Gasto Mensual",
+    "content_type_id": "23",
+    "codename": "change_gastomensual"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "93",
+    "name": "Can delete Gasto Mensual",
+    "content_type_id": "23",
+    "codename": "delete_gastomensual"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "94",
+    "name": "Can view Gasto Mensual",
+    "content_type_id": "23",
+    "codename": "view_gastomensual"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "55",
+    "name": "Can add Marca de Medicamento",
+    "content_type_id": "14",
+    "codename": "add_marcamedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "56",
+    "name": "Can change Marca de Medicamento",
+    "content_type_id": "14",
+    "codename": "change_marcamedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "57",
+    "name": "Can delete Marca de Medicamento",
+    "content_type_id": "14",
+    "codename": "delete_marcamedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "58",
+    "name": "Can view Marca de Medicamento",
+    "content_type_id": "14",
+    "codename": "view_marcamedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "75",
+    "name": "Can add Medicamento",
+    "content_type_id": "19",
+    "codename": "add_medicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "76",
+    "name": "Can change Medicamento",
+    "content_type_id": "19",
+    "codename": "change_medicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "77",
+    "name": "Can delete Medicamento",
+    "content_type_id": "19",
+    "codename": "delete_medicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "78",
+    "name": "Can view Medicamento",
+    "content_type_id": "19",
+    "codename": "view_medicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "79",
+    "name": "Can add Paciente",
+    "content_type_id": "20",
+    "codename": "add_paciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "80",
+    "name": "Can change Paciente",
+    "content_type_id": "20",
+    "codename": "change_paciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "81",
+    "name": "Can delete Paciente",
+    "content_type_id": "20",
+    "codename": "delete_paciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "82",
+    "name": "Can view Paciente",
+    "content_type_id": "20",
+    "codename": "view_paciente"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "83",
+    "name": "Can add Tipo de Gasto",
+    "content_type_id": "21",
+    "codename": "add_tipogasto"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "84",
+    "name": "Can change Tipo de Gasto",
+    "content_type_id": "21",
+    "codename": "change_tipogasto"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "85",
+    "name": "Can delete Tipo de Gasto",
+    "content_type_id": "21",
+    "codename": "delete_tipogasto"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "86",
+    "name": "Can view Tipo de Gasto",
+    "content_type_id": "21",
+    "codename": "view_tipogasto"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "59",
+    "name": "Can add Tipo de Medicamento",
+    "content_type_id": "15",
+    "codename": "add_tipomedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "60",
+    "name": "Can change Tipo de Medicamento",
+    "content_type_id": "15",
+    "codename": "change_tipomedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "61",
+    "name": "Can delete Tipo de Medicamento",
+    "content_type_id": "15",
+    "codename": "delete_tipomedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "62",
+    "name": "Can view Tipo de Medicamento",
+    "content_type_id": "15",
+    "codename": "view_tipomedicamento"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "63",
+    "name": "Can add Tipo de Sangre",
+    "content_type_id": "16",
+    "codename": "add_tiposangre"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "64",
+    "name": "Can change Tipo de Sangre",
+    "content_type_id": "16",
+    "codename": "change_tiposangre"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "65",
+    "name": "Can delete Tipo de Sangre",
+    "content_type_id": "16",
+    "codename": "delete_tiposangre"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "66",
+    "name": "Can view Tipo de Sangre",
+    "content_type_id": "16",
+    "codename": "view_tiposangre"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "99",
+    "name": "Can add Atención Médica",
+    "content_type_id": "25",
+    "codename": "add_atencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "100",
+    "name": "Can change Atención Médica",
+    "content_type_id": "25",
+    "codename": "change_atencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "101",
+    "name": "Can delete Atención Médica",
+    "content_type_id": "25",
+    "codename": "delete_atencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "102",
+    "name": "Can view Atención Médica",
+    "content_type_id": "25",
+    "codename": "view_atencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "115",
+    "name": "Can add Cita Médica",
+    "content_type_id": "29",
+    "codename": "add_citamedica"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "116",
+    "name": "Can change Cita Médica",
+    "content_type_id": "29",
+    "codename": "change_citamedica"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "117",
+    "name": "Can delete Cita Médica",
+    "content_type_id": "29",
+    "codename": "delete_citamedica"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "118",
+    "name": "Can view Cita Médica",
+    "content_type_id": "29",
+    "codename": "view_citamedica"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "103",
+    "name": "Can add Detalle de Atención",
+    "content_type_id": "26",
+    "codename": "add_detalleatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "104",
+    "name": "Can change Detalle de Atención",
+    "content_type_id": "26",
+    "codename": "change_detalleatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "105",
+    "name": "Can delete Detalle de Atención",
+    "content_type_id": "26",
+    "codename": "delete_detalleatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "106",
+    "name": "Can view Detalle de Atención",
+    "content_type_id": "26",
+    "codename": "view_detalleatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "111",
+    "name": "Can add Detalle de Pago",
+    "content_type_id": "28",
+    "codename": "add_detallepago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "112",
+    "name": "Can change Detalle de Pago",
+    "content_type_id": "28",
+    "codename": "change_detallepago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "113",
+    "name": "Can delete Detalle de Pago",
+    "content_type_id": "28",
+    "codename": "delete_detallepago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "114",
+    "name": "Can view Detalle de Pago",
+    "content_type_id": "28",
+    "codename": "view_detallepago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "119",
+    "name": "Can add Horario de Atención",
+    "content_type_id": "30",
+    "codename": "add_horarioatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "120",
+    "name": "Can change Horario de Atención",
+    "content_type_id": "30",
+    "codename": "change_horarioatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "121",
+    "name": "Can delete Horario de Atención",
+    "content_type_id": "30",
+    "codename": "delete_horarioatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "122",
+    "name": "Can view Horario de Atención",
+    "content_type_id": "30",
+    "codename": "view_horarioatencion"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "107",
+    "name": "Can add Pago",
+    "content_type_id": "27",
+    "codename": "add_pago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "108",
+    "name": "Can change Pago",
+    "content_type_id": "27",
+    "codename": "change_pago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "109",
+    "name": "Can delete Pago",
+    "content_type_id": "27",
+    "codename": "delete_pago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "110",
+    "name": "Can view Pago",
+    "content_type_id": "27",
+    "codename": "view_pago"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "95",
+    "name": "Can add Servicio Adicional",
+    "content_type_id": "24",
+    "codename": "add_serviciosadicionales"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "96",
+    "name": "Can change Servicio Adicional",
+    "content_type_id": "24",
+    "codename": "change_serviciosadicionales"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "97",
+    "name": "Can delete Servicio Adicional",
+    "content_type_id": "24",
+    "codename": "delete_serviciosadicionales"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "98",
+    "name": "Can view Servicio Adicional",
+    "content_type_id": "24",
+    "codename": "view_serviciosadicionales"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "131",
+    "name": "Can add PayPal IPN",
+    "content_type_id": "33",
+    "codename": "add_paypalipn"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "132",
+    "name": "Can change PayPal IPN",
+    "content_type_id": "33",
+    "codename": "change_paypalipn"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "133",
+    "name": "Can delete PayPal IPN",
+    "content_type_id": "33",
+    "codename": "delete_paypalipn"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "134",
+    "name": "Can view PayPal IPN",
+    "content_type_id": "33",
+    "codename": "view_paypalipn"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "43",
+    "name": "Can add Diagn¥stico",
+    "content_type_id": "11",
+    "codename": "add_diagnosis"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "44",
+    "name": "Can change Diagn¥stico",
+    "content_type_id": "11",
+    "codename": "change_diagnosis"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "45",
+    "name": "Can delete Diagn¥stico",
+    "content_type_id": "11",
+    "codename": "delete_diagnosis"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "46",
+    "name": "Can view Diagn¥stico",
+    "content_type_id": "11",
+    "codename": "view_diagnosis"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "39",
+    "name": "Can add Paciente",
+    "content_type_id": "10",
+    "codename": "add_patient"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "40",
+    "name": "Can change Paciente",
+    "content_type_id": "10",
+    "codename": "change_patient"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "41",
+    "name": "Can delete Paciente",
+    "content_type_id": "10",
+    "codename": "delete_patient"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "42",
+    "name": "Can view Paciente",
+    "content_type_id": "10",
+    "codename": "view_patient"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "123",
+    "name": "Can add Auditoria Usuario ",
+    "content_type_id": "31",
+    "codename": "add_audituser"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "124",
+    "name": "Can change Auditoria Usuario ",
+    "content_type_id": "31",
+    "codename": "change_audituser"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "125",
+    "name": "Can delete Auditoria Usuario ",
+    "content_type_id": "31",
+    "codename": "delete_audituser"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "126",
+    "name": "Can view Auditoria Usuario ",
+    "content_type_id": "31",
+    "codename": "view_audituser"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "35",
+    "name": "Can add Grupo m¥dulo permiso",
+    "content_type_id": "9",
+    "codename": "add_groupmodulepermission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "36",
+    "name": "Can change Grupo m¥dulo permiso",
+    "content_type_id": "9",
+    "codename": "change_groupmodulepermission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "37",
+    "name": "Can delete Grupo m¥dulo permiso",
+    "content_type_id": "9",
+    "codename": "delete_groupmodulepermission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "38",
+    "name": "Can view Grupo m¥dulo permiso",
+    "content_type_id": "9",
+    "codename": "view_groupmodulepermission"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "21",
+    "name": "Can add Menu",
+    "content_type_id": "6",
+    "codename": "add_menu"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "22",
+    "name": "Can change Menu",
+    "content_type_id": "6",
+    "codename": "change_menu"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "23",
+    "name": "Can delete Menu",
+    "content_type_id": "6",
+    "codename": "delete_menu"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "24",
+    "name": "Can view Menu",
+    "content_type_id": "6",
+    "codename": "view_menu"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "31",
+    "name": "Can add M¥dulo",
+    "content_type_id": "8",
+    "codename": "add_module"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "32",
+    "name": "Can change M¥dulo",
+    "content_type_id": "8",
+    "codename": "change_module"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "33",
+    "name": "Can delete M¥dulo",
+    "content_type_id": "8",
+    "codename": "delete_module"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "34",
+    "name": "Can view M¥dulo",
+    "content_type_id": "8",
+    "codename": "view_module"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "25",
+    "name": "Can add Usuario",
+    "content_type_id": "7",
+    "codename": "add_user"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "26",
+    "name": "Can change Usuario",
+    "content_type_id": "7",
+    "codename": "change_user"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "30",
+    "name": "Cambiar contrase▒a de Usuario",
+    "content_type_id": "7",
+    "codename": "change_userpassword"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "29",
+    "name": "Cambiar perfil de Usuario",
+    "content_type_id": "7",
+    "codename": "change_userprofile"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "27",
+    "name": "Can delete Usuario",
+    "content_type_id": "7",
+    "codename": "delete_user"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "28",
+    "name": "Can view Usuario",
+    "content_type_id": "7",
+    "codename": "view_user"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "17",
+    "name": "Can add session",
+    "content_type_id": "5",
+    "codename": "add_session"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "18",
+    "name": "Can change session",
+    "content_type_id": "5",
+    "codename": "change_session"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "19",
+    "name": "Can delete session",
+    "content_type_id": "5",
+    "codename": "delete_session"
+  },
+  {
+    "modelo": "auth.Permission",
+    "id": "20",
+    "name": "Can view session",
+    "content_type_id": "5",
+    "codename": "view_session"
+  },
+  {
+    "modelo": "auth.Group",
+    "id": "1",
+    "name": "Asistentes"
+  },
+  {
+    "modelo": "auth.Group",
+    "id": "2",
+    "name": "Consultor"
+  },
+  {
+    "modelo": "auth.Group",
+    "id": "3",
+    "name": "Medicos"
+  },
+  {
+    "modelo": "auth.Group",
+    "id": "5",
+    "name": "Administradores"
+  },
+  {
+    "modelo": "auth.Group",
+    "id": "6",
+    "name": "Asesores"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "12",
+    "app_label": "core",
+    "model": "diagnostico"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "13",
+    "app_label": "core",
+    "model": "especialidad"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "14",
+    "app_label": "core",
+    "model": "marcamedicamento"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "15",
+    "app_label": "core",
+    "model": "tipomedicamento"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "16",
+    "app_label": "core",
+    "model": "tiposangre"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "17",
+    "app_label": "core",
+    "model": "empleado"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "18",
+    "app_label": "core",
+    "model": "doctor"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "19",
+    "app_label": "core",
+    "model": "medicamento"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "20",
+    "app_label": "core",
+    "model": "paciente"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "21",
+    "app_label": "core",
+    "model": "tipogasto"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "22",
+    "app_label": "core",
+    "model": "fotopaciente"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "23",
+    "app_label": "core",
+    "model": "gastomensual"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "24",
+    "app_label": "doctor",
+    "model": "serviciosadicionales"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "25",
+    "app_label": "doctor",
+    "model": "atencion"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "26",
+    "app_label": "doctor",
+    "model": "detalleatencion"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "27",
+    "app_label": "doctor",
+    "model": "pago"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "28",
+    "app_label": "doctor",
+    "model": "detallepago"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "29",
+    "app_label": "doctor",
+    "model": "citamedica"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "30",
+    "app_label": "doctor",
+    "model": "horarioatencion"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "1",
+    "app_label": "admin",
+    "model": "logentry"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "2",
+    "app_label": "auth",
+    "model": "permission"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "3",
+    "app_label": "auth",
+    "model": "group"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "4",
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "5",
+    "app_label": "sessions",
+    "model": "session"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "6",
+    "app_label": "security",
+    "model": "menu"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "7",
+    "app_label": "security",
+    "model": "user"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "8",
+    "app_label": "security",
+    "model": "module"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "9",
+    "app_label": "security",
+    "model": "groupmodulepermission"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "10",
+    "app_label": "miapp",
+    "model": "patient"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "11",
+    "app_label": "miapp",
+    "model": "diagnosis"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "31",
+    "app_label": "security",
+    "model": "audituser"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "32",
+    "app_label": "core",
+    "model": "cargo"
+  },
+  {
+    "modelo": "contenttypes.ContentType",
+    "id": "33",
+    "app_label": "ipn",
+    "model": "paypalipn"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "2c21u1vhnmvx1ulhutw451txaoweyt88",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhKC:qmNbXuLnI-0HyK0eqvxM_P7QmIi13zQ9BpyQlhBt6VM",
+    "expire_date": "2025-06-09T23:33:44.428000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "7dci60asa8bnwuxe6tfcg7xqdzi7t5cf",
+    "session_data": ".eJxVjsEOwiAQRP-FsyHbQKF49O43NLC7lKoB05aT8d-lpged48ybybzE6OuWxrryMs4kzkKJ068XPN457wHdfJ6KxJK3ZQ5yR-SRrvJaiB-Xg_0bSH5Nra01KQreEUPvNJhAQ2fQAmKMrleDdtaFJiQNitj0EZrHYFVA7kxso9NS6vN7snt_APCLPKU:1uTW0R:dBzAf17RTe8Yd8zoERw6p4NQM4xej8Xe6Qu1EtuFJdU",
+    "expire_date": "2025-07-07T01:29:55.101000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "9vry9fzmz93zqoipnomjnu6rnaapmtn6",
+    "session_data": ".eJxVjEEOwiAQRe_C2hAZWjq4dO8ZyAwMUjU0Ke3KeHfbpAvd_vfef6tA61LC2mQOY1IXZdTpd2OKT6k7SA-q90nHqS7zyHpX9EGbvk1JXtfD_Tso1MpWMwK4zg7ZApAZPLqeyXc5ofTWIGVEb42RbpNiFgYW30dkATgnJ4P6fAHDQzeH:1uNfEi:uKc9IJlJcMhiYPD2dGNGo00kq2ngqt0244qxSEUo-Ms",
+    "expire_date": "2025-06-20T22:08:28.777000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "awyrpqpaqso1aguoxczta99j06on38q1",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhD5:Z6yZFVFtiHx85JWTS7QowmG0rRMx5Zmti4Ze1j91L60",
+    "expire_date": "2025-06-09T23:26:23.852000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "c8vu1guagp3y4ws1uy3ibgi7eq5p22kr",
+    "session_data": ".eJxVjEEOwiAQRe_C2hAZWjq4dO8ZyAwMUjU0Ke3KeHfbpAvd_vfef6tA61LC2mQOY1IXZdTpd2OKT6k7SA-q90nHqS7zyHpX9EGbvk1JXtfD_Tso1MpWMwK4zg7ZApAZPLqeyXc5ofTWIGVEb42RbpNiFgYW30dkATgnJ4P6fAHDQzeH:1uNfFf:gWO0000Nv1GG8iViXDIjW0OqpHbWHgwpKoPxgambeGQ",
+    "expire_date": "2025-06-20T22:09:27.209000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "i6t9urq58mvc4jjnai75zvgkv1wy6x5d",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhK5:RH--SH9d_VWdf7Cz3YSnxLNcwKYiaea94HMUKh0igjQ",
+    "expire_date": "2025-06-09T23:33:37.212000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "in1pwflzt0kasgzr13mqdbkwhhul5tye",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhQZ:xlwNqSBIYygvm_aGf6jWlRhwclgfCX8r2JxZTYwkxVQ",
+    "expire_date": "2025-06-09T23:40:19.960000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "mc2e232e3ksc2y8cpe5yor45bnh1yws7",
+    "session_data": ".eJxVjsEOwiAQRP-FsyHbQKF49O43NLC7lKoB05aT8d-lpged48ybybzE6OuWxrryMs4kzkKJ068XPN457wHdfJ6KxJK3ZQ5yR-SRrvJaiB-Xg_0bSH5Nra01KQreEUPvNJhAQ2fQAmKMrleDdtaFJiQNitj0EZrHYFVA7kxso9NS6vN7snt_APCLPKU:1uOQzm:jfRDhMom_Zd2lVMOVDKYCTdtY3AjWrrY6HiUKEkkZ0Y",
+    "expire_date": "2025-06-23T01:08:14.452000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "n2jf7imcqzx554xku8dh1n7z642snz2n",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhGY:ESN8tQ9pGiHGI-eJsMBx3p8VdW1gF0ORRFCzVjo5la0",
+    "expire_date": "2025-06-09T23:29:58.958000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "nanzmjhbxk1y8k7cy95ngosheklx7uxm",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhFC:MwcFgb_UWANL012vUrPtoUu48Khn6rFfY3Pk_hm56ao",
+    "expire_date": "2025-06-09T23:28:34.710000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "o97vkmjsuoa7wwooxqempxcwyezzfjdd",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJhpQ:8-m0klOwGIc0MUSlTFHs-13YAw7oquSpQ509dqXmzp8",
+    "expire_date": "2025-06-10T00:06:00.677000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "ownz8fnf8teh5rtvru5vpuc6f7m4lc9a",
+    "session_data": ".eJxVjLsOAiEQAP-F2hA44Fgt7f0GssuucmoguUdl_HcluULbmcm8VMJtLWlbZE4Tq5Oy6vDLCPNDahd8x3prOre6zhPpnujdLvrSWJ7nvf0bFFxK3wZHBvMAIUcnhhBGg3Akz18AJMEMku3o6QqDizxG9iRgWSyFaD2o9wfhJzfM:1uJgys:v8zrQDHtJINDcD15ZWyySNCZ1mcNKSOldwjBDMKahF0",
+    "expire_date": "2025-06-09T23:11:42.410000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "q5lvwu784avdv5t65l7sj7pkigp6fca9",
+    "session_data": ".eJxVjEEOwiAQRe_C2hAZWjq4dO8ZyAwMUjU0Ke3KeHfbpAvd_vfef6tA61LC2mQOY1IXZdTpd2OKT6k7SA-q90nHqS7zyHpX9EGbvk1JXtfD_Tso1MpWMwK4zg7ZApAZPLqeyXc5ofTWIGVEb42RbpNiFgYW30dkATgnJ4P6fAHDQzeH:1uNfDM:b1INOsq0RbgW-mlXwytdzP8IjtudyYBLNu0AQ4x-fWo",
+    "expire_date": "2025-06-20T22:07:04.514000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "ug3k2fxkwlpc5vsxts7lu02yo0lzg233",
+    "session_data": ".eJxVjsEOwiAQRP-FsyFboVA8evcbGthd2qqBhrYn479LTQ86x5k3k3mJ3m_r2G8Ll34icRFKnH694PHBaQ_o7tOQJea0linIHZFHushbJn5eD_ZvYPTLWNtak6LgHTG0ToMJ1DUGLSDG6FrVaWddqELSoIhNG6F6DFYF5MbEOjqUvM3fk-f3B_CNPKY:1uOnnc:NdL0ogoRk2vNbpMk77N6RdmIUmGIdX_gioOzGmk1j3U",
+    "expire_date": "2025-06-24T01:29:12.848000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "z30kcsemawhznwlmq0hhzh5igwpodw4p",
+    "session_data": ".eJxVjsEOwiAQRP-FsyHbQKF49O43NLC7lKoB05aT8d-lpged48ybybzE6OuWxrryMs4kzkKJ068XPN457wHdfJ6KxJK3ZQ5yR-SRrvJaiB-Xg_0bSH5Nra01KQreEUPvNJhAQ2fQAmKMrleDdtaFJiQNitj0EZrHYFVA7kxso9NS6vN7snt_APCLPKU:1uOPfo:izcGpiQfDmzBrTDx6GKIeUQyUnzY1UvK_Syj48l0IXU",
+    "expire_date": "2025-06-22T23:43:32.338000+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "tzi7q58ld5rs4k26xp3cji6a5s8o9qgo",
+    "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uXYfk:ZsBcqtlCFLRei_F9YjGVTHaFhj3CKAdYOZe5N85cs-Q",
+    "expire_date": "2025-07-18T05:09:16.633741+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "ps8mrawejkazn5wesubhrvk7ho55jnon",
+    "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uXn9y:XEkYCO2A7Le9qu3GqHftak8FCKCsLtS_4H1qV8uiW2w",
+    "expire_date": "2025-07-18T20:37:26.932355+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "k4xcsk1mjhv6vfy263y3x4nvwt0vut72",
+    "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uX52g:XDV7VHPNasCPZ8YCLg75_6yFBiTDeopFEvi6HLRGC_I",
+    "expire_date": "2025-07-16T21:30:58.256464+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "pzqlu2nblqyf1xr03mv08sv1eb3eqg8u",
+    "session_data": ".eJxVjMsOwiAURP-FtSE0vIpL934D4T6QqqFJaVeN_y5NutBZnjkzu4hpW0vcGi9xInEVWlx-GSR8cT0Keqb6mCXOdV0mkIciz7bJ-0z8vp3u30FJrfS1MaQJUiBWNhjlgMbBoVeIOQerRxN8gB4kozSxs1l1xsprQB5cFp8v9pA4cQ:1uX9Fa:z5eeZ12u7viTT-m3FdInWqmqgB8eZ_rd0GkczgIURdI",
+    "expire_date": "2025-07-17T02:00:34.812874+00:00"
+  },
+  {
+    "modelo": "sessions.Session",
+    "session_key": "1y9xjqm0dnpzy3pm1d0y5wgds0rjoxbw",
+    "session_data": ".eJxVjjsOwjAQRO_iGlkb-RdT0nMGy95dxwEUo3wqxN1xUAqYcubNaF4ixG0tYVt4DiOJs1Di9OuliHee9oBucRqqxDqt85jkjsgjXeS1Ej8uB_s3UOJSWltrUpSiJwbjNdhEfWfRAWLO3qhee-dTE5IGRWxNhuYxOJWQO5vb6DDX7fk9qd4f8I88pw:1uX9Fl:URoFctsX85Q_9DnREhTOHd8-r0JNoGCkGmW66H56PU8",
+    "expire_date": "2025-07-17T02:00:45.129047+00:00"
+  },
+  {
+    "modelo": "ipn.PayPalIPN",
+    "id": "1",
+    "business": "sb-uptn029244386@business.example.com",
+    "charset": "UTF-8",
+    "custom": "3",
+    "notify_version": 3.9,
+    "parent_txn_id": "",
+    "receiver_email": "sb-uptn029244386@business.example.com",
+    "receiver_id": "T6QC44HMGSZBG",
+    "residence_country": "EC",
+    "test_ipn": "True",
+    "txn_id": "0B6702859J482312P",
+    "txn_type": "web_accept",
+    "verify_sign": "AD0AxvxNUDqNFdn3xZmqC6Vhx.NsAyhax9Laxvzwzkxu9WLXUCQMfz68",
+    "address_country": "",
+    "address_city": "",
+    "address_country_code": "",
+    "address_name": "",
+    "address_state": "",
+    "address_status": "",
+    "address_street": "",
+    "address_zip": "",
+    "contact_phone": "",
+    "first_name": "John",
+    "last_name": "Doe",
+    "payer_business_name": "",
+    "payer_email": "sb-ihbq944315001@personal.example.com",
+    "payer_id": "YH6QSSKZHM6R6",
+    "auth_amount": 0.0,
+    "auth_exp": "",
+    "auth_id": "",
+    "auth_status": "",
+    "exchange_rate": 0.0,
+    "invoice": "atencion-3",
+    "item_name": "Pago de Atención médica",
+    "item_number": "",
+    "mc_currency": "USD",
+    "mc_fee": 0.84,
+    "mc_gross": 10.0,
+    "mc_handling": 0.0,
+    "mc_shipping": 0.0,
+    "memo": "",
+    "num_cart_items": "0",
+    "option_name1": "",
+    "option_name2": "",
+    "option_selection1": "",
+    "option_selection2": "",
+    "payer_status": "verified",
+    "payment_date": "2025-07-03T02:15:14+00:00",
+    "payment_gross": 10.0,
+    "payment_status": "Completed",
+    "payment_type": "instant",
+    "pending_reason": "",
+    "protection_eligibility": "Eligible",
+    "quantity": "1",
+    "reason_code": "",
+    "remaining_settle": 0.0,
+    "settle_amount": 0.0,
+    "settle_currency": "",
+    "shipping": 0.0,
+    "shipping_method": "Default",
+    "tax": 0.0,
+    "transaction_entity": "",
+    "auction_buyer_id": "",
+    "auction_closing_date": "None",
+    "auction_multi_item": "0",
+    "for_auction": 0.0,
+    "amount": 0.0,
+    "amount_per_cycle": 0.0,
+    "initial_payment_amount": 0.0,
+    "next_payment_date": "None",
+    "outstanding_balance": 0.0,
+    "payment_cycle": "",
+    "period_type": "",
+    "product_name": "",
+    "product_type": "",
+    "profile_status": "",
+    "recurring_payment_id": "",
+    "rp_invoice_id": "",
+    "time_created": "None",
+    "amount1": 0.0,
+    "amount2": 0.0,
+    "amount3": 0.0,
+    "mc_amount1": 0.0,
+    "mc_amount2": 0.0,
+    "mc_amount3": 0.0,
+    "password": "",
+    "period1": "",
+    "period2": "",
+    "period3": "",
+    "reattempt": "",
+    "recur_times": "0",
+    "recurring": "",
+    "retry_at": "None",
+    "subscr_date": "None",
+    "subscr_effective": "None",
+    "subscr_id": "",
+    "username": "",
+    "mp_id": "None",
+    "case_creation_date": "None",
+    "case_id": "",
+    "case_type": "",
+    "receipt_id": "",
+    "currency_code": "USD",
+    "handling_amount": 0.0,
+    "transaction_subject": "",
+    "ipaddress": "127.0.0.1",
+    "flag": "False",
+    "flag_code": "",
+    "flag_info": "",
+    "query": "mc_gross=10.00&invoice=atencion-3&protection_eligibility=Eligible&payer_id=YH6QSSKZHM6R6&payment_date=19%3A15%3A14+Jul+02%2C+2025+PDT&payment_status=Completed&charset=UTF-8&first_name=John&mc_fee=0.84&notify_version=3.9&custom=3&payer_status=verified&business=sb-uptn029244386%40business.example.com&quantity=1&verify_sign=AD0AxvxNUDqNFdn3xZmqC6Vhx.NsAyhax9Laxvzwzkxu9WLXUCQMfz68&payer_email=sb-ihbq944315001%40personal.example.com&txn_id=0B6702859J482312P&payment_type=instant&last_name=Doe&receiver_email=sb-uptn029244386%40business.example.com&payment_fee=0.84&shipping_discount=0.00&receiver_id=T6QC44HMGSZBG&insurance_amount=0.00&txn_type=web_accept&item_name=Pago+de+Atenci%C3%B3n+m%C3%A9dica&discount=0.00&mc_currency=USD&item_number=&residence_country=EC&test_ipn=1&shipping_method=Default&transaction_subject=&payment_gross=10.00&ipn_track_id=f3528260bd158",
+    "response": "VERIFIED",
+    "created_at": "2025-07-03T02:15:23.474733+00:00",
+    "updated_at": "2025-07-03T02:15:23.491045+00:00",
+    "from_view": "None"
+  },
+  {
+    "modelo": "security.Menu",
+    "id": "1",
+    "name": "Pacientes",
+    "icon": "bi bi-person",
+    "order": "1"
+  },
+  {
+    "modelo": "security.Menu",
+    "id": "2",
+    "name": "Seguridad",
+    "icon": "fa-solid fa-shield",
+    "order": "2"
+  },
+  {
+    "modelo": "security.Menu",
+    "id": "3",
+    "name": "Consultas",
+    "icon": "bi bi-calendar-check",
+    "order": "3"
+  },
+  {
+    "modelo": "security.Menu",
+    "id": "4",
+    "name": "Administracion",
+    "icon": "fa-solid fa-gear",
+    "order": "4"
+  },
+  {
+    "modelo": "security.Menu",
+    "id": "6",
+    "name": "Recursos humanos",
+    "icon": "fas fa-chalkboard-teacher",
+    "order": "5"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "17",
+    "url": "doctor/atencion_list",
+    "name": "Atencion medica",
+    "menu_id": "1",
+    "description": "Atencion a Pacientes",
+    "icon": "fas fa-briefcase-medical",
+    "is_active": "True",
+    "order": "0"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "1",
+    "url": "core/pacientes_list",
+    "name": "Registro de pacientes",
+    "menu_id": "1",
+    "description": "Gestion de informacion de pacientes",
+    "icon": "fas fa-user-plus",
+    "is_active": "True",
+    "order": "1"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "2",
+    "url": "historial/",
+    "name": "Historial clinico",
+    "menu_id": "1",
+    "description": "Historial clinico de pacientes",
+    "icon": "fas fa-notes-medical",
+    "is_active": "True",
+    "order": "2"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "3",
+    "url": "seguimiento/",
+    "name": "Seguimiento",
+    "menu_id": "1",
+    "description": "Seguimiento de tratamientos y evolucion",
+    "icon": "fas fa-chart-line",
+    "is_active": "True",
+    "order": "3"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "22",
+    "url": "core/tiposangre_list",
+    "name": "Tipo sangre",
+    "menu_id": "1",
+    "description": "Tipos de Sangre",
+    "icon": "fas fa-tint",
+    "is_active": "True",
+    "order": "5"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "4",
+    "url": "/security/user_list",
+    "name": "Usuarios",
+    "menu_id": "2",
+    "description": "Gestion de Usuarios del Sistema",
+    "icon": "fas fa-user",
+    "is_active": "True",
+    "order": "1"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "11",
+    "url": "security/module_list",
+    "name": "Modulos",
+    "menu_id": "2",
+    "description": "Gestionar modulos",
+    "icon": "fa-solid fa-puzzle-piece",
+    "is_active": "True",
+    "order": "2"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "12",
+    "url": "security/menu_list",
+    "name": "Menus",
+    "menu_id": "2",
+    "description": "Gestion de Menus",
+    "icon": "fa-solid fa-bars",
+    "is_active": "True",
+    "order": "3"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "15",
+    "url": "/security/group_list",
+    "name": "Grupos",
+    "menu_id": "2",
+    "description": "Gestionar los grupos del sistema",
+    "icon": "fas fa-user-friends",
+    "is_active": "True",
+    "order": "4"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "16",
+    "url": "/security/groupmodulepermission_list/",
+    "name": "Group module permission",
+    "menu_id": "2",
+    "description": "Manejar los permisos de a los modulos que tienen cada grupo",
+    "icon": "fas fa-user-shield",
+    "is_active": "True",
+    "order": "5"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "18",
+    "url": "security/preubas",
+    "name": "Prueba",
+    "menu_id": "2",
+    "description": "Prueba xd",
+    "icon": "fas fa-user",
+    "is_active": "True",
+    "order": "6"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "5",
+    "url": "citas/",
+    "name": "Citas",
+    "menu_id": "3",
+    "description": "Programacion de citas medicas",
+    "icon": "fas fa-calendar-check",
+    "is_active": "True",
+    "order": "1"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "6",
+    "url": "core/diagnosticos/",
+    "name": "Diagnosticos",
+    "menu_id": "3",
+    "description": "Registro de diagnosticos medicos",
+    "icon": "fa-solid fa-stethoscope",
+    "is_active": "True",
+    "order": "2"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "19",
+    "url": "doctor/pago_list",
+    "name": "Pagos",
+    "menu_id": "3",
+    "description": "Gestionar los Pagos",
+    "icon": "fas fa-credit-card",
+    "is_active": "True",
+    "order": "3"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "7",
+    "url": "recetas/",
+    "name": "Recetas",
+    "menu_id": "3",
+    "description": "Emision de recetas medicas",
+    "icon": "fas fa-prescription",
+    "is_active": "True",
+    "order": "4"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "20",
+    "url": "doctor/servicios_list",
+    "name": "Servicios adicionales",
+    "menu_id": "3",
+    "description": "Servicios Adicionales",
+    "icon": "fas fa-stethoscope",
+    "is_active": "True",
+    "order": "5"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "8",
+    "url": "usuarios/",
+    "name": "Usuarios",
+    "menu_id": "4",
+    "description": "Personalizacion de perfil",
+    "icon": "fas fa-user-cog",
+    "is_active": "True",
+    "order": "1"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "9",
+    "url": "configuracion/",
+    "name": "Configuracion",
+    "menu_id": "4",
+    "description": "Configuracion general del sistema",
+    "icon": "fa-solid fa-sliders",
+    "is_active": "True",
+    "order": "2"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "23",
+    "url": "core/especialidades",
+    "name": "Especialidades",
+    "menu_id": "4",
+    "description": "Epecialidades Medicas",
+    "icon": "fa-solid fa-user-doctor text-blue-500",
+    "is_active": "True",
+    "order": "3"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "21",
+    "url": "doctor/horarios_list",
+    "name": "Horarios",
+    "menu_id": "4",
+    "description": "None",
+    "icon": "fas fa-clock",
+    "is_active": "True",
+    "order": "3"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "10",
+    "url": "reportes/",
+    "name": "Reportes",
+    "menu_id": "4",
+    "description": "Generacion de reportes y estadisticas",
+    "icon": "fas fa-file-alt",
+    "is_active": "True",
+    "order": "4"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "24",
+    "url": "core/cargos",
+    "name": "Cargos",
+    "menu_id": "6",
+    "description": "Cargos",
+    "icon": "fa-solid fa-id-badge text-blue-500",
+    "is_active": "True",
+    "order": "1"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "25",
+    "url": "core/empleados",
+    "name": "Empleados",
+    "menu_id": "6",
+    "description": "Gesion de Empleados",
+    "icon": "fa-solid fa-briefcase text-blue-500",
+    "is_active": "True",
+    "order": "2"
+  },
+  {
+    "modelo": "security.Module",
+    "id": "26",
+    "url": "core/doctores",
+    "name": "Doctores",
+    "menu_id": "6",
+    "description": "Gestion de Doctores",
+    "icon": "fa-solid fa-user-doctor text-blue-600",
+    "is_active": "True",
+    "order": "4"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "4",
+    "group_id": "1",
+    "module_id": "1"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "21",
+    "group_id": "1",
+    "module_id": "3"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "34",
+    "group_id": "1",
+    "module_id": "25"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "24",
+    "group_id": "2",
+    "module_id": "19"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "31",
+    "group_id": "2",
+    "module_id": "24"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "35",
+    "group_id": "2",
+    "module_id": "25"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "22",
+    "group_id": "3",
+    "module_id": "17"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "2",
+    "group_id": "3",
+    "module_id": "1"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "19",
+    "group_id": "3",
+    "module_id": "2"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "18",
+    "group_id": "3",
+    "module_id": "3"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "28",
+    "group_id": "3",
+    "module_id": "22"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "3",
+    "group_id": "3",
+    "module_id": "6"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "25",
+    "group_id": "3",
+    "module_id": "19"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "20",
+    "group_id": "3",
+    "module_id": "7"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "26",
+    "group_id": "3",
+    "module_id": "20"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "7",
+    "group_id": "3",
+    "module_id": "9"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "29",
+    "group_id": "3",
+    "module_id": "23"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "27",
+    "group_id": "3",
+    "module_id": "21"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "30",
+    "group_id": "3",
+    "module_id": "24"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "32",
+    "group_id": "3",
+    "module_id": "25"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "36",
+    "group_id": "3",
+    "module_id": "26"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "13",
+    "group_id": "5",
+    "module_id": "4"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "15",
+    "group_id": "5",
+    "module_id": "11"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "14",
+    "group_id": "5",
+    "module_id": "12"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "16",
+    "group_id": "5",
+    "module_id": "15"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "17",
+    "group_id": "5",
+    "module_id": "16"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "23",
+    "group_id": "5",
+    "module_id": "18"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "33",
+    "group_id": "5",
+    "module_id": "25"
+  },
+  {
+    "modelo": "security.GroupModulePermission",
+    "id": "11",
+    "group_id": "6",
+    "module_id": "6"
+  },
+  {
+    "modelo": "security.User",
+    "id": "1",
+    "password": "pbkdf2_sha256$1000000$UXZjDpWE8IUc4v5wESo2Ic$3PQ0K8Z/+NnoBFqtROEnYnrSg4LfVcCWscptZ72qTKo=",
+    "last_login": "2025-05-27T00:06:00.396000+00:00",
+    "is_superuser": "True",
+    "username": "Xhector",
+    "first_name": "Hector",
+    "last_name": "Romero",
+    "is_staff": "True",
+    "is_active": "True",
+    "date_joined": "2025-05-26T23:10:38+00:00",
+    "dni": "None",
+    "image": "security/users/perfil.jpg",
+    "email": "hector@gmail.com",
+    "direction": "None",
+    "phone": "None"
+  },
+  {
+    "modelo": "security.User",
+    "id": "4",
+    "password": "pbkdf2_sha256$1000000$9GhyRTYk1Uuot7Ug3ugweh$QpX/TjO8TsM+lY8u8vuEA0Zs4UGyeoHTtkym2ki7Q6E=",
+    "last_login": "None",
+    "is_superuser": "False",
+    "username": "Raul",
+    "first_name": "Raul",
+    "last_name": "Romero",
+    "is_staff": "False",
+    "is_active": "True",
+    "date_joined": "2025-06-07T18:31:06+00:00",
+    "dni": "None",
+    "image": "",
+    "email": "raulromerog002@gmail.com",
+    "direction": "None",
+    "phone": "None"
+  },
+  {
+    "modelo": "security.User",
+    "id": "5",
+    "password": "",
+    "last_login": "None",
+    "is_superuser": "False",
+    "username": "Lionel",
+    "first_name": "Lionel",
+    "last_name": "Messi",
+    "is_staff": "False",
+    "is_active": "True",
+    "date_joined": "2025-06-07T23:33:40.444000+00:00",
+    "dni": "None",
+    "image": "",
+    "email": "messigoat@gmail.com",
+    "direction": "None",
+    "phone": "None"
+  },
+  {
+    "modelo": "security.User",
+    "id": "9",
+    "password": "pbkdf2_sha256$1000000$sz7cwd6zxTBdoD9Z81N05L$Cq4AX2viFu6OXKmMgqVg+shsOQeS+0W0HI4HyP9UXOg=",
+    "last_login": "2025-06-29T00:13:36.003393+00:00",
+    "is_superuser": "False",
+    "username": "KylianX",
+    "first_name": "Kylian",
+    "last_name": "Mbappe",
+    "is_staff": "False",
+    "is_active": "True",
+    "date_joined": "2025-06-28T23:46:22.078952+00:00",
+    "dni": "None",
+    "image": "",
+    "email": "mbappe1@gmail.com",
+    "direction": "None",
+    "phone": "None"
+  },
+  {
+    "modelo": "security.User",
+    "id": "10",
+    "password": "pbkdf2_sha256$1000000$qM9Wt2TuKtYVW9nokQuiiM$oVfdrogg6X/0EKg47wCk36nB25ctA2dcL+G8IL8RQPE=",
+    "last_login": "None",
+    "is_superuser": "False",
+    "username": "ErlingH",
+    "first_name": "Erling",
+    "last_name": "Haaland",
+    "is_staff": "False",
+    "is_active": "True",
+    "date_joined": "2025-06-29T00:25:11.348882+00:00",
+    "dni": "None",
+    "image": "",
+    "email": "erling1@gmail.com",
+    "direction": "None",
+    "phone": "None"
+  },
+  {
+    "modelo": "security.User",
+    "id": "3",
+    "password": "pbkdf2_sha256$1000000$gl52RdnFprY9u8gXManDEM$fg/53DutyJENv1Yth84HJx6t8Iu4pmpI0R00sIdVDfk=",
+    "last_login": "2025-07-04T15:08:11.490704+00:00",
+    "is_superuser": "True",
+    "username": "XhectorOne",
+    "first_name": "Hector",
+    "last_name": "Romero",
+    "is_staff": "True",
+    "is_active": "True",
+    "date_joined": "2025-06-07T18:17:19+00:00",
+    "dni": "None",
+    "image": "",
+    "email": "hector1@gmail.com",
+    "direction": "None",
+    "phone": "None"
+  },
+  {
+    "modelo": "security.AuditUser",
+    "id": "1",
+    "usuario_id": "3",
+    "tabla": "Atencion",
+    "registroid": "3",
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:19:41.603497",
+    "estacion": "157.100.64.50"
+  },
+  {
+    "modelo": "security.AuditUser",
+    "id": "2",
+    "usuario_id": "3",
+    "tabla": "Atencion",
+    "registroid": "3",
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:40:48.216490",
+    "estacion": "157.100.64.50"
+  },
+  {
+    "modelo": "security.AuditUser",
+    "id": "3",
+    "usuario_id": "3",
+    "tabla": "Atencion",
+    "registroid": "3",
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:43:59.667848",
+    "estacion": "157.100.64.50"
+  },
+  {
+    "modelo": "security.AuditUser",
+    "id": "4",
+    "usuario_id": "3",
+    "tabla": "Atencion",
+    "registroid": "1",
+    "accion": "MODIFICACION",
+    "fecha": "2025-07-04",
+    "hora": "19:44:37.567649",
+    "estacion": "157.100.64.50"
+  },
+  {
+    "modelo": "core.TipoSangre",
+    "id": "1",
+    "tipo": "O+",
+    "descripcion": "O+"
+  },
+  {
+    "modelo": "core.TipoSangre",
+    "id": "2",
+    "tipo": "O-",
+    "descripcion": "O-"
+  },
+  {
+    "modelo": "core.Paciente",
+    "id": "3",
+    "nombres": "Cristian",
+    "apellidos": "Cortez",
+    "cedula_ecuatoriana": "1721147898",
+    "dni": "None",
+    "fecha_nacimiento": "1990-07-03",
+    "telefono": "+593985593792",
+    "email": "cristian@gmail.com",
+    "sexo": "masculino",
+    "estado_civil": "soltero",
+    "direccion": "3 de noviembre",
+    "latitud": "None",
+    "longitud": "None",
+    "tipo_sangre_id": "1",
+    "foto": "",
+    "antecedentes_personales": "",
+    "antecedentes_quirurgicos": "",
+    "antecedentes_familiares": "",
+    "alergias": "",
+    "medicamentos_actuales": "",
+    "habitos_toxicos": "ninguno",
+    "vacunas": "",
+    "antecedentes_gineco_obstetricos": "",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Paciente",
+    "id": "1",
+    "nombres": "Raul",
+    "apellidos": "Gonzalon",
+    "cedula_ecuatoriana": "0943784157",
+    "dni": "None",
+    "fecha_nacimiento": "2005-03-03",
+    "telefono": "+593985593704",
+    "email": "raulromerog006@gmail.com",
+    "sexo": "masculino",
+    "estado_civil": "soltero",
+    "direccion": "3 de noviembre",
+    "latitud": "None",
+    "longitud": "None",
+    "tipo_sangre_id": "1",
+    "foto": "",
+    "antecedentes_personales": "",
+    "antecedentes_quirurgicos": "",
+    "antecedentes_familiares": "",
+    "alergias": "",
+    "medicamentos_actuales": "",
+    "habitos_toxicos": "ninguno",
+    "vacunas": "",
+    "antecedentes_gineco_obstetricos": "",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Paciente",
+    "id": "4",
+    "nombres": "Fabian",
+    "apellidos": "Mera",
+    "cedula_ecuatoriana": "1717430100",
+    "dni": "1717430100",
+    "fecha_nacimiento": "2000-02-12",
+    "telefono": "+593985593716",
+    "email": "fabian@gmail.com",
+    "sexo": "masculino",
+    "estado_civil": "divorciado",
+    "direccion": "3 de noviembre",
+    "latitud": -3.72278,
+    "longitud": -90.7282,
+    "tipo_sangre_id": "1",
+    "foto": "",
+    "antecedentes_personales": "na",
+    "antecedentes_quirurgicos": "na",
+    "antecedentes_familiares": "na",
+    "alergias": "na",
+    "medicamentos_actuales": "na",
+    "habitos_toxicos": "ninguno",
+    "vacunas": "na",
+    "antecedentes_gineco_obstetricos": "na",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Paciente",
+    "id": "2",
+    "nombres": "Alberto",
+    "apellidos": "Zea",
+    "cedula_ecuatoriana": "1710203694",
+    "dni": "17102036947",
+    "fecha_nacimiento": "2000-11-12",
+    "telefono": "+593985593704",
+    "email": "alberto@gmail.com",
+    "sexo": "masculino",
+    "estado_civil": "casado",
+    "direccion": "3 de noviembre",
+    "latitud": -2.73829,
+    "longitud": -80.27187,
+    "tipo_sangre_id": "1",
+    "foto": "",
+    "antecedentes_personales": "Diabetes",
+    "antecedentes_quirurgicos": "Ninguna",
+    "antecedentes_familiares": "Ninguna",
+    "alergias": "Ninguna",
+    "medicamentos_actuales": "Ninguna",
+    "habitos_toxicos": "ninguno",
+    "vacunas": "Ninguna",
+    "antecedentes_gineco_obstetricos": "Ninguna",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Especialidad",
+    "id": "1",
+    "nombre": "Cardiologo",
+    "descripcion": "Cardiologo",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Cargo",
+    "id": "1",
+    "nombre": "Recepcionista",
+    "descripcion": "Recepcionista",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Empleado",
+    "id": "4",
+    "nombres": "Fabian",
+    "apellidos": "Perez",
+    "cedula_ecuatoriana": "1712030541",
+    "dni": "1712030541",
+    "fecha_nacimiento": "2004-05-04",
+    "cargo_id": "1",
+    "sueldo": 3000.0,
+    "fecha_ingreso": "2025-07-04",
+    "direccion": "3 de noviembre",
+    "latitud": "-3.72223",
+    "longitud": "-90.7223",
+    "foto": "",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.TipoMedicamento",
+    "id": "1",
+    "nombre": "anestesico",
+    "descripcion": "anestesico",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.MarcaMedicamento",
+    "id": "1",
+    "nombre": "la sante",
+    "descripcion": "la sante",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Medicamento",
+    "id": "1",
+    "tipo_id": "1",
+    "marca_medicamento_id": "1",
+    "nombre": "Paracetamol",
+    "descripcion": "Paracetamol",
+    "concentracion": "500",
+    "via_administracion": "oral",
+    "cantidad": "500",
+    "precio": 2.0,
+    "comercial": "True",
+    "foto": "",
+    "activo": "True"
+  },
+  {
+    "modelo": "core.Diagnostico",
+    "id": "1",
+    "codigo": "A09",
+    "descripcion": "Fiebre Severa",
+    "datos_adicionales": "mucho cuidado",
+    "activo": "True"
+  },
+  {
+    "modelo": "doctor.Atencion",
+    "id": "4",
+    "paciente_id": "3",
+    "fecha_atencion": "2025-07-03T21:50:18.805851+00:00",
+    "presion_arterial": "130/60",
+    "pulso": "45",
+    "temperatura": 32.0,
+    "frecuencia_respiratoria": "45",
+    "saturacion_oxigeno": 78.0,
+    "peso": 67.0,
+    "altura": 1.76,
+    "motivo_consulta": "Chequeo",
+    "sintomas": "Fiebre",
+    "tratamiento": "Parectamol",
+    "examen_fisico": "",
+    "examenes_enviados": "",
+    "comentario_adicional": "",
+    "es_control": "True"
+  },
+  {
+    "modelo": "doctor.Atencion",
+    "id": "3",
+    "paciente_id": "2",
+    "fecha_atencion": "2025-07-03T02:14:30.516367+00:00",
+    "presion_arterial": "120/80",
+    "pulso": "34",
+    "temperatura": 34.0,
+    "frecuencia_respiratoria": "34",
+    "saturacion_oxigeno": 55.0,
+    "peso": 56.0,
+    "altura": 1.76,
+    "motivo_consulta": "se muere",
+    "sintomas": "fiebre",
+    "tratamiento": "nada",
+    "examen_fisico": "",
+    "examenes_enviados": "",
+    "comentario_adicional": "{}",
+    "es_control": "False"
+  },
+  {
+    "modelo": "doctor.Atencion",
+    "id": "2",
+    "paciente_id": "2",
+    "fecha_atencion": "2025-07-03T02:07:02.287589+00:00",
+    "presion_arterial": "120/80",
+    "pulso": "45",
+    "temperatura": 34.0,
+    "frecuencia_respiratoria": "123",
+    "saturacion_oxigeno": 23.0,
+    "peso": 78.0,
+    "altura": 1.89,
+    "motivo_consulta": "se siente mal",
+    "sintomas": "fiebre",
+    "tratamiento": "nada",
+    "examen_fisico": "esta del orto",
+    "examenes_enviados": "",
+    "comentario_adicional": "",
+    "es_control": "True"
+  },
+  {
+    "modelo": "doctor.Atencion",
+    "id": "1",
+    "paciente_id": "1",
+    "fecha_atencion": "2025-07-02T21:40:04.266195+00:00",
+    "presion_arterial": "120/80",
+    "pulso": "40",
+    "temperatura": 34.0,
+    "frecuencia_respiratoria": "100",
+    "saturacion_oxigeno": 30.0,
+    "peso": 60.0,
+    "altura": 1.65,
+    "motivo_consulta": "dolores",
+    "sintomas": "fiebre",
+    "tratamiento": "paracetamol",
+    "examen_fisico": "",
+    "examenes_enviados": "",
+    "comentario_adicional": "{}",
+    "es_control": "False"
+  },
+  {
+    "modelo": "doctor.ServiciosAdicionales",
+    "id": "3",
+    "nombre_servicio": "Electrocardiograma",
+    "costo_servicio": 100.0,
+    "descripcion": "Electrocardiograma (ECG)",
+    "activo": "True"
+  },
+  {
+    "modelo": "doctor.ServiciosAdicionales",
+    "id": "1",
+    "nombre_servicio": "Radiografia",
+    "costo_servicio": 100.0,
+    "descripcion": "Radiografia",
+    "activo": "True"
+  },
+  {
+    "modelo": "doctor.Pago",
+    "id": "19",
+    "atencion_id": "1",
+    "metodo_pago": "transaccion",
+    "monto_total": 30.0,
+    "estado": "pagado",
+    "fecha_pago": "2025-06-12T05:00:00+00:00",
+    "fecha_creacion": "2025-07-03T20:12:29.448168+00:00",
+    "nombre_pagador": "Berta",
+    "referencia_externa": "12128919wh21990",
+    "evidencia_pago": "doctor/evidencia_pagos/POO_REPARTIDO_W3ekSb9.pdf",
+    "observaciones": "None",
+    "activo": "True"
+  },
+  {
+    "modelo": "doctor.Pago",
+    "id": "12",
+    "atencion_id": "1",
+    "metodo_pago": "paypal",
+    "monto_total": 200.0,
+    "estado": "pendiente",
+    "fecha_pago": "2025-04-12T05:00:00+00:00",
+    "fecha_creacion": "2025-07-03T19:11:11.984763+00:00",
+    "nombre_pagador": "Hector",
+    "referencia_externa": "28932909021212",
+    "evidencia_pago": "",
+    "observaciones": "NInguna",
+    "activo": "True"
+  },
+  {
+    "modelo": "doctor.Pago",
+    "id": "9",
+    "atencion_id": "3",
+    "metodo_pago": "paypal",
+    "monto_total": 10.0,
+    "estado": "pagado",
+    "fecha_pago": "2025-07-03T02:15:23+00:00",
+    "fecha_creacion": "2025-07-03T02:15:23.508818+00:00",
+    "nombre_pagador": "sb-ihbq944315001@personal.example.com",
+    "referencia_externa": "0B6702859J482312P",
+    "evidencia_pago": "Pagado vía PayPal txn_id: 0B6702859J482312P",
+    "observaciones": "Pago confirmado por PayPal",
+    "activo": "True"
+  },
+  {
+    "modelo": "doctor.DetallePago",
+    "id": "2",
+    "pago_id": "9",
+    "servicio_adicional_id": "1",
+    "cantidad": "1",
+    "precio_unitario": 200.0,
+    "subtotal": 54.0,
+    "descuento_porcentaje": 10.0,
+    "aplica_seguro": "True",
+    "valor_seguro": 60.0,
+    "descripcion_seguro": "medicare"
+  },
+  {
+    "modelo": "doctor.DetallePago",
+    "id": "4",
+    "pago_id": "12",
+    "servicio_adicional_id": "1",
+    "cantidad": "1",
+    "precio_unitario": 35.0,
+    "subtotal": 35.0,
+    "descuento_porcentaje": 0.0,
+    "aplica_seguro": "False",
+    "valor_seguro": "None",
+    "descripcion_seguro": "medicare S2"
+  },
+  {
+    "modelo": "doctor.DetallePago",
+    "id": "5",
+    "pago_id": "19",
+    "servicio_adicional_id": "1",
+    "cantidad": "1",
+    "precio_unitario": 400.0,
+    "subtotal": 32.55,
+    "descuento_porcentaje": 7.0,
+    "aplica_seguro": "True",
+    "valor_seguro": 35.0,
+    "descripcion_seguro": "medicare S22"
+  },
+  {
+    "modelo": "doctor.DetallePago",
+    "id": "10",
+    "pago_id": "9",
+    "servicio_adicional_id": "3",
+    "cantidad": "1",
+    "precio_unitario": 60.0,
+    "subtotal": 60.0,
+    "descuento_porcentaje": 0.0,
+    "aplica_seguro": "False",
+    "valor_seguro": "None",
+    "descripcion_seguro": "None"
+  }
+]

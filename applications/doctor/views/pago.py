@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.utils import timezone
 from applications.doctor.forms.pago import PagoForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from applications.doctor.models import Pago, Atencion
 from applications.security.components.mixin_crud import CreateViewMixin, DeleteViewMixin, ListViewMixin, \
     PermissionMixin, UpdateViewMixin
@@ -40,12 +40,12 @@ class PagoCreateView(PermissionMixin, CreateViewMixin, CreateView):
     form_class = PagoForm
     template_name = 'doctor/pago/pago_form.html'
     permission_required = 'add_pago'
-    success_url = reverse_lazy('doctor:detalle_pago_create')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        pago = self.object
         context['grabar'] = 'Crear Pago'
-        context['back_url'] = self.success_url
+        
         context['atenciones'] = Atencion.objects.all()
         return context
 

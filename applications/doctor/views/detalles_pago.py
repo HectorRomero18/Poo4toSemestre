@@ -13,8 +13,25 @@ from applications.doctor.forms.pago import DetallePagoForm
 from applications.doctor.models import Pago, Atencion, DetallePago, ServiciosAdicionales
 from applications.security.components.mixin_crud import CreateViewMixin, DeleteViewMixin, ListViewMixin, \
     PermissionMixin, UpdateViewMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
+
+
+
+class DetallePagoDetailView(PermissionMixin, DetailView):
+    model = DetallePago
+    template_name = 'doctor/detalles_pago/detail.html'
+    permission_required = 'view_detallepago'
+    context_object_name = 'detalle_pago'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        detalle = self.object
+        context['grabar'] = 'Detalle del Pago'
+        context['back_url'] = reverse_lazy('doctor:pago_list')
+        context['detalles_pago'] = detalle.pago.detalles.all()  # ⚠️ agrega esto
+        return context
+
 
 
 class DetallePagoCreateView(PermissionMixin, CreateView, CreateViewMixin):
@@ -28,13 +45,25 @@ class DetallePagoCreateView(PermissionMixin, CreateView, CreateViewMixin):
         context = super().get_context_data(**kwargs)
         context['grabar'] = 'Agregar Detalle de Pago'
         context['back_url'] = self.success_url
-        context['det_form'] = DetallePagoForm()
+        context['det_form'] = context.get('form')
+        context['pago_id'] = self.request.GET.get('pago_id')  # para mostrar el ID "quemado"
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        pago_id = self.request.GET.get('pago_id')
+        if pago_id:
+            try:
+                pago = Pago.objects.get(pk=pago_id)
+                kwargs['pago_instance'] = pago
+            except Pago.DoesNotExist:
+                pass
+        return kwargs
+
     def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, f'Detalle Pago agregado correctamente')
-        return response
+        form.instance.pago = form.cleaned_data.get('pago_hidden')
+        messages.success(self.request, 'Detalle Pago agregado correctamente')
+        return super().form_valid(form)
 
 
 class DetallePagoUpdateView(PermissionMixin, UpdateView, UpdateViewMixin):

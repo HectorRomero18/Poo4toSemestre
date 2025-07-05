@@ -22,6 +22,7 @@
         </ol>
     </div>
 
+<<<<<<< HEAD
     <!-- Modal y otros elementos -->
 
     <!-- Dependencies -->
@@ -37,6 +38,31 @@
                 day.addEventListener('dragover', function(e) {
                     e.preventDefault();
                     this.classList.add('drag-over');
+=======
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        events: function(fetchInfo, successCallback, failureCallback) {
+            // Cambia el ID del doctor según corresponda
+            fetch("{% url 'core:cita_calendario_json' %}?doctor=1&anio=" + fetchInfo.start.getFullYear() + "&mes=" + (fetchInfo.start.getMonth() + 1))
+                .then(response => response.json())
+                .then(data => {
+                    let events = [];
+                    for (let fecha in data) {
+                        data[fecha].forEach(slot => {
+                            let color = slot.estado === 'disponible' ? '#22c55e' : (slot.estado === 'ocupado' ? '#f59e42' : '#64748b');
+                            events.push({
+                                title: slot.estado.charAt(0).toUpperCase() + slot.estado.slice(1) + " " + slot.hora,
+                                start: fecha + "T" + slot.hora,
+                                color: color
+                            });
+                        });
+                    }
+                    successCallback(events);
+>>>>>>> d2c526586cbfc9a581bb28f08c62e8bdd0fa291b
                 });
 
                 day.addEventListener('dragleave', function() {

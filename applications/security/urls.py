@@ -4,7 +4,7 @@ from applications.security.views.auth import signin, signout
 from applications.security.views.menu import MenuCreateView, MenuDeleteView, MenuListView, MenuUpdateView
 from applications.security.views.groups import GroupsListView, GroupsCreateView, GroupsUpdateView, GroupsDeleteView
 from applications.security.views.users import UserListView, UserCreateView, UserUpdateView, UserDeleteView
-from applications.security.views.group_module_permission import GroupModulePermissionListView, GroupModulePermissionCreateView, GroupModulePermissionUpdateView, GroupModulePermissionDeleteView
+from applications.security.views.group_module_permission import GroupModulePermissionListView, GroupModulePermissionCreateView, GroupModulePermissionUpdateView, GroupModulePermissionDeleteView, get_module_permissions
 from applications.security.views.module import ModuleCreateView, ModuleDeleteView, ModuleListView, ModuleUpdateView
 
 
@@ -36,13 +36,23 @@ urlpatterns = [
   path('user_delete/<int:pk>/', UserDeleteView.as_view(),name='user_delete'),
 
 
-# rutas para GroupModulePermission
-# rutas para GroupModulePermission
-  path('groupmodulepermission_list/', GroupModulePermissionListView.as_view(), name='group_module_permission_list'),
-  path('groupmodulepermission_create/', GroupModulePermissionCreateView.as_view(), name='group_module_permission_create'),
-  path('groupmodulepermission_update/<int:pk>/', GroupModulePermissionUpdateView.as_view(), name='group_module_permission_update'),
-  path('groupmodulepermission_delete/<int:pk>/', GroupModulePermissionDeleteView.as_view(), name='group_module_permission_delete'),
-
+    # rutas para GroupModulePermission
+    path('groupmodulepermission_list/', 
+         GroupModulePermissionListView.as_view(), 
+         name='groupmodulepermission_list'),
+    path('groupmodulepermission_create/', 
+         GroupModulePermissionCreateView.as_view(), 
+         name='groupmodulepermission_create'),
+    path('groupmodulepermission_update/<int:pk>/', 
+         GroupModulePermissionUpdateView.as_view(), 
+         name='groupmodulepermission_update'),
+    path('groupmodulepermission_delete/<int:pk>/', 
+         GroupModulePermissionDeleteView.as_view(), 
+         name='groupmodulepermission_delete'),
+    
+    # Nueva ruta para obtener permisos por módulo (AJAX)
+    # RUTA AJAX PARA OBTENER PERMISOS DEL MÓDULO
+    path('get_module_permissions/', get_module_permissions, name="get_module_permissions"),
 
   # rutas de autenticacion
   path('logout/', signout, name='signout'),

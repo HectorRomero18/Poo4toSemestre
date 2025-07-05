@@ -37,4 +37,5 @@ urlpatterns = [
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('pago-exitoso/', redirect_pago_exitoso),
     path('pago-cancelado/', redirect_pago_cancelado),
+    path('chatbot/', include('applications.chatbot.urls', namespace='chatbot')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
